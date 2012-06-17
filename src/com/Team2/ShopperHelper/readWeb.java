@@ -25,16 +25,11 @@ public class readWeb
 		private JSONArray ProductResult;
 		private ArrayList<NameValuePair> valueSearch = new ArrayList<NameValuePair>(); // to store values to pass to the parser for search
 		private HttpClient httpclient = new DefaultHttpClient(); // assigns an object for the HTTP Client
-		private HttpPost http = new HttpPost("Http://someurl"); // designates where we are going to post and retrieve the information.
-		private String ProductName;
-		private String ProductType;
-		private String UPC;
+		private HttpPost http; // designates where we are going to post and retrieve the information.
 		private String result;
 		private InputStream input;
 		int valueType;
-		private int[] id;
 		private String[] ProductNameArray;
-		private String[] ProductTypeArray;
 		private int[] inventoryCount;
 		private Double[] Price;
 		private String[] Section;
@@ -43,9 +38,6 @@ public class readWeb
 	
 	public readWeb(String ProductName, String ProductType, String UPC, String StoreID, TextView tv, int valueType)
 	{
-		this.ProductName = ProductName;
-		this.ProductType = ProductType;
-		this.UPC = UPC;
 		this.valueType = valueType;
 		
 		// puts the value pairs together by calling the correct method to do so
@@ -56,11 +48,12 @@ public class readWeb
 			case 3:setValueSearch("UPC",UPC);
 		}
 		// setups the HTTP connection
-		input = setupHTTP(http,input);
+		input = setupHTTP(http,input,StoreID);
 		//converts the response that the HTTP requests gets
 		result = convertResponse(result,input);
 		//getting the information into variables.
 		parseWeb(result);
+		// displaying the information on the screen
 		displayWeb();
 				
 	}
@@ -77,7 +70,6 @@ public class readWeb
 				JSONObject json_data = ProductResult.getJSONObject(i);
 				UPCID[i]=getJsonInt("UPC",json_data);
 				ProductNameArray[i]=getJsonString("productName",json_data);
-				ProductTypeArray[i]=getJsonString("ProductType",json_data);
 				inventoryCount[i]=getJsonInt("inventoryCount",json_data);
 				Price[i]=getJsonDouble("Price",json_data);
 				Section[i]=getJsonString("Sections",json_data);
@@ -107,9 +99,10 @@ public class readWeb
     	  	
     	return json_data.getInt(category);
     }
-	private InputStream setupHTTP(HttpPost http2, InputStream input2) {
+	private InputStream setupHTTP(HttpPost http2, InputStream input2, String storeID) {
 		
 		try{
+			http = new HttpPost("Http://someurl");
 			http.setEntity(new UrlEncodedFormEntity(valueSearch)); // attaches the named pairs into an entity.
 			HttpResponse response = httpclient.execute(http); // sending the name pair to the PHP page and waiting a response
 			HttpEntity entity = response.getEntity(); // forming a way to retrieve the response.
