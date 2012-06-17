@@ -35,8 +35,7 @@ public class readWeb
 		private String[] Section;
 		private String[] Aisle;
 		private int[] UPCID;
-	/* This does modify the tutorial available at http://www.helloandroid.com/tutorials/connecting-mysql-database
-	 * to suit the needs of this project.*/
+	
 	public readWeb(String ProductName, String ProductType, String UPC, String StoreID, TextView tv, int valueType)
 	{
 		this.valueType = valueType;
