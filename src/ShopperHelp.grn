@@ -72,7 +72,7 @@
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
-      <height="305"/>
+      <height="455"/>
       <width="546"/>
       <x="373"/>
       <y="634"/>
@@ -83,13 +83,6 @@
       <width="-1"/>
       <x="11"/>
       <y="716"/>
-   </type>
-   <type>
-      <name="=ShopperHelp/src<com.Team2.ShopperHelper{displayScreen.java[displayScreen"/>
-      <height="-1"/>
-      <width="-1"/>
-      <x="287"/>
-      <y="1011"/>
    </type>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
@@ -130,13 +123,6 @@
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
       <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{searchProduct.java[searchProduct"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{displayScreen.java[displayScreen"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
       <bendpoints>
       </bendpoints>
    </relationship>
