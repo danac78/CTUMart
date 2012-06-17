@@ -13,7 +13,7 @@ public class searchProduct {
 	public searchProduct(String StoreID)
 	{
 		this.StoreID = StoreID;
-		readWeb read = new readWeb(ProductName, ProductType, UPC, StoreID, tv);
+		readWeb read = new readWeb(ProductName, ProductType, UPC, StoreID, tv, 0);
 		
 	}
 	

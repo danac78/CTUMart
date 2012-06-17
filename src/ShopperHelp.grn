@@ -72,10 +72,10 @@
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
-      <height="-1"/>
-      <width="-1"/>
-      <x="301"/>
-      <y="702"/>
+      <height="305"/>
+      <width="546"/>
+      <x="373"/>
+      <y="634"/>
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{searchProduct.java[searchProduct"/>
@@ -88,13 +88,20 @@
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{displayScreen.java[displayScreen"/>
       <height="-1"/>
       <width="-1"/>
-      <x="286"/>
-      <y="928"/>
+      <x="287"/>
+      <y="1011"/>
    </type>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{searchProduct.java[searchProduct"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
+      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
+      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{systemChecks.java[systemChecks"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
+      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -107,22 +114,15 @@
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{searchProduct.java[searchProduct"/>
+      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
       <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{systemChecks.java[systemChecks"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
       <bendpoints>
       </bendpoints>
    </relationship>
