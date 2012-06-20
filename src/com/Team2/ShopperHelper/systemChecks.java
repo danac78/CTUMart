@@ -1,10 +1,10 @@
 package com.Team2.ShopperHelper;
 
-import android.content.Context;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.view.View;
+
 import android.widget.TextView;
 
 public class systemChecks {
@@ -13,11 +13,11 @@ public class systemChecks {
 	 * each version level, we will be going with 8. versionCheck is to convert that string to int for easier comparsion*/
 	
 	String version;
-	int versionCheck;
+	private int versionCheck;
 	
 	/* We will be calling the ConnectivityManager API for the NetworkInfo method. ConnectivityManager is Android's Network API that allows viewing the 
 		 * web, checking connections, etc.*/
-	ConnectivityManager connMgr = new ConnectivityManager();
+	ConnectivityManager connMgr;
 	
 	/* NetworkInfo is a Method without the ConnectivityManager API that can be used to gain information about network settings and connectivity.
 		 * We are going to use this to check to see if the mobile devices has a connection prior to load completion.*/
@@ -42,7 +42,7 @@ public class systemChecks {
 		 * the exception*/
 		try
 		{
-			versionCheck= Integer.parseInt(version);
+			 versionCheck= Integer.parseInt(version);
 			
 		} catch(NumberFormatException numFormat)
 		{
@@ -61,6 +61,7 @@ public class systemChecks {
 	
 	public void internetCheck(TextView tv)
 	{
+	
 		/* What is occurring is we are checking for an Internet connection. If the Internet is available, it will just exit out of the method. If it not 
 		 * able to sustain a connection, it will report a problem and exit the program.*/
 		

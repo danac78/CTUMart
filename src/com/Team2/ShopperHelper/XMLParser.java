@@ -5,134 +5,196 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.util.Xml;
 
-/* This class will serve as the parser for Shopper Helper. It is based on Android Developer guide, but there were some modification based on our needs. */
 public class XMLParser {
 
-	// We are not going to be using namespaces for efficiency purposes.
-	
-	private static final String ns = null; // used to compare with namespace and give nulls.
-	
-	/* This method will be using the List return and functions to initiate the parser for Android.*/
-	public List parse(InputStream in) throws XmlPullParserException, IOException {
-	
-		try {
-			XmlPullParser parse = Xml.newPullParser(); //creates the parse object.
-			parse.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false); //setting the namespace feature to off.
-			parse.setInput(in, null); // Sets the input the parser is going to process..
-			parse.nextTag(); // Will call next if it see the start or end tag being seen, or will force an exception.
-			return readFeed(parse); //This will call readFeed to process the information we need from store.xml.
+	public static class Entry {
+		public final String storeID;
+		public final String address;
+		public final String secondAddress;
+		public final String city;
+		public final String state;
+		public final String zip;
+
+		private Entry(String storeID, String address, String secondAddress,
+				String city, String state, String zip) {
+			this.storeID = storeID;
+			this.address = address;
+			this.secondAddress = secondAddress;
+			this.city = city;
+			this.state = state;
+			this.zip = zip;
+		}
+
+		private String getInfo(XmlPullParser parse) throws XmlPullParserException, IOException {
+			String results = "";
+			if (parse.next()==XmlPullParser.TEXT)
+			{
+				results = parse.getText();
+				parse.nextTag();
+			}
+			return results;
+		}
+
+		private String readAddress(XmlPullParser parse) throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "Address");
+			String address = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "Address");
 			
-		} finally {
-			in.close(); // closes the input. Without closing, this stream will be in memory throughout the app running, even if it is not being utilized;
+			return address;
+		}
+
+		private String readCity(XmlPullParser parse) throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "City");
+			String city = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "City");
+			
+			return city;
+		}
+
+		private String readSecondAddress(XmlPullParser parse) throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "Address2");
+			String secondAddress = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "Address2");
+			
+			return secondAddress;
+		}
+
+		private String readState(XmlPullParser parse) throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "State");
+			String state = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "State");
+			
+			return state;
+		}
+
+		@SuppressWarnings("unused")
+		private Entry readStores(XmlPullParser parse)
+				throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "Store");
+			String storeID = null;
+			String address = null;
+			String secondAddress = null;
+			String city = null;
+			String state = null;
+			String zip = null;
+
+			while (parse.next() != XmlPullParser.END_TAG) {
+				if (parse.getEventType() != XmlPullParser.START_TAG) {
+					continue;
+				}
+
+				String name = parse.getName();
+				if (name.equals("StoreID"))
+				{
+					storeID = readStoreID(parse);
+				} else if (name.equals("Address")) {
+					address = readAddress(parse);
+				} else if (name.equals("Address2")) {
+					secondAddress = readSecondAddress(parse);
+				} else if (name.equals("City")) {
+					city = readCity(parse);
+				} else if (name.equals("State")) {
+					state = readState(parse);
+				} else if (name.equals("Zip")) {
+					zip = readZip(parse);
+				} else {
+					skip(parse);
+				}
+
+			}
+
+			return new Entry(address, city, state, zip, zip, zip);
+		}
+
+		private String readStoreID(XmlPullParser parse) throws XmlPullParserException, IOException {
+			parse.require(XmlPullParser.START_TAG, ns, "StoreID");
+			String StoreID = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "StoreID");
+			
+			return StoreID;
+		}
+
+		private String readZip(XmlPullParser parse)
+				throws XmlPullParserException, IOException {
+
+			parse.require(XmlPullParser.START_TAG, ns, "Zip");
+			String zip = getInfo(parse);
+			parse.require(XmlPullParser.END_TAG, ns, "Zip");
+			return zip;
+		}
+	}
+	private static final String ns = null;
+
+	private static void skip(XmlPullParser parse) throws XmlPullParserException, IOException {
+		if (parse.getEventType() != XmlPullParser.START_TAG)
+		{
+			throw new IllegalStateException();
 		}
 		
-	}
-	
-	/* All that is occuring here is that it is reading the feed.*/
-	
-	public String LoadXML() // may change, but based on http://stackoverflow.com/questions/7821636/android-load-local-xml-file.
-	{
-		return FileLocation;
-	}
-	
-	private List readXML (XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		@SuppressWarnings("rawtypes")
+		int depth=1;
 		
-		List entries = new ArrayList(); // creating an array to see multiple values as XML is capable of storing and transporting.
-		parse.require(XmlPullParser.START_TAG, ns, "CTUMart"); // indicating the Start tag for the XML file.
-		
-		while (parse.next() !=parse.END_TAG) // as long as it does not read the end tag, the loop will continue.
+		while (depth !=0)
 		{
-			if (parse.getEventType() != parse.START_TAG) {
-				/* if the event type is not equal to the start tag, it will break out of this loop*/
-				continue;			
+			switch (parse.next())
+					{
+				case XmlPullParser.END_TAG:
+					depth--;
+					break;
+				case XmlPullParser.START_TAG:
+					depth++;
+					break;
+					}
+		}
+
+	}
+
+	public Object parse;
+
+	@SuppressWarnings("rawtypes")
+	public List parse(InputStream read) throws IOException,
+			XmlPullParserException {
+		try {
+			XmlPullParser parse = Xml.newPullParser();
+			parse.setInput(read, null);
+			parse.nextTag();
+			return readFeed(parse);
+
+		} finally {
+			read.close();
+		}
+
+	}
+
+	private Object readEntry(XmlPullParser parse) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List readFeed(XmlPullParser parse) throws XmlPullParserException,
+			IOException {
+
+		List stores = new ArrayList();
+
+		parse.require(XmlPullParser.START_TAG, ns, "CTUMart");
+
+		while (parse.next() != XmlPullParser.END_TAG) {
+			if (parse.getEventType() != XmlPullParser.START_TAG) {
+				continue;
 			}
-			
-			String name = parse.getName(); // gets the name of a tag.
-			
-			if (name.equals("Store"))
-			{
-				entries.add(readEntry(parse));
+			String name = parse.getName();
+			if (name.equals("Store")) {
+				stores.add(readEntry(parse));
 			} else {
 				skip(parse);
 			}
-			
 		}
-		
-		return entries; // returns the entries, which will return the data to the class that called XMLParser
-		
-		
-		
-	}
 
-	private void skip(XmlPullParser parse) {
-		// TODO Auto-generated method stub
-		
+		return stores;
 	}
-	
-	private Entry readEntry(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return new Entry(StoreID, Address,secondAddres, City, State, Zip);
-	}
-	
-	private String readStoreID (XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return StoreID;
-	}
-	
-	private String readAddress(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return Address;
-	}
-	
-	private String readSecondAddress(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return secondAddress;
-	}
-	
-	private String readCity(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return City;
-	}
-	
-	private String readState(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return State;
-	}
-	
-	private String readZip(XmlPullParser parse) throws XmlPullParserException, IOException
-	{
-		return Zip;
-	}
-/* This class is building the attributes and methods required to continue with the parser for this app.*/
-	public static class Entry 
-	{
-		public final String StoreID;
-		public final String Address;
-		public final String secondAddress;
-		public final String City;
-		public final String State;
-		public final String Zip;
-		
-		private Entry(String StoreID,String Address,String secondAddress, String City, String State, String Zip)
-		{
-			this.StoreID = StoreID;
-			this.Address = Address;
-			this.secondAddress = secondAddress;
-			this.City = City;
-			this.State = State;
-			this.Zip = Zip;
-		}
-	}
-	
-	
-	
-	
 }

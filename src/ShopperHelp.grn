@@ -50,32 +50,18 @@
       <y="213"/>
    </type>
    <type>
-      <name="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
-      <height="-1"/>
-      <width="-1"/>
-      <x="884"/>
-      <y="209"/>
-   </type>
-   <type>
-      <name="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser[Entry"/>
-      <height="185"/>
-      <width="275"/>
-      <x="845"/>
-      <y="528"/>
-   </type>
-   <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
       <height="-1"/>
       <width="-1"/>
-      <x="430"/>
-      <y="300"/>
+      <x="405"/>
+      <y="178"/>
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{readWeb.java[readWeb"/>
       <height="455"/>
       <width="546"/>
-      <x="373"/>
-      <y="634"/>
+      <x="295"/>
+      <y="639"/>
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{searchProduct.java[searchProduct"/>
@@ -88,20 +74,6 @@
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
       <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{systemChecks.java[systemChecks"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser[Entry"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -126,5 +98,19 @@
       <bendpoints>
       </bendpoints>
    </relationship>
+   <type>
+      <name="=ShopperHelp/src<com.Team2.ShopperHelper{storeDatabase.java[storeDatabase"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="400"/>
+      <y="0"/>
+   </type>
+   <type>
+      <name="=ShopperHelp/src<com.Team2.ShopperHelper{storeDatabase.java[storeDatabase[tblStore"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="393"/>
+      <y="427"/>
+   </type>
 </uml>
 

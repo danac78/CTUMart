@@ -3,7 +3,6 @@ package com.Team2.ShopperHelper;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 public class ShopperHelpActivity extends Activity {
@@ -29,8 +28,7 @@ public class ShopperHelpActivity extends Activity {
         
         sys.versionCheck(tv);
         sys.internetCheck(tv);
-        searchProduct products = new searchProduct(StoreID);
-        
+        findStore.getClass();
         
         
     }

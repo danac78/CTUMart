@@ -14,7 +14,6 @@ public class SearchforStore {
 	
 	public SearchforStore(TextView tv){
 		
-		XMLParser xml = new XMLParser();
 		getInput(tv);
 		displayInput(tv);
 		
