@@ -12,24 +12,41 @@ import android.util.Xml;
 
 public class XMLParser {
 
-	public static class Entry {
-		public final String storeID;
-		public final String address;
-		public final String secondAddress;
-		public final String city;
-		public final String state;
-		public final String zip;
-
-		private Entry(String storeID, String address, String secondAddress,
-				String city, String state, String zip) {
-			this.storeID = storeID;
-			this.address = address;
-			this.secondAddress = secondAddress;
-			this.city = city;
-			this.state = state;
-			this.zip = zip;
+	private static final String ns = null;
+	
+		@SuppressWarnings("rawtypes")
+		
+		public List parse(InputStream input) throws XmlPullParserException, IOException 
+		{
+			/* METHOD parse will be responsible for initiating the parse process and preparing
+			 * it to be able to read and print the XML to the screen.*/
+			try
+			{
+				/*This allows for a parse to be the object for a XmlPullParser class, which will
+				 * read the XML file and parse the data. This object will be passed along to
+				 * other methods to help decipher the xml file we have in assets */
+				
+				XmlPullParser parse = Xml.newPullParser();
+				
+				/* This may be removed if it causes a conflict. This is essentially telling
+				 * the parser we do not want to use NameSpaces*/
+				parse.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+				
+				/* The XML file will be read through the InputStream. Instead of having the Input read the file 
+				 * and send it to the parse, the Input object shall become part of the parse object and will
+				 * all it to read the information. */
+				
+				parse.setInput(input,null);
+				
+				/* This is going to the next tag available in  */
+				parse.nextTag();
+				return readXML(parse);
+				
+			} finally {
+				input.close();
+			}
 		}
-
+		
 		private String getInfo(XmlPullParser parse) throws XmlPullParserException, IOException {
 			String results = "";
 			if (parse.next()==XmlPullParser.TEXT)
@@ -71,7 +88,29 @@ public class XMLParser {
 			
 			return state;
 		}
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		private List readXML(XmlPullParser parse) throws XmlPullParserException,
+		IOException {
 
+			List stores = new ArrayList();
+
+			parse.require(XmlPullParser.START_TAG, ns, "CTUMart");
+
+			while (parse.next() != XmlPullParser.END_TAG) {
+				if (parse.getEventType() != XmlPullParser.START_TAG) {
+					continue;
+				}
+				String name = parse.getName();
+				if (name.equals("Store")) {
+					stores.add(readStores(parse));
+				} else {
+					skip(parse);
+				}
+			}
+
+			return stores;
+		}
+		
 		@SuppressWarnings("unused")
 		private Entry readStores(XmlPullParser parse)
 				throws XmlPullParserException, IOException {
@@ -127,8 +166,8 @@ public class XMLParser {
 			parse.require(XmlPullParser.END_TAG, ns, "Zip");
 			return zip;
 		}
-	}
-	private static final String ns = null;
+	
+	
 
 	private static void skip(XmlPullParser parse) throws XmlPullParserException, IOException {
 		if (parse.getEventType() != XmlPullParser.START_TAG)
@@ -153,48 +192,9 @@ public class XMLParser {
 
 	}
 
-	public Object parse;
+	
+	
 
-	@SuppressWarnings("rawtypes")
-	public List parse(InputStream read) throws IOException,
-			XmlPullParserException {
-		try {
-			XmlPullParser parse = Xml.newPullParser();
-			parse.setInput(read, null);
-			parse.nextTag();
-			return readFeed(parse);
-
-		} finally {
-			read.close();
-		}
-
-	}
-
-	private Object readEntry(XmlPullParser parse) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private List readFeed(XmlPullParser parse) throws XmlPullParserException,
-			IOException {
-
-		List stores = new ArrayList();
-
-		parse.require(XmlPullParser.START_TAG, ns, "CTUMart");
-
-		while (parse.next() != XmlPullParser.END_TAG) {
-			if (parse.getEventType() != XmlPullParser.START_TAG) {
-				continue;
-			}
-			String name = parse.getName();
-			if (name.equals("Store")) {
-				stores.add(readEntry(parse));
-			} else {
-				skip(parse);
-			}
-		}
-
-		return stores;
-	}
+	
+	
 }
