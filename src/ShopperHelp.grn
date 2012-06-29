@@ -70,26 +70,12 @@
       <x="11"/>
       <y="716"/>
    </type>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{systemChecks.java[systemChecks"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
-      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
       <height="-1"/>
       <width="-1"/>
-      <x="629"/>
-      <y="194"/>
+      <x="742"/>
+      <y="129"/>
    </type>
    <type>
       <name="=ShopperHelp/src<com.Team2.ShopperHelper{Entry.java[Entry"/>
@@ -102,6 +88,20 @@
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
       <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{XMLParser.java[XMLParser"/>
       <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{Entry.java[Entry"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
+      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{systemChecks.java[systemChecks"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=ShopperHelp/src<com.Team2.ShopperHelper{ShopperHelpActivity.java[ShopperHelpActivity"/>
+      <targetType="=ShopperHelp/src<com.Team2.ShopperHelper{SearchforStore.java[SearchforStore"/>
       <bendpoints>
       </bendpoints>
    </relationship>

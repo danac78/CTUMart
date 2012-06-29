@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class ShopperHelpActivity extends Activity {
     private SearchforStore findStore;
-
+    TextView tv;
 	/** Called when the activity is first created. */
 	
 	 @Override
@@ -28,7 +28,7 @@ public class ShopperHelpActivity extends Activity {
         TextView tv = new TextView(this); /* This would be done to customize the viewing beyond the default template Android Development Tool provides.*/
         systemChecks sys = new systemChecks(); /* This is associating this Activity with the systemChecks class */ 
         try {
-			setFindStore(new SearchforStore(tv));
+			setFindStore(new SearchforStore());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

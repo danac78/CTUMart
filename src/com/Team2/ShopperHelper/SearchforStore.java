@@ -19,16 +19,16 @@ public class SearchforStore {
 	String phoneNumber[];
 	InputStream input;
 	Context context = null; 
-	public SearchforStore(TextView tv) throws IOException, XmlPullParserException{
+	public SearchforStore() throws IOException, XmlPullParserException{
 		XMLParser parse = new XMLParser();
 		input = context.getAssets().open("store.xml");
-		getInput(tv,parse,input);
+		getInput(parse,input);
 		
-		displayInput(tv);
+		displayInput();
 		
 	}
 
-	private void displayInput(TextView tv) {
+	private void displayInput() {
 		getStoreID();
 		setStoreID(StoreID);
 		
@@ -44,7 +44,7 @@ public class SearchforStore {
 		
 	}
 
-	private void getInput(TextView tv, XMLParser parse, InputStream input2) throws XmlPullParserException, IOException {
+	private void getInput(XMLParser parse, InputStream input2) throws XmlPullParserException, IOException {
 		parse.parse(input2);
 		
 	}
