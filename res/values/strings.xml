@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, ShopperHelpActivity!</string>
     <string name="app_name">ShopperHelp</string>
+    <string name="unused">unused</string>
 
 </resources>

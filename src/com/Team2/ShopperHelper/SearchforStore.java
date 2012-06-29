@@ -6,7 +6,6 @@ import java.io.InputStream;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;
-import android.widget.TextView;
 
 public class SearchforStore {
 	String StoreID[];
