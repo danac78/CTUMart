@@ -1,6 +1,11 @@
 package com.Team2.ShopperHelper;
 
-import android.widget.TextView;
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import android.content.Context;
 
 public class SearchforStore {
 	String StoreID[];
@@ -11,16 +16,18 @@ public class SearchforStore {
 	String state[];
 	String zipCode[];
 	String phoneNumber[];
-	
-	public SearchforStore(TextView tv){
+	InputStream input;
+	Context context = null; 
+	public SearchforStore() throws IOException, XmlPullParserException{
+		XMLParser parse = new XMLParser();
+		input = context.getAssets().open("store.xml");
+		getInput(parse,input);
 		
-		XMLParser xml = new XMLParser();
-		getInput(tv);
-		displayInput(tv);
+		displayInput();
 		
 	}
 
-	private void displayInput(TextView tv) {
+	private void displayInput() {
 		getStoreID();
 		setStoreID(StoreID);
 		
@@ -36,8 +43,8 @@ public class SearchforStore {
 		
 	}
 
-	private void getInput(TextView tv) {
-		// TODO Auto-generated method stub
+	private void getInput(XMLParser parse, InputStream input2) throws XmlPullParserException, IOException {
+		parse.parse(input2);
 		
 	}
 	

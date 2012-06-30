@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CTUMart>
+
+	<Store>
+		<StoreID=1 />
+		<Address="2707 W 14th Pl"/>
+		<Address2/>
+		<City="Apache Jct"/>
+		<State="AZ"/>
+		<Zip="85120"/>
+		
+	</Store>
+
+	<Store>
+		<StoreID="2"/>
+		<Address="385 E Cupertino Dr."/>
+		<Address2>Suite 1</Address2>
+		<City="Beverly Hills"/>
+		<State="CA"/>
+		<Zip="90210"/>
+	</Store>
+
+	<Store>
+		<StoreID="3"/>
+		<Address="111 Breckwood Blvd"/>
+		<Address2/> 
+		<City="Springfield"/>
+		<State="MA"/>
+		<Zip="01109"/>
+	</Store>
+		
+</CTUMart>

@@ -1,13 +1,18 @@
 package com.Team2.ShopperHelper;
 
 
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 public class ShopperHelpActivity extends Activity {
-    /** Called when the activity is first created. */
+    private SearchforStore findStore;
+    TextView tv;
+	/** Called when the activity is first created. */
 	
 	 @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,20 +25,34 @@ public class ShopperHelpActivity extends Activity {
         
         setContentView(R.layout.main); /* this creating the main viewing experience. This is a standard operation in all Android Apps..it is how it creates
         							   the screens for touching or displaying.*/
-        TextView tv = new TextView(this); /* This would be done to customize the viewing beyond the default template Android Development Tool provides.*/
-        systemChecks sys = new systemChecks(); /* This is associating this Activity with the systemChecks class */ 
-        SearchforStore findStore = new SearchforStore(tv);
+        systemCheck sysCheck = new systemCheck();
+        
+        sysCheck.onCreate(savedInstanceState);
+        try {
+			setFindStore(new SearchforStore());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         /* Calling the two methods in the systemChecks class as well as passing the tv variable. As both of these method require only internal variables
          * and will do a System.exit(), this is the only variable that is required to be passed along.*/
         
-        sys.versionCheck(tv);
-        sys.internetCheck(tv);
-        searchProduct products = new searchProduct(StoreID);
         
         
         
     }
+
+	public SearchforStore getFindStore() {
+		return findStore;
+	}
+
+	public void setFindStore(SearchforStore findStore) {
+		this.findStore = findStore;
+	}
     
        
        
