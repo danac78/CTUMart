@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">ShopperHelper</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_launch">launch</string>
+    <string name="logo">The branded logo for the CTUMart corporation.</string>
+    <string name="error">Error</string>
+    <string name="internetError">This Device is not connected to the Internet. Please check the         device and reopen Shopper Helper</string>
+    <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 or greater, check with your manufacture why it is not reporting this.</string>
+
+</resources>
