@@ -29,8 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/compatibleError"
-        android:visibility="visible"
-        />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/OkButton"
@@ -40,6 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:text="Ok"
+        android:visibility="invisible"
         tools:ignore="HardcodedText" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import android.widget.TextView;
  *          conducted at all.
  * 
  */
+@SuppressWarnings("unused")
 public class launch extends Activity {
 	/*
 	 * Declaring the variables required for this activity. These will be
@@ -37,6 +39,7 @@ public class launch extends Activity {
 	 */
 	ConnectivityManager connectivity;
 	NetworkInfo wifiInfo, mobileInfo;
+	
 	private String version;
 
 	private int versionCheck;
@@ -60,19 +63,23 @@ public class launch extends Activity {
 		 * Compatible are invisible in the layout, but these two will be able to
 		 * set the appropriate message visible.
 		 * 
-		 * The okButton.setOnClickListener is listening for the OK button to be clicked and will
-		 * perform the action. In this case, it will tell the application to close.
+		 * The okButton.setOnClickListener is listening for the OK button to be
+		 * clicked and will perform the action. In this case, it will tell the
+		 * application to close.
 		 */
-		
+
 		connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		wifiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
-		TextView internetDisplay = (TextView) findViewById(R.id.internetError);
-		Button okButton = (Button) findViewById(R.id.OkButton);
+		final TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
+		final TextView internetDisplay = (TextView) findViewById(R.id.internetError);
+		final Button okButton = (Button) findViewById(R.id.OkButton);
 		okButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				okButton.setVisibility(View.INVISIBLE);
+				compatibleDisplay.setVisibility(View.INVISIBLE);
+				internetDisplay.setVisibility(View.INVISIBLE);
 				System.exit(0);
 			}
 		});
@@ -83,10 +90,20 @@ public class launch extends Activity {
 														// and above.
 		internetTest(internetDisplay, okButton); // checking to make sure there
 													// is Internet connectivity.
+		
+		/*
+		 * Calling the next activity and closing the launch activity to conserve memory. This would
+		 * follow the same logic as closing a InputStream when no longer in use. It would use resource
+		 * that can be better allocated else where.
+		 */
+		Intent intent = new Intent(this,searchstore.class);
+		startActivity(intent);
+		
+		
+		
 
 	}
 
-	@SuppressWarnings("unused")
 	private void internetTest(TextView internetDisplay, Button okButton) {
 		/*
 		 * These two setters will configure wifiInfo and mobileInfo with the
@@ -105,7 +122,7 @@ public class launch extends Activity {
 		if ((mobileConnect = false) || (wifiConnect = false)) {
 			internetDisplay.setVisibility(View.VISIBLE);
 			okButton.setVisibility(View.VISIBLE);
-			
+
 		}
 
 	}

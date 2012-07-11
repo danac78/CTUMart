@@ -7,6 +7,10 @@
     <string name="logo">The branded logo for the CTUMart corporation.</string>
     <string name="error">Error</string>
     <string name="internetError">This Device is not connected to the Internet. Please check the         device and reopen Shopper Helper</string>
-    <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 or greater, check with your manufacture why it is not reporting this.</string>
+    <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 
+        or greater, check with your manufacture why it is not reporting this.</string>
+    <string name="zipCodeWrong">The Zip Code you enters was invalid. Please enter the zipcode again.</string>
+    <string name="description">This is a description</string>
+    <string name="codeName">Dana</string>
 
 </resources>
