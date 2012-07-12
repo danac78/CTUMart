@@ -12,5 +12,6 @@
     <string name="zipCodeWrong">The Zip Code you enters was invalid. Please enter the zipcode again.</string>
     <string name="description">This is a description</string>
     <string name="codeName">Dana</string>
+    <string name="start_search">Start Search</string>
 
 </resources>

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background" >
+    android:background="@drawable/background"
+    android:visibility="visible" >
 
     <ImageView
         android:id="@+id/Logo"
@@ -41,5 +42,15 @@
         android:text="Ok"
         android:visibility="invisible"
         tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/OkButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/start_search"
+        android:visibility="invisible" />
 
 </RelativeLayout>
