@@ -1,81 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    tools:ignore="ContentDescription" >
+    android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:layout_width="320dp"
+        android:layout_height="100dp"
         android:src="@drawable/ctumartlogo" />
-
+
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/cityIMG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleType="center"
         android:src="@drawable/city" />
-
+
     <EditText
         android:id="@+id/cityTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textCapCharacters|textCapWords|textCapSentences" />
-
-    <ImageView
-        android:id="@+id/stateIMG"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/state" />
-
-    <EditText
-        android:id="@+id/stateTXT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" >
+        android:inputType="textCapWords" >
 
         <requestFocus />
     </EditText>
 
     <ImageView
-        android:id="@+id/zipIMG"
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/state" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords" />
+
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/zipcode" />
-
+
     <EditText
-        android:id="@+id/zipTXT"
+        android:id="@+id/stateTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="wrap_content" >
 
         <ImageButton
-            android:id="@+id/searchBTN"
+            android:id="@+id/imageButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/search" />
 
         <ImageView
-            android:id="@+id/noClue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_search" />
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.29"
+            android:src="@android:drawable/btn_default_small" />
 
         <ImageButton
-            android:id="@+id/clearBTN"
+            android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/clear" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:visibility="visible" >
+    android:background="@drawable/background" >
 
     <ImageView
         android:id="@+id/Logo"
@@ -49,8 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/OkButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/start_search"
-        android:visibility="invisible" />
+        android:layout_marginTop="29dp"
+        android:text="@string/startSearch" />
 
 </RelativeLayout>
