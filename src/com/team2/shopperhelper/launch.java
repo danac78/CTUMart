@@ -96,7 +96,7 @@ public class launch extends Activity {
 		 * follow the same logic as closing a InputStream when no longer in use. It would use resource
 		 * that can be better allocated else where.
 		 */
-		Intent intent = new Intent(this,searchstore.class);
+		Intent intent = new Intent(this,SearchForStore.class);
 		startActivity(intent);
 		
 		
