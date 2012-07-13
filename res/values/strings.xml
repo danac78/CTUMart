@@ -17,6 +17,11 @@
     <string name="stateb">The state must be in a two letter format</string>
     <string name="no_numbers_for_states">No numbers for States</string>
     <string name="start_search">Start Search</string>
-    
+    <string name="product_name">Product Name</string>
+    <string name="product_type">Product Type</string>
+    <string name="UPC">UPC</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="zip_code">Zip Code</string>
 
 </resources>
