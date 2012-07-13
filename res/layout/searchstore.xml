@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/city"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
             android:id="@+id/cityTXT"
             android:layout_width="match_parent"
@@ -26,27 +26,27 @@
 
             <requestFocus />
         </EditText>
-
+
         <TextView
             android:id="@+id/stateLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/state"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
             android:id="@+id/stateTXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters|textCapWords" />
-
+
         <TextView
             android:id="@+id/zipLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zip_code"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
             android:id="@+id/zipTXTa"
             android:layout_width="match_parent"

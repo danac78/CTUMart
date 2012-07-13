@@ -12,13 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ctumartlogo" />
-
+
     <TextView
         android:id="@+id/productnameLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_name" />
-
+
     <EditText
         android:id="@+id/productnameTXT"
         android:layout_width="match_parent"
@@ -27,25 +27,25 @@
 
         <requestFocus />
     </EditText>
-
+
     <TextView
         android:id="@+id/producttypeLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_type" />
-
+
     <EditText
         android:id="@+id/producttypeTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapWords" />
-
+
     <TextView
         android:id="@+id/UPCLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/UPC" />
-
+
     <EditText
         android:id="@+id/upcTXT"
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="TODO"
             android:src="@drawable/search" />
-
+
         <ImageButton
             android:id="@+id/help"
             android:layout_width="wrap_content"
