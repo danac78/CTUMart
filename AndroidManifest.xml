@@ -27,8 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-            android:name=".SearchForStore"></activity>
+        <activity android:name=".SearchForStore" />
+        <activity android:name=".searchProduct" />
     </application>
 
 </manifest>

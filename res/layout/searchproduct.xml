@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ctumartlogo" />
-
+
     <TextView
         android:id="@+id/productnameLbl"
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
 
         <requestFocus />
     </EditText>
-
+
     <TextView
         android:id="@+id/producttypeLbl"
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapWords" />
-
+
     <TextView
         android:id="@+id/UPCLbl"
         android:layout_width="wrap_content"

@@ -28,7 +28,10 @@ public class SearchForStore extends Activity {
 		setContentView(R.layout.searchstore);
 		
 		
-		
+		/*
+		 * Creating the image buttons and texts inside java to manipulate. Additionally, creating an instance
+		 * of validate to send the information in.
+		 */
 		
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
@@ -93,7 +96,7 @@ public class SearchForStore extends Activity {
 				
 				if (state!=null)
 				{
-					valid.ValidState(state,stateTXT,invalid);
+					valid.ValidState(state,stateTXT);
 				}
 				return invalid;
 			}
@@ -106,9 +109,9 @@ public class SearchForStore extends Activity {
 		clear.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				cityTXT.setText("");
-				stateTXT.setText("");
-				zipTXT.setText("");				
+				cityTXT.setText(null);
+				stateTXT.setText(null);
+				zipTXT.setText(null);				
 				
 			}
 		});

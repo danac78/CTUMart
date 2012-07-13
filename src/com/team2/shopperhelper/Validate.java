@@ -3,21 +3,39 @@ package com.team2.shopperhelper;
 import android.annotation.SuppressLint;
 import android.widget.EditText;
 
+/**
+ * @author Dana Haywood
+ * @date 7/12/2012
+ * @version 1.0
+ * @IT482
+ * @Karl Lloyd
+ * 
+ * The Validate class will take input from SearchForStore and searchProduct, and determine if they are
+ * valid values.
+ *
+ */
 @SuppressLint("ParserError")
 public class Validate {
 
 	
 
 
+	protected boolean invalid = false;;
+
 	public Validate() {
-		// TODO Auto-generated constructor stub
+		/*
+		 * Just a constructor.
+		 */
 	}
 
 	
 	public boolean ValidZip(String zip, EditText zipTXT, boolean invalid) {
+		/*
+		 * Checking to see if zip code equals five. Sends an error and tells the app
+		 * the value is invalid.
+		 */
 		
-		
-		if (zip.length() < 5)
+		if (zip.length() != 5)
 		{
 			zipTXT.setText(R.string.zipCodeWrong);
 			invalid = true;
@@ -46,47 +64,40 @@ public class Validate {
 		return false;
 	}
 
-
-	public boolean ValidState(String state, EditText stateTXT, boolean invalid) {
+	/*
+	 * Receives the UPC and checks to see if there are 12 numbers in it. If there is 
+	 * not, it will report an error.
+	 */
+	public boolean UPCValid(String uPC, EditText uPCTXT) {
 		
-		/*
-		 * Ensures that the state variable does not contain any numbers.
-		 */
+		
+		if(uPC.length()!=12)
+		{
+			uPCTXT.setText(R.string.wrongUPC);
+			invalid=true;
+		}
+		return invalid;
+	}
+
+	/*
+	 * checks to see if the State is a valid input.
+	 */
+	public boolean ValidState(String state, EditText stateTXT) {
+		
 		for(char c: state.toCharArray())
 		{
 			if(Character.isDigit(c))
 			{
 				stateTXT.setText(R.string.no_numbers_for_states);
-				invalid=true;
+				invalid = true;
 			}
+					
 		}
 		
-		/*
-		 * Ensures that the state variable only consists of two letters.
-		 */
-		if (state.length() > 2)
+		if(state.length() !=2)
 		{
 			stateTXT.setText(R.string.stateb);
-			invalid=true;
-		}
-		
-		return invalid;
-		
-	}
-
-
-	public boolean UPCValid(String uPC, EditText uPCTXT) {
-		
-		boolean invalid = false;
-
-		if (uPC.length() < 12)
-		{
-			uPCTXT.setText(R.string.UPC);	
 			invalid = true;
-		} else if (uPC.length() > 12)
-		{
-			uPCTXT.setText(R.string.UPC);
-			invalid=true;
 		}
 		return invalid;
 	}
