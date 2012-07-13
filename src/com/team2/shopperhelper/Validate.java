@@ -74,4 +74,21 @@ public class Validate {
 		
 	}
 
+
+	public boolean UPCValid(String uPC, EditText uPCTXT) {
+		
+		boolean invalid = false;
+
+		if (uPC.length() < 12)
+		{
+			uPCTXT.setText(R.string.UPC);	
+			invalid = true;
+		} else if (uPC.length() > 12)
+		{
+			uPCTXT.setText(R.string.UPC);
+			invalid=true;
+		}
+		return invalid;
+	}
+
 }

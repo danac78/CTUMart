@@ -23,5 +23,6 @@
     <string name="city">City</string>
     <string name="state">State</string>
     <string name="zip_code">Zip Code</string>
+    <string name="wrongUPC">UPC is 12 numbers</string>
 
 </resources>
