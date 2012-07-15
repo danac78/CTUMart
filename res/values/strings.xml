@@ -24,5 +24,6 @@
     <string name="state">State</string>
     <string name="zip_code">Zip Code</string>
     <string name="wrongUPC">UPC is 12 numbers</string>
+    <string name="create_table">"CREATE TABLE "</string>
 
 </resources>
