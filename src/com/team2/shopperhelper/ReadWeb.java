@@ -31,7 +31,7 @@ import android.widget.TextView;
  * with the Internet to access the PHP website to pull in the information. It will
  * translate them into JSON to be printed out on the screen.
  */
-public class readWeb
+public class ReadWeb
 {
 		private JSONArray ProductResult;
 		private ArrayList<NameValuePair> valueSearch = new ArrayList<NameValuePair>(); // to store values to pass to the parser for search
@@ -48,7 +48,7 @@ public class readWeb
 		private int[] UPCID;
 	/* This does modify the tutorial available at http://www.helloandroid.com/tutorials/connecting-mysql-database
 	 * to suit the needs of this project.*/
-	public readWeb(String ProductName, String ProductType, String UPC, String StoreID, TextView tv, int valueType)
+	public ReadWeb(String ProductName, String ProductType, String UPC, String StoreID, TextView tv, int valueType)
 	{
 		this.valueType = valueType;
 		

@@ -32,7 +32,7 @@ import android.widget.TextView;
  * 
  */
 @SuppressWarnings("unused")
-public class launch extends Activity {
+public class Launch extends Activity {
 	/*
 	 * Declaring the variables required for this activity. These will be
 	 * explained when we bring them to build objects.
@@ -72,6 +72,8 @@ public class launch extends Activity {
 		wifiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		
+		
 		final TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
 		final TextView internetDisplay = (TextView) findViewById(R.id.internetError);
 		final Button okButton = (Button) findViewById(R.id.OkButton);
@@ -91,11 +93,13 @@ public class launch extends Activity {
 		internetTest(internetDisplay, okButton); // checking to make sure there
 													// is Internet connectivity.
 		
+//		dbCreate.getReadableDatabase();
 		/*
 		 * Calling the next activity and closing the launch activity to conserve memory. This would
 		 * follow the same logic as closing a InputStream when no longer in use. It would use resource
 		 * that can be better allocated else where.
 		 */
+		
 		Intent intent = new Intent(this,SearchForStore.class);
 		startActivity(intent);
 		

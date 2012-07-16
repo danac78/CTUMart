@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+ 
 
     
    
@@ -19,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" android:description="@string/description" android:hasCode="true">
         <activity
-            android:name=".launch"
+            android:name=".Launch"
             android:label="@string/title_activity_launch" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchForStore" />
-        <activity android:name=".searchProduct" />
+        <activity android:name=".SearchProduct" />
     </application>
 
 </manifest>

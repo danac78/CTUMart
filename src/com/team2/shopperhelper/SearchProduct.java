@@ -19,7 +19,7 @@ import android.widget.ImageButton;
  *       and get passed onto the web parsing and listing process.
  * 
  */
-public class searchProduct extends Activity {
+public class SearchProduct extends Activity {
 
 	protected String productName;
 	protected String producType;
