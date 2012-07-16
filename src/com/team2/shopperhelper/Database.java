@@ -20,6 +20,13 @@ public class Database extends SQLiteOpenHelper {
 	private SQLiteDatabase storeDatabase;
 	private final Context thisContext;
     protected SQLiteDatabase checkDB=null;
+    String tbl="storeTbl";
+    String id;
+    String[] address;
+    String secondAddress;
+    String city;
+    String state;
+    String zip;
 	public Database(Context context) {
 		super(context, DB_NAME, null, 1);
 		this.thisContext=context;
@@ -81,10 +88,13 @@ public class Database extends SQLiteOpenHelper {
 	}
 	
 	
-	public void openDB() throws SQLException
+	public SQLiteDatabase openDB() throws SQLException
 	{
 		storeDatabase=SQLiteDatabase.openDatabase(thePath, null, SQLiteDatabase.OPEN_READONLY);
+		return storeDatabase;
 	}
+	
+	
 	
 	@Override
 	public synchronized void close()
@@ -116,5 +126,7 @@ public class Database extends SQLiteOpenHelper {
 		}
 		
 	}
+	
+	
 
 }
