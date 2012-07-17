@@ -1,9 +1,7 @@
 package com.team2.shopperhelper;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -26,6 +24,7 @@ public class SearchProduct extends Activity {
 	protected String UPC;
 	boolean invalid;
 
+	@SuppressWarnings("unused")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,55 +40,5 @@ public class SearchProduct extends Activity {
 		ImageButton info = (ImageButton) findViewById(R.id.info);
 		ImageButton clear = (ImageButton) findViewById(R.id.clear);
 
-		search.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				/*
-				 * Gathering the information
-				 */
-				productName = productnameTXT.toString();
-				producType = producttypeTXT.toString();
-				UPC = UPCTXT.toString();
-
-				/*
-				 * Sending the UPC to the validate process. Validate will only
-				 * be setup and called if the UPC is not null to save on the
-				 * number of instances open.
-				 */
-				if (UPC != null) {
-					Validate valid = new Validate(UPC);
-					invalid = valid.UPCValid(UPC, UPCTXT);
-				}
-
-				if (invalid = false) {
-
-				}
-
-			}
-		});
-
-		info.setOnClickListener(new View.OnClickListener() {
-
-			@SuppressLint("ParserError")
-			public void onClick(View v) {
-				// future implementation
-
-			}
-		});
-		/*
-		 * if the clear button is clicked, it will send null values to the text
-		 * boxes.
-		 */
-		clear.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				productnameTXT.setText(null);
-				producttypeTXT.setText(null);
-				UPCTXT.setText(null);
-
-			}
-		});
-
 	}
-
 }

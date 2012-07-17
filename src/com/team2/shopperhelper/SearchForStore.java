@@ -71,9 +71,9 @@ public class SearchForStore extends Activity {
 		final EditText cityTXT = (EditText) findViewById(R.id.cityTXT);
 		final EditText stateTXT = (EditText) findViewById(R.id.stateTXT);
 		final EditText zipTXT = (EditText) findViewById(R.id.zipTXTa);
-		final Validate validStore;
 		
-		validStore = new Validate(city,state,zip);
+		
+		
 		
 
 		/*
@@ -83,18 +83,34 @@ public class SearchForStore extends Activity {
 		 */
 
 		search.setOnClickListener(new View.OnClickListener() {
-			
+			/*
+			 * Creates a private version of this string for the onclick method
+			 */
 			private String city;
 			private String state;
 			private String zip;
 
 			@Override
 			public void onClick(View v) {
+				/*
+				 * gainValues() is designed to obtain the values from EditText and 
+				 * place them into the String variables declared above. Validate()
+				 * is being called to ensure these values are in the correct format
+				 * to be checked against the XML.
+				 */
 				gainValues();	
 				validate();
+				
+				/*
+				 * setting up the InputStream with the xml stored in resources.
+				 */
 				InputStream raw = getResources().openRawResource(R.raw.store);
 				
-				
+				/*
+				 * If the validation process passed, the QueryXML(raw) method shall
+				 * begin. The multiple catches are the result of numerous issues
+				 * that can occur when reading and writing information.
+				 */
 				if(checkValid=true){
 					try {
 						QueryXML(raw);
@@ -126,8 +142,13 @@ public class SearchForStore extends Activity {
 				
 			}
 
-
+/*
+ * XPath is not really a Java, but an XML querying method that was designed by W3C.
+ * This method is pulling up the means to do this, and adding only the items to the
+ * array that matches the city, state, and zip.
+ */
 			private void QueryXML(InputStream is) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+				// Calling the items required for XPath reading.
 				DocumentBuilder builder;
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				factory.setNamespaceAware(true);
@@ -154,6 +175,10 @@ public class SearchForStore extends Activity {
 				
 				NodeList nodes=(NodeList)expr.evaluate(doc,XPathConstants.NODESET);
 				
+				/*
+				 * Pulling the values from the XML query and placing them into an
+				 * array list.
+				 */
 				for (int i=0; i< nodes.getLength();i++)
 				{
 					NodeList items = nodes.item(i).getChildNodes();
@@ -178,14 +203,15 @@ public class SearchForStore extends Activity {
 						idList.add(id);
 					}
 				}
-				/*
-				storeAddress=new String[storeList.size()];
-				storeID = new String[idList.size()];*/
-				/*for (int i=0; i< storeList.size();i++)
+				
+				// At the moment, ignore this.
+//				storeAddress=new String[storeList.size()];
+//				storeID = new String[idList.size()];
+				/*for (int i=1; i<= storeList.size();i++)
 				{
 					storeAddress[i]=storeList.get(i);
-				}
-				
+				}*/
+			/*	
 				for (int i=0;i<idList.size();i++)
 				{
 					storeID[i] = storeList.get(i);
@@ -194,12 +220,20 @@ public class SearchForStore extends Activity {
 			}
 
 
-			private void extracted(int id, String address) {
-				storeList.add(id, address);
-			}
+						
+			/*
+			 * Validate() is checking the values of city, state and zip code.
+			 */
 
 			private void validate() {
 				
+				/*
+				 * If the string text length is greater than zero (and honestly, this
+				 * was the only way it would work for some reason), it will check the 
+				 * values. The first two are checking to see if they contain a number. 
+				 * the third is checking to see if State is greater than 2. Zip is 
+				 * ensuring the zip code has five numbers.
+				 */
 				if(city.length()>0)
 				{
 					for(char c: city.toCharArray())
@@ -243,6 +277,9 @@ public class SearchForStore extends Activity {
 
 
 			private void gainValues() {
+				/*
+				 * converting the Edit Text to actual strings.
+				 */
 				city=cityTXT.getText().toString();
 				state=stateTXT.getText().toString();
 				zip=zipTXT.getText().toString();

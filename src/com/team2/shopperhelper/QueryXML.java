@@ -16,17 +16,23 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+/**
+ * @author Dana Haywood
+ * @deprecated Ignore this
+ *
+ */
 public class QueryXML {
 	
 	private String city;
 	private String state;
 	private String zip;
 
-	public ArrayList<XMLPojo> query(InputStream is) throws ParserConfigurationException,SAXException,IOException,XPathExpressionException
+	@SuppressWarnings({ "rawtypes", "unused" })
+	public ArrayList query(InputStream is) throws ParserConfigurationException,SAXException,IOException,XPathExpressionException
 	{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
-		ArrayList<XMLPojo> storeList = new ArrayList<XMLPojo>();
+		
 		
 		DocumentBuilder builder;
 		Document doc = null;
@@ -57,21 +63,13 @@ public class QueryXML {
 			String XMLcity = items.item(7).getTextContent();
 			String XMLstate = items.item(9).getTextContent();
 			String XMLzip = items.item(11).getTextContent();
-			XMLPojo xml = new XMLPojo(id, address);
-			if ((city!=null) && (XMLcity==city))
-			{
-				storeList.add(xml);
-			} else if ((state!=null) && (XMLstate==state)) 
-			{
-				storeList.add(xml);
-			} else if ((zip!=null) && (XMLzip==zip))
-			{
-				storeList.add(xml);
-			}
+			
+			
+			
 		}
 		
 		
-		return storeList;
+		return null;
 	}
 
 	public QueryXML(String city, String state, String zip) {
