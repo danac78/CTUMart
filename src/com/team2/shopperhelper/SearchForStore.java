@@ -3,10 +3,20 @@ package com.team2.shopperhelper;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import android.app.Activity;
@@ -18,7 +28,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-
 /**
  * @author Dana Haywood
  * @date 7/10/2012
@@ -26,138 +35,248 @@ import android.widget.ImageButton;
  * @IT482
  * @Karl Lloyd
  * 
- * This Activity is meant to gather information from the client. Once the information
- * is validated, it will pass the information onto the parser.
+ *       This Activity is meant to gather information from the client. Once the
+ *       information is validated, it will pass the information onto the parser.
  */
 @SuppressWarnings("unused")
 public class SearchForStore extends Activity {
 
-		
+	private String zip;
+	private String state;
+	private String city;
+	private String[] storeAddress;
+	private String[] storeID;
+	boolean checkValid;
+	private ArrayList<String> storeList;
+	private ArrayList<String> idList;
 	
+	
+	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchstore);
 		
-		
+
 		/*
-		 * Creating the image buttons and texts inside java to manipulate. Additionally, creating an instance
-		 * of validate to send the information in.
+		 * Creating the image buttons and texts inside java to manipulate.
+		 * Additionally, creating an instance of validate to send the
+		 * information in.
 		 */
 		final Bundle bundle = new Bundle();
-		final Intent intent =new Intent (this,ShowStore.class);
+		final Intent intent = new Intent(this, ShowStore.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
 		final EditText cityTXT = (EditText) findViewById(R.id.cityTXT);
 		final EditText stateTXT = (EditText) findViewById(R.id.stateTXT);
 		final EditText zipTXT = (EditText) findViewById(R.id.zipTXTa);
-		final Validate valid = new Validate();
+		final Validate validStore;
 		
+		validStore = new Validate(city,state,zip);
+		
+
 		/*
-		 * Upon the Search Button being pressed, this will collect the information from the 
-		 * tabs and put them into strings that can be validated and sent to the parser.
+		 * Upon the Search Button being pressed, this will collect the
+		 * information from the tabs and put them into strings that can be
+		 * validated and sent to the parser.
 		 */
-		
+
 		search.setOnClickListener(new View.OnClickListener() {
 			
-			 
-			@SuppressWarnings({ "unchecked" })
+			private String city;
+			private String state;
+			private String zip;
+
+			@Override
 			public void onClick(View v) {
-				/*
-				 * Gathering the text from the EditText boxes. To simplify the process,
-				 * we are using the toString() method to convert the information from
-				 * EditText to String.
-				 */
-				String city=cityTXT.toString();
-				String state=stateTXT.toString();
-				String zip=zipTXT.toString();
-				boolean invalid = false;
-				/*
-				 * This passes the String city, state, and zip to the validation process
-				 * in order to ensure the information is correct. It is waiting for a 
-				 * true/false statement before it can proceed.
-				 */
-				boolean invalidData=searchValidate(city,state,zip);
+				gainValues();	
+				validate();
+				InputStream raw = getResources().openRawResource(R.raw.store);
 				
-				/*
-				 * if none of the data has a problem with the verification process,
-				 * it will send to the XML parse process.
-				 */
 				
-				if (invalidData=false)
-				{
-					InputStream is = null;
-					QueryXML query = new QueryXML(city,state,zip);
-					ArrayList<XMLPojo> query2 = null;
+				if(checkValid=true){
 					try {
-						query2 = (ArrayList<XMLPojo>) query.query(is);
-					} catch (XPathExpressionException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						QueryXML(raw);
 					} catch (ParserConfigurationException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (SAXException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (XPathExpressionException e) {
+						e.printStackTrace();
+					}
+					
+					try {
+						raw.close();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}					
-					ArrayList<XMLPojo> storeList=(ArrayList<XMLPojo>) query2;
+					}
 					
-					bundle.putParcelableArrayList("1", (ArrayList<? extends Parcelable>) storeList);
+					/*bundle.putStringArray("1", storeAddress);
+					bundle.putStringArray("2", storeID);
 					
 					intent.putExtras(bundle);
-					
-					startActivity(intent);
-
-					
+					startActivity(intent);*/
 				}
+				
+				
 				
 			}
 
-/*
- * searchValidate will serve as a facilitate the Validate class to ensure the data
- * is correct prior to opening and parsing the XML file (optimizing the resources).
- * It will first check to see if the value does not equal null (meaning no value) 
- * prior to running the validation method.
- */
-			private boolean searchValidate(String city, String state, String zip) {
-				boolean invalid = false;
+
+			private void QueryXML(InputStream is) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+				DocumentBuilder builder;
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				factory.setNamespaceAware(true);
 				
-				if (zip!=null)
+				Document doc = null;
+				XPathExpression expr=null;
+				builder = factory.newDocumentBuilder();
+				
+				doc = builder.parse(is);
+				
+				// create a XPathFactory
+				
+				XPathFactory xFactory = XPathFactory.newInstance();
+				
+				//creat an XPath object
+				
+				XPath xpath = xFactory.newXPath();
+				
+				// creating an expression
+				
+				expr=xpath.compile("//store");
+				
+				// running query
+				
+				NodeList nodes=(NodeList)expr.evaluate(doc,XPathConstants.NODESET);
+				
+				for (int i=0; i< nodes.getLength();i++)
 				{
-					valid.ValidZip(zip,zipTXT,invalid);
+					NodeList items = nodes.item(i).getChildNodes();
+					String id= items.item(1).getTextContent();
+					
+					String address = items.item(3).getTextContent();
+					String XMLcity = items.item(7).getTextContent();
+					String XMLstate = items.item(9).getTextContent();
+					String XMLzip = items.item(11).getTextContent();
+					
+					if ((city.length()>0) && (XMLcity==city))
+					{
+						storeList.add(address);
+						idList.add(id);
+					} else if ((state.length()>0) && (XMLstate==state)) 
+					{
+						storeList.add(address);
+						idList.add(id);
+					} else if ((zip.length()>0) && (XMLzip==zip))
+					{
+						storeList.add(address);
+						idList.add(id);
+					}
+				}
+				/*
+				storeAddress=new String[storeList.size()];
+				storeID = new String[idList.size()];*/
+				/*for (int i=0; i< storeList.size();i++)
+				{
+					storeAddress[i]=storeList.get(i);
 				}
 				
-				if (city!=null)
+				for (int i=0;i<idList.size();i++)
 				{
-					valid.ValidCity(city,cityTXT);
+					storeID[i] = storeList.get(i);
+				}*/
+		
+			}
+
+
+			private void extracted(int id, String address) {
+				storeList.add(id, address);
+			}
+
+			private void validate() {
+				
+				if(city.length()>0)
+				{
+					for(char c: city.toCharArray())
+					{
+						if(Character.isDigit(c))
+						{
+							cityTXT.setText(R.string.cityValueInvalid);
+							checkValid=false;
+							
+						}
+					}
+				} else if (state.length()>0)
+				{
+					for(char c: state.toCharArray())
+					{
+						if(Character.isDigit(c))
+						{
+							stateTXT.setText(R.string.no_numbers_for_states);
+							checkValid=false;
+						}
+					}
+					
+					if(state.length()>2)
+					{
+						stateTXT.setText(R.string.stateb);
+						checkValid=false;
+					}
+					
+				} else if (zip.length() > 0)
+				{
+					if(zip.length() < 5)
+					{
+						zipTXT.setText(R.string.zipCodeWrong);
+						checkValid=false;
+					}
 				}
 				
-				if (state!=null)
-				{
-					valid.ValidState(state,stateTXT);
-				}
-				return invalid;
+
+				
+			}
+
+
+			private void gainValues() {
+				city=cityTXT.getText().toString();
+				state=stateTXT.getText().toString();
+				zip=zipTXT.getText().toString();
+				
+				
 			}
 		});
-		
 		/*
-		 * Once the clear button is clicked, it will clear the information out of the 
-		 * text fields.
+		 * Once the clear button is clicked, it will clear the information out
+		 * of the text fields.
 		 */
 		clear.setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
 				cityTXT.setText(null);
 				stateTXT.setText(null);
-				zipTXT.setText(null);				
-				
+				zipTXT.setText(null);
+		
 			}
 		});
-		
 
+	}
+
+	/**
+	 * @return the storeList
+	 */
+	public ArrayList<String> getStoreList() {
+		return storeList;
+	}
+
+	/**
+	 * @param storeList the storeList to set
+	 */
+	public void setStoreList(ArrayList<String> storeList) {
+		this.storeList = storeList;
 	}
 }

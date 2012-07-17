@@ -19,7 +19,10 @@ public class ShowStore extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readdb);
+		/*Bundle bundle = getIntent().getExtras();
 		
+		String[] storeAddress=bundle.getStringArray("1");
+		String[] storeID = bundle.getStringArray("2");*/
 		
 		
 		

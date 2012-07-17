@@ -57,7 +57,7 @@ public class SearchProduct extends Activity {
 				 * number of instances open.
 				 */
 				if (UPC != null) {
-					Validate valid = new Validate();
+					Validate valid = new Validate(UPC);
 					invalid = valid.UPCValid(UPC, UPCTXT);
 				}
 

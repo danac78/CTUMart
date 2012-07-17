@@ -1,5 +1,9 @@
 package com.team2.shopperhelper;
 
+/**
+ * @author Dana Haywood
+ *
+ */
 public class XMLPojo {
 	private String id;
 	private String address;
@@ -8,7 +12,7 @@ public class XMLPojo {
 	private String state;
 	private String zip;
 	
-	public XMLPojo(String id, String address, String secondAddress, String city, String state, String zip)
+	public XMLPojo(String id, String address)
 	{
 		this.setId(id);
 		this.setAddress(address);

@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    
     package="com.team2.shopperhelper"
     android:versionCode="1"
     android:versionName="@string/codeName" >
@@ -29,6 +30,7 @@
         </activity>
         <activity android:name=".SearchForStore" />
         <activity android:name=".SearchProduct" />
+        <activity android:name=".ShowStore" />
     </application>
 
 </manifest>

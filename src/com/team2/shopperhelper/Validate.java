@@ -1,6 +1,5 @@
 package com.team2.shopperhelper;
 
-import android.annotation.SuppressLint;
 import android.widget.EditText;
 
 /**
@@ -14,34 +13,45 @@ import android.widget.EditText;
  * valid values.
  *
  */
-@SuppressLint("ParserError")
+
 public class Validate {
 
 	
 
 
-	protected boolean invalid = false;;
+	protected boolean invalid = false;
+	private String city;
+	private String state;
+	private String zip;
+	private String UPC;;
+	
+	public Validate(String UPC)
+	{
+		this.setUPC(UPC);
+	}
 
-	public Validate() {
-		/*
-		 * Just a constructor.
-		 */
+	public Validate(String city, String state, String zip) {
+		this.setCity(city);
+		this.setState(state);
+		this.setZip(zip);
+		
 	}
 
 	
-	public boolean ValidZip(String zip, EditText zipTXT, boolean invalid) {
+	public void ValidZip(String zip, EditText zipTXT) {
 		/*
 		 * Checking to see if zip code equals five. Sends an error and tells the app
 		 * the value is invalid.
 		 */
 		
-		if (zip.length() != 5)
+		if (zip.length() < 5)
 		{
 			zipTXT.setText(R.string.zipCodeWrong);
-			invalid = true;
-		}
 			
-		return invalid;
+		}
+		
+			
+		
 	}
 
 
@@ -71,7 +81,7 @@ public class Validate {
 	public boolean UPCValid(String uPC, EditText uPCTXT) {
 		
 		
-		if(uPC.length()!=12)
+		if(uPC.length()<12)
 		{
 			uPCTXT.setText(R.string.wrongUPC);
 			invalid=true;
@@ -94,12 +104,68 @@ public class Validate {
 					
 		}
 		
-		if(state.length() !=2)
+		if(state.length() > 2)
 		{
 			stateTXT.setText(R.string.stateb);
 			invalid = true;
 		}
 		return invalid;
+	}
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	/**
+	 * @return the zip
+	 */
+	public String getZip() {
+		return zip;
+	}
+
+	/**
+	 * @param zip the zip to set
+	 */
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	/**
+	 * @return the uPC
+	 */
+	public String getUPC() {
+		return UPC;
+	}
+
+	/**
+	 * @param uPC the uPC to set
+	 */
+	public void setUPC(String uPC) {
+		UPC = uPC;
 	}
 
 }

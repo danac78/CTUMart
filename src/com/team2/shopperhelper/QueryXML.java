@@ -54,11 +54,10 @@ public class QueryXML {
 			NodeList items = nodes.item(i).getChildNodes();
 			String id = items.item(1).getTextContent();
 			String address = items.item(3).getTextContent();
-			String secondAddress = items.item(5).getTextContent();
 			String XMLcity = items.item(7).getTextContent();
 			String XMLstate = items.item(9).getTextContent();
 			String XMLzip = items.item(11).getTextContent();
-			XMLPojo xml = new XMLPojo(id, address, secondAddress, city, state, zip);
+			XMLPojo xml = new XMLPojo(id, address);
 			if ((city!=null) && (XMLcity==city))
 			{
 				storeList.add(xml);
