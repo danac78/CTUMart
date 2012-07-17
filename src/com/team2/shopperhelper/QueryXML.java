@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
  * @author Dana Haywood
  * @deprecated Ignore this
  *
+ *	This was implemented into SearchForStore. I am keeping this here as a reference for the time being.
  */
 public class QueryXML {
 	

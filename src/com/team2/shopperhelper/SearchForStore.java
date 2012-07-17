@@ -101,10 +101,7 @@ public class SearchForStore extends Activity {
 				gainValues();	
 				validate();
 				
-				/*
-				 * setting up the InputStream with the xml stored in resources.
-				 */
-				InputStream raw = getResources().openRawResource(R.raw.store);
+				
 				
 				/*
 				 * If the validation process passed, the QueryXML(raw) method shall
@@ -112,112 +109,20 @@ public class SearchForStore extends Activity {
 				 * that can occur when reading and writing information.
 				 */
 				if(checkValid=true){
-					try {
-						QueryXML(raw);
-					} catch (ParserConfigurationException e) {
-						e.printStackTrace();
-					} catch (SAXException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (XPathExpressionException e) {
-						e.printStackTrace();
-					}
 					
-					try {
-						raw.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					bundle.putString("city", city);
+					bundle.putString("state", state);
+					bundle.putString("zip", zip);
 					
-					/*bundle.putStringArray("1", storeAddress);
-					bundle.putStringArray("2", storeID);
 					
 					intent.putExtras(bundle);
-					startActivity(intent);*/
+					startActivity(intent);
 				}
 				
 				
 				
 			}
 
-/*
- * XPath is not really a Java, but an XML querying method that was designed by W3C.
- * This method is pulling up the means to do this, and adding only the items to the
- * array that matches the city, state, and zip.
- */
-			private void QueryXML(InputStream is) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-				// Calling the items required for XPath reading.
-				DocumentBuilder builder;
-				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-				factory.setNamespaceAware(true);
-				
-				Document doc = null;
-				XPathExpression expr=null;
-				builder = factory.newDocumentBuilder();
-				
-				doc = builder.parse(is);
-				
-				// create a XPathFactory
-				
-				XPathFactory xFactory = XPathFactory.newInstance();
-				
-				//creat an XPath object
-				
-				XPath xpath = xFactory.newXPath();
-				
-				// creating an expression
-				
-				expr=xpath.compile("//store");
-				
-				// running query
-				
-				NodeList nodes=(NodeList)expr.evaluate(doc,XPathConstants.NODESET);
-				
-				/*
-				 * Pulling the values from the XML query and placing them into an
-				 * array list.
-				 */
-				for (int i=0; i< nodes.getLength();i++)
-				{
-					NodeList items = nodes.item(i).getChildNodes();
-					String id= items.item(1).getTextContent();
-					
-					String address = items.item(3).getTextContent();
-					String XMLcity = items.item(7).getTextContent();
-					String XMLstate = items.item(9).getTextContent();
-					String XMLzip = items.item(11).getTextContent();
-					
-					if ((city.length()>0) && (XMLcity==city))
-					{
-						storeList.add(address);
-						idList.add(id);
-					} else if ((state.length()>0) && (XMLstate==state)) 
-					{
-						storeList.add(address);
-						idList.add(id);
-					} else if ((zip.length()>0) && (XMLzip==zip))
-					{
-						storeList.add(address);
-						idList.add(id);
-					}
-				}
-				
-				// At the moment, ignore this.
-//				storeAddress=new String[storeList.size()];
-//				storeID = new String[idList.size()];
-				/*for (int i=1; i<= storeList.size();i++)
-				{
-					storeAddress[i]=storeList.get(i);
-				}*/
-			/*	
-				for (int i=0;i<idList.size();i++)
-				{
-					storeID[i] = storeList.get(i);
-				}*/
-		
-			}
 
 
 						
