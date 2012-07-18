@@ -12,8 +12,8 @@ Commented By:
 
 This is special layout associated with the CustomAdapter. These textviews will
 be inserted into a List View to provide more information than normally possible.
-    -->
-
+Was unable to add the source cite here since it kept coming up with an XML problem. It
+has the same source cite as ShowStore and StoreCustomBaseAdapter-->
     <TextView
         android:id="@+id/Store"
         android:layout_width="wrap_content"

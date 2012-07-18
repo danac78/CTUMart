@@ -10,7 +10,7 @@ Karl Lloyd
 Commented by:
 
 This will be the primary layout for the search store process. Custom Rows will
-be inserted into this.  -->
+be inserted into this..  -->
         <ListView
             android:id="@+id/dbView"
             android:layout_width="match_parent"
