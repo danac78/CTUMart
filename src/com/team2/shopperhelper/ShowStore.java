@@ -27,7 +27,7 @@ import android.widget.ListView;
  *         problem with the other methods that were tried was that I kept
  *         getting a nullpointexception, despite programming it based on
  *         examples. This activity relies on a few helper classes for it to
- *         list, but it will list the store and obtain the store id.
+ *         list, but it will list the store and obtain the store id..
  * 
  * @Commented By:
  */

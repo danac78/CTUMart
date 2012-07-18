@@ -20,7 +20,7 @@ import android.widget.TextView;
  *            provide it with the tools needed to read the information and place
  *            it into an arraylist. An adapter converts an ArrayList into
  *            something the ListView will understand. OTHERWISE, it will not
- *            post right.
+ *            post right..
  * 
  * @Source cite<DO NOT
  *         REMOVE>:http://geekswithblogs.net/bosuch/archive/2011/01/31

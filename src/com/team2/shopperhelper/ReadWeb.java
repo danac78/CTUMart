@@ -35,7 +35,7 @@ import android.widget.TextView;
  *             pull in the information. It will translate them into JSON to be
  *             printed out on the screen.
  * 
- *             Probably going to re-write this as an activity.
+ *             Probably going to re-write this as an activity..
  * 
  * 
  */

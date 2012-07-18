@@ -22,7 +22,7 @@ import android.widget.TextView;
  *         REMOVE>:http://developer.android.com/guide/components/index.html
  * @Commented by:
  * 
- * 
+ * @Original Comments
  *            This class is the initial activity that is launched when the icon
  *            is tapped on. It will direct itself into Search for Store, but it
  *            needs to check to ensure if that the Android OS is compatible (in
@@ -32,8 +32,8 @@ import android.widget.TextView;
  *            ok button, the application will close. If both items are true, the
  *            user will just see Search Store appear. In the simulations ran,
  *            this actually only takes one second and the customer will not
- *            notice these tests being conducted at all.
- * 
+ *            notice these tests being conducted at all. .
+ * @Commenters
  */
 @SuppressWarnings("unused")
 public class Launch extends Activity {

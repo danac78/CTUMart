@@ -20,7 +20,7 @@ import android.widget.ImageButton;
  *            is complete, it will send the information to validate to ensure
  *            the values are correct (i.e. zip code is not going 8512 instead of
  *            85120). After the validation is complete, it will pass those
- *            values over to ShowStore and start the StoreStore activity.
+ *            values over to ShowStore and start the StoreStore activity..
  * 
  * @Source Cite<DO NOT
  *         REMOVE>:http://developer.android.com/guide/components/index.html

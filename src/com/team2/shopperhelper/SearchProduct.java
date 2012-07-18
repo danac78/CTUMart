@@ -18,7 +18,7 @@ import android.widget.ImageButton;
  * 
  *          This activity is set to retrieve customer information from the user
  *          interface. Once this is done, it will go through a validation
- *          process, and get passed onto the web parsing and listing process.
+ *          process, and get passed onto the web parsing and listing process..
  * 
  */
 public class SearchProduct extends Activity {
