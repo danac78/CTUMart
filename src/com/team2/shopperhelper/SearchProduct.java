@@ -29,7 +29,12 @@ public class SearchProduct extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
-
+		
+		Bundle bundle = getIntent().getExtras();
+		
+		String storeID = bundle.getString("storeID");
+		
+		
 		/*
 		 * Creating instances of Edit Text and Image Buttons to manipulate.
 		 */
@@ -39,6 +44,8 @@ public class SearchProduct extends Activity {
 		ImageButton search = (ImageButton) findViewById(R.id.search);
 		ImageButton info = (ImageButton) findViewById(R.id.info);
 		ImageButton clear = (ImageButton) findViewById(R.id.clear);
+		
+		productnameTXT.setText(storeID);
 
 	}
 }

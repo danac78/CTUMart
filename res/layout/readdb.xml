@@ -1,8 +1,15 @@
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/dbView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/background" >
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@+id/dbView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/background" >
 
-    </ListView>
+        </ListView>
+
+    </LinearLayout>

@@ -1,167 +1,137 @@
-
 package com.team2.shopperhelper;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
  * @author Dana Haywood
- *
+ * 
  */
-public class ShowStore extends ListActivity {
+
+public class ShowStore extends Activity {
+
+	Intent intent;
 
 	
 	private String city;
 	private String state;
 	private String zip;
-	private ArrayList<String> idList= new ArrayList<String>();
-	private ArrayList<String> storeList=new ArrayList<String>();
-	
+	ArrayList<SearchResults> results = new ArrayList<SearchResults>();
+	SearchResults sr1 = new SearchResults();
+
 	/**
 	 * 
 	 */
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.readdb);
+		intent = new Intent(this, SearchProduct.class);
 
-		
-		
 		/*
 		 * Getting the information passed from SearchForStore activity.
 		 */
 		Bundle bundle = getIntent().getExtras();
 		String XMLcity = bundle.getString("city");
-		String XMLstate= bundle.getString("state");
+		String XMLstate = bundle.getString("state");
 		String XMLzip = bundle.getString("zip");
 		bundle.clear();
 		this.city = XMLcity;
-		this.state= XMLstate;
+		this.state = XMLstate;
 		this.zip = XMLzip;
+
+		ArrayList<SearchResults> searchResults = GetSearchResults();
 		/*
 		 * setting up the InputStream with the xml stored in resources.
 		 */
-		InputStream raw = getResources().openRawResource(R.raw.store);
-		try {
-			QueryXML(raw);
-			raw.close();
-		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
-	
-	protected void onListItemClick(ListView lv, View v, int position, long id)
-	{
-		super.onListItemClick(lv, v, position, id);
-				
-		String storeID = idList.get(position);
-		Intent intent = new Intent(this,SearchProduct.class);
-		Bundle bundle = new Bundle();
-		
-		bundle.putString("storeID", storeID);
-		intent.putExtras(bundle);
-		
-		
-	}
-	/*
-	 * XPath is not really a Java, but an XML querying method that was designed by W3C.
-	 * This method is pulling up the means to do this, and adding only the items to the
-	 * array that matches the city, state, and zip.
-	 */
-				private void QueryXML(InputStream raw) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
-					// Calling the items required for XPath reading.
-					DocumentBuilder builder;
-					DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-					factory.setNamespaceAware(true);
-					
-					Document doc = null;
-					XPathExpression expr=null;
-					builder = factory.newDocumentBuilder();
-					
-					doc = builder.parse(raw);
-					
-					// create a XPathFactory
-					
-					XPathFactory xFactory = XPathFactory.newInstance();
-					
-					//creat an XPath object
-					
-					XPath xpath = xFactory.newXPath();
-					
-					// creating an expression
-					
-					expr=xpath.compile("//store");
-					
-					// running query
-					
-					NodeList nodes=(NodeList)expr.evaluate(doc,XPathConstants.NODESET);
-					
-					/*
-					 * Pulling the values from the XML query and placing them into an
-					 * array list.
-					 */
-					for (int i=0; i< nodes.getLength();i++)
-					{
-						NodeList items = nodes.item(i).getChildNodes();
-						String id= items.item(1).getTextContent();
-						
-						String address = items.item(3).getTextContent();
-						String XMLcity = items.item(7).getTextContent();
-						String XMLstate = items.item(9).getTextContent();
-						String XMLzip = items.item(11).getTextContent();
-						
-						if ((city.length()>0) && (XMLcity==city))
-						{
-							storeList.add(address);
-							idList.add(id);
-						} else if ((state.length()>0) && (XMLstate==state)) 
-						{
-							storeList.add(address);
-							idList.add(id);
-						} else if ((zip.length()>0) && (XMLzip==zip))
-						{
-							storeList.add(address);
-							idList.add(id);
-						}
-					}
-					
-	
-			
-				}
+		final ListView listView = (ListView) findViewById(R.id.dbView);
 
+		listView.setAdapter(new StoreCustomBaseAdapter(this, searchResults));
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				Object o = listView.getItemAtPosition(position);
+				SearchResults fullObjects = (SearchResults) o;
+				String storeID = fullObjects.getStore();
+
+				Bundle bundle = new Bundle();
+				bundle.putString("storeID", storeID);
+				intent.putExtras(bundle);
+				startActivity(intent);
+
+			}
+
+		});
+
+	}
+
+	private ArrayList<SearchResults> GetSearchResults() {
+		
+		if((city.contentEquals("ApacheJunction"))
+				^ (state.contentEquals("AZ")) 
+				^ (zip.contentEquals("85120")))
+		{
+			if (zip.contentEquals("85120")) {
+				sr1.setStore("1");
+				sr1.setAddress("2707 W 14th Pl");
+				sr1.setSecondAddress(" ");
+				results.add(sr1);
+		} else 
+		{
+				sr1.setStore("1");
+				sr1.setAddress("2707 W 14th Pl");
+				sr1.setSecondAddress(" ");
+				results.add(sr1);
+		}
+	
+		
+		} else if ((city.contentEquals("Beverly Hills"))
+				^ (state.contentEquals("CA"))
+				^ (zip.contentEquals("90210")))
+		{
+			if(zip.contentEquals("90210"))
+			{
+				sr1.setStore("2");
+				sr1.setAddress("135 Cupertino Way");
+				sr1.setSecondAddress("Suite 1");
+				results.add(sr1);
+			} else {
+				sr1.setStore("2");
+				sr1.setAddress("135 Cupertino Way");
+				sr1.setSecondAddress("Suite 1");
+				results.add(sr1);
+			}
+		} else if ((city.contentEquals("Springfield"))
+				^ (state.contentEquals("MA"))
+				^ (zip.contentEquals("01109")))
+		{
+			if(zip.contentEquals("01109"))
+			{
+				sr1.setStore("3");
+				sr1.setAddress("275 Breckwood Blvd");
+				sr1.setSecondAddress("");
+			} else 
+			{
+				sr1.setStore("3");
+				sr1.setAddress("275 Breckwood Blvd");
+				sr1.setSecondAddress("");
+			}
+		}
+
+		return results;
+	}
+
+	
 
 }
