@@ -15,9 +15,11 @@ import android.widget.TextView;
 /**
  * @author Dana Haywood
  * @date 7/10/2012
+ * @version 0.1.0
  * @IT482
  * @Karl Lloyd
- * @Version 1.0
+ * @Commented by:
+ * 
  * 
  *          This class is the initial activity that is launched when the icon is
  *          tapped on. It will direct itself into Search for Store, but it needs
