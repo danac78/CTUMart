@@ -2,11 +2,11 @@
     
     package="com.team2.shopperhelper"
     android:versionCode="1"
-    android:versionName="@string/codeName" >
+    android:versionName="@string/codeName" android:installLocation="internalOnly">
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="9" />
     <uses-feature />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
