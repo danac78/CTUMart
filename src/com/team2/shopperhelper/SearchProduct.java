@@ -45,7 +45,7 @@ public class SearchProduct extends Activity {
 		ImageButton info = (ImageButton) findViewById(R.id.info);
 		ImageButton clear = (ImageButton) findViewById(R.id.clear);
 		
-		productnameTXT.setText(storeID);
+		
 
 	}
 }

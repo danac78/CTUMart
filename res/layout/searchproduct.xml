@@ -7,6 +7,16 @@
     android:orientation="vertical"
     tools:ignore="HardcodedText,ContentDescription" >
 
+    <!--
+Author Dana Haywood
+date:7/17/2012
+version 0.1.0
+IT482
+Karl Lloyd
+
+This shall provide the layout for the search product screen.
+    -->
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -75,7 +85,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/clear" />
-
     </LinearLayout>
 
 </LinearLayout>

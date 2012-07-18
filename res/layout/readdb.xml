@@ -2,7 +2,15 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+<!-- Author: Dana Haywood
+7/17/2012
+version 0.1.0
+IT482
+Karl Lloyd
+Commented by:
 
+This will be the primary layout for the search store process. Custom Rows will
+be inserted into this.  -->
         <ListView
             android:id="@+id/dbView"
             android:layout_width="match_parent"
