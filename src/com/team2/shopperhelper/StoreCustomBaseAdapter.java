@@ -24,7 +24,7 @@ import android.widget.TextView;
  * 
  * @Source cite<DO NOT
  *         REMOVE>:http://geekswithblogs.net/bosuch/archive/2011/01/31
- *         /android---create-a-custom-multi-line-listview-bound-to-an.aspx
+ *         /android---create-a-custom-multi-line-listview-bound-to-an.aspx.
  */
 public class StoreCustomBaseAdapter extends BaseAdapter {
 	/*

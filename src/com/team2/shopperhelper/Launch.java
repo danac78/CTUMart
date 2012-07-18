@@ -33,7 +33,7 @@ import android.widget.TextView;
  *            user will just see Search Store appear. In the simulations ran,
  *            this actually only takes one second and the customer will not
  *            notice these tests being conducted at all. .
- * @Commenters
+ * @Commenters .
  */
 @SuppressWarnings("unused")
 public class Launch extends Activity {

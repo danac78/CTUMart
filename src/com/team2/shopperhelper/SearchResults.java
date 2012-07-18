@@ -12,7 +12,7 @@ package com.team2.shopperhelper;
  *            Cite: <DO NOT
  *            REMOVE>http://geekswithblogs.net/bosuch/archive/2011/
  *            01/31/android--
- *            -create-a-custom-multi-line-listview-bound-to-an.aspx
+ *            -create-a-custom-multi-line-listview-bound-to-an.aspx.
  */
 public class SearchResults {
 

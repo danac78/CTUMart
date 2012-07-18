@@ -23,7 +23,7 @@ import android.widget.ImageButton;
  *            values over to ShowStore and start the StoreStore activity..
  * 
  * @Source Cite<DO NOT
- *         REMOVE>:http://developer.android.com/guide/components/index.html
+ *         REMOVE>:http://developer.android.com/guide/components/index.html,
  */
 
 public class SearchForStore extends Activity {
