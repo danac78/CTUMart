@@ -15,18 +15,21 @@ import android.widget.ImageButton;
  * @Karl Lloyd
  * @commented by:
  * 
- *       This Activity is designed to retrieve the information from the Edit Box on the
- *       screen and turn them into text values. Once that is complete, it will send
- *       the information to validate to ensure the values are correct (i.e. zip code is
- *       not going 8512 instead of 85120). After the validation is complete, it will
- *       pass those values over to ShowStore and start the StoreStore activity.
- *       
+ *            This Activity is designed to retrieve the information from the
+ *            Edit Box on the screen and turn them into text values. Once that
+ *            is complete, it will send the information to validate to ensure
+ *            the values are correct (i.e. zip code is not going 8512 instead of
+ *            85120). After the validation is complete, it will pass those
+ *            values over to ShowStore and start the StoreStore activity.
+ * 
+ * @Source Cite<DO NOT
+ *         REMOVE>:http://developer.android.com/guide/components/index.html
  */
 
 public class SearchForStore extends Activity {
-/*
- * declaring private variables to be used for this Activity.
- */
+	/*
+	 * declaring private variables to be used for this Activity.
+	 */
 	private String zip;
 	private String state;
 	private String city;
@@ -35,7 +38,7 @@ public class SearchForStore extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		/*
 		 * calling the searchstore layout to have it display that screen.
 		 */
@@ -44,8 +47,8 @@ public class SearchForStore extends Activity {
 		/*
 		 * Creating the image buttons and texts inside java to manipulate.
 		 * Additionally, creating an instance of validate to send the
-		 * information in. Additionally, creating a new Bundle and Intent. 
-		 * The bundle is what will hold information we need to pass, and declaring
+		 * information in. Additionally, creating a new Bundle and Intent. The
+		 * bundle is what will hold information we need to pass, and declaring
 		 * it as final for the onClickListener to be able to access it. Also
 		 * declaring the next Intent (new Activity) so it can be called.
 		 */
@@ -88,10 +91,10 @@ public class SearchForStore extends Activity {
 				 * issues that can occur when reading and writing information.
 				 */
 				if (checkValid = true) {
-					
+
 					/*
-					 * putting the city into a bundle in order to pass the information to 
-					 * the next activity.
+					 * putting the city into a bundle in order to pass the
+					 * information to the next activity.
 					 */
 					bundle.putString("city", city);
 					bundle.putString("state", state);

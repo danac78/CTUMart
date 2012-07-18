@@ -21,6 +21,10 @@ import android.widget.TextView;
  *            it into an arraylist. An adapter converts an ArrayList into
  *            something the ListView will understand. OTHERWISE, it will not
  *            post right.
+ * 
+ * @Source cite<DO NOT
+ *         REMOVE>:http://geekswithblogs.net/bosuch/archive/2011/01/31
+ *         /android---create-a-custom-multi-line-listview-bound-to-an.aspx
  */
 public class StoreCustomBaseAdapter extends BaseAdapter {
 	/*

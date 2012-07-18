@@ -15,16 +15,21 @@ import android.widget.ListView;
  * @version 0.1.0
  * @IT482
  * @Karl Lloyd
+ * @Source Cite: <DO NOT REMOVE>
+ *         http://geekswithblogs.net/bosuch/archive/2011/01
+ *         /31/android---create-a- custom-multi-line-listview-bound-to-an.aspx
  * 
- *       After having the values passed to this activity from SearchForStore, it
- *       will retrieve the values passed from bundle and put them through an
- *       Array List. Although this is not pulling from an XML file or a SQLite
- *       database, it was clearly the only way after researching to get it to do
- *       what was needed and not cause a force closed error. The problem with
- *       the other methods that were tried was that I kept getting a
- *       nullpointexception, despite programming it based on examples. This
- *       activity relies on a few helper classes for it to list, but it will
- *       list the store and obtain the store id.
+ *         After having the values passed to this activity from SearchForStore,
+ *         it will retrieve the values passed from bundle and put them through
+ *         an Array List. Although this is not pulling from an XML file or a
+ *         SQLite database, it was clearly the only way after researching to get
+ *         it to do what was needed and not cause a force closed error. The
+ *         problem with the other methods that were tried was that I kept
+ *         getting a nullpointexception, despite programming it based on
+ *         examples. This activity relies on a few helper classes for it to
+ *         list, but it will list the store and obtain the store id.
+ * 
+ * @Commented By:
  */
 
 public class ShowStore extends Activity {

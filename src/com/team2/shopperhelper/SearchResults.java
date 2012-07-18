@@ -8,8 +8,11 @@ package com.team2.shopperhelper;
  * @Commented by
  * 
  *            This is a Plain Old Java Object (POJO). It is creating the values
- *            required for search results as well as getter and setters.
- * 
+ *            required for search results as well as getter and setters. Source
+ *            Cite: <DO NOT
+ *            REMOVE>http://geekswithblogs.net/bosuch/archive/2011/
+ *            01/31/android--
+ *            -create-a-custom-multi-line-listview-bound-to-an.aspx
  */
 public class SearchResults {
 

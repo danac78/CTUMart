@@ -18,19 +18,21 @@ import android.widget.TextView;
  * @version 0.1.0
  * @IT482
  * @Karl Lloyd
+ * @Source Cite<DO NOT
+ *         REMOVE>:http://developer.android.com/guide/components/index.html
  * @Commented by:
  * 
  * 
- *          This class is the initial activity that is launched when the icon is
- *          tapped on. It will direct itself into Search for Store, but it needs
- *          to check to ensure if that the Android OS is compatible (in case of
- *          Android OS corruption) and that it is connected to the Internet. If
- *          it loads with these two conditions being false, it will display a
- *          message alerting the user. Once they click on the ok button, the
- *          application will close. If both items are true, the user will just
- *          see Search Store appear. In the simulations ran, this actually only
- *          takes one second and the customer will not notice these tests being
- *          conducted at all.
+ *            This class is the initial activity that is launched when the icon
+ *            is tapped on. It will direct itself into Search for Store, but it
+ *            needs to check to ensure if that the Android OS is compatible (in
+ *            case of Android OS corruption) and that it is connected to the
+ *            Internet. If it loads with these two conditions being false, it
+ *            will display a message alerting the user. Once they click on the
+ *            ok button, the application will close. If both items are true, the
+ *            user will just see Search Store appear. In the simulations ran,
+ *            this actually only takes one second and the customer will not
+ *            notice these tests being conducted at all.
  * 
  */
 @SuppressWarnings("unused")
@@ -41,7 +43,7 @@ public class Launch extends Activity {
 	 */
 	ConnectivityManager connectivity;
 	NetworkInfo wifiInfo, mobileInfo;
-	
+
 	private String version;
 
 	private int versionCheck;
@@ -92,17 +94,15 @@ public class Launch extends Activity {
 														// and above.
 		internetTest(internetDisplay, okButton); // checking to make sure there
 													// is Internet connectivity.
-		
+
 		/*
-		 * Calling the next activity and closing the launch activity to conserve memory. This would
-		 * follow the same logic as closing a InputStream when no longer in use. It would use resource
-		 * that can be better allocated else where.
+		 * Calling the next activity and closing the launch activity to conserve
+		 * memory. This would follow the same logic as closing a InputStream
+		 * when no longer in use. It would use resource that can be better
+		 * allocated else where.
 		 */
-		Intent intent = new Intent(this,SearchForStore.class);
+		Intent intent = new Intent(this, SearchForStore.class);
 		startActivity(intent);
-		
-		
-		
 
 	}
 
