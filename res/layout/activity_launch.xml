@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background" >
 
+
     <!--
 Author Dana Haywood
 version 0.1.0IT482
@@ -14,6 +15,7 @@ This is the Launch activity layout, which starts with the standard background. T
 ImageView will hold the CTU mart logo.
     -->
 
+
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="320dp"
@@ -22,11 +24,6 @@ ImageView will hold the CTU mart logo.
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/logo"
         android:src="@drawable/ctumartlogo" />
-    <!--
-Ideally, the customer will only see this screen for a split second. However,
-they will see two error messages if there is problem with compatibile and internet
-By default, these TextViews are invisible.
-    -->
 
     <TextView
         android:id="@+id/internetError"
@@ -45,11 +42,6 @@ By default, these TextViews are invisible.
         android:layout_centerVertical="true"
         android:text="@string/compatibleError"
         android:visibility="invisible" />
-    <!--
-In order to provide the customer the ability to see a problem, there will
-be a button that will only close the application once they click on it. By
-default, it is
-    -->
 
     <Button
         android:id="@+id/OkButton"
