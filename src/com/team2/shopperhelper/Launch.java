@@ -18,8 +18,7 @@ import android.widget.TextView;
  * @version 0.1.0
  * @IT482
  * @Karl Lloyd
- * @Source Cite<DO NOT
- *         REMOVE>:http://developer.android.com/guide/components/index.html
+ * @Source Cite:http://developer.android.com/guide/components/index.html
  * @Commented by:
  * 
  * 
