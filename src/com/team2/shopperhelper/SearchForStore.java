@@ -74,7 +74,6 @@ public class SearchForStore extends Activity {
 			private String state;
 			private String zip;
 
-			@Override
 			public void onClick(View v) {
 				/*
 				 * gainValues() is designed to obtain the values from EditText
@@ -166,7 +165,6 @@ public class SearchForStore extends Activity {
 		 */
 		clear.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				cityTXT.setText(null);
 				stateTXT.setText(null);

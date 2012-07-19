@@ -146,7 +146,6 @@ public class ShowStore extends Activity {
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				/*

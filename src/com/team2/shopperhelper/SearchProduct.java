@@ -50,7 +50,6 @@ public class SearchProduct extends Activity {
 
 		search.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				gainValues();
 				if (UPC.length() > 0) {
@@ -87,7 +86,6 @@ public class SearchProduct extends Activity {
 		 */
 		clear.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				productNameTXT.setText(null);
 				productTypeTXT.setText(null);

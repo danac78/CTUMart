@@ -79,7 +79,7 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 
 	/*
  */
-	@Override
+	
 	public int getCount() {
 		/*
 		 * returns the size of the array.
@@ -87,7 +87,6 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 		return searchArrayList.size();
 	}
 
-	@Override
 	public Object getItem(int position) {
 		/*
 		 * returns an item that within a certain position. This is how we will
@@ -96,7 +95,6 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 		return searchArrayList.get(position);
 	}
 
-	@Override
 	public long getItemId(int position) {
 		/*
 		 * return the position. This is related to the position that the item
@@ -107,7 +105,6 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 		return position;
 	}
 
-	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 
