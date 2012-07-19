@@ -14,7 +14,7 @@ package com.team2.shopperhelper;
  *            01/31/android--
  *            -create-a-custom-multi-line-listview-bound-to-an.aspx.
  */
-public class SearchResults {
+public class StoreResults {
 
 	private String store = "";
 	private String address = "";

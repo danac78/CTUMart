@@ -45,10 +45,52 @@ public class ShowStore extends Activity {
 	 * array object.
 	 */
 	private String city;
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	/**
+	 * @return the zip
+	 */
+	public String getZip() {
+		return zip;
+	}
+
+	/**
+	 * @param zip the zip to set
+	 */
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
 	private String state;
 	private String zip;
-	ArrayList<SearchResults> results = new ArrayList<SearchResults>();
-	SearchResults sr1 = new SearchResults();
+	ArrayList<StoreResults> results = new ArrayList<StoreResults>();
+	StoreResults sr1 = new StoreResults();
 
 	/**
 	 * 
@@ -74,9 +116,10 @@ public class ShowStore extends Activity {
 		 * Assigning the values taken from the bundle to the Strings declared
 		 * for this class.
 		 */
-		this.city = XMLcity;
-		this.state = XMLstate;
-		this.zip = XMLzip;
+		setCity(XMLcity);
+		setState(XMLstate);
+		setZip(XMLzip);
+		
 
 		/*
 		 * setting up the ArrayList with information from the
@@ -84,10 +127,10 @@ public class ShowStore extends Activity {
 		 * program itself, it was the option to get it to work without crashing.
 		 * Despite numerous research hours spent, I could not get past the
 		 * nullpointerexception, and was trying to get a prototype ready by
-		 * friday 7/20/2012.
+		 * friday 7/20/2012..
 		 */
 
-		ArrayList<SearchResults> searchResults = GetSearchResults();
+		ArrayList<StoreResults> storeResults = GetSearchResults();
 		/*
 		 * declaring the ListView item that the information will be set to.
 		 */
@@ -99,7 +142,7 @@ public class ShowStore extends Activity {
 		 * id. In this case, we are sending it to ListView id dbView.
 		 */
 
-		listView.setAdapter(new StoreCustomBaseAdapter(this, searchResults));
+		listView.setAdapter(new StoreCustomBaseAdapter(this, storeResults));
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -116,7 +159,7 @@ public class ShowStore extends Activity {
 				 * Database search.
 				 */
 				Object o = listView.getItemAtPosition(position);
-				SearchResults fullObjects = (SearchResults) o;
+				StoreResults fullObjects = (StoreResults) o;
 				String storeID = fullObjects.getStore();
 				/*
 				 * Creating a new bundle to hold the storeID and adding it to
@@ -133,7 +176,7 @@ public class ShowStore extends Activity {
 
 	}
 
-	private ArrayList<SearchResults> GetSearchResults() {
+	private ArrayList<StoreResults> GetSearchResults() {
 		/*
 		 * Using the XOR operator (^), it is checking to see if city, state, or
 		 * zip contain a certain piece of information. Since certain cities can

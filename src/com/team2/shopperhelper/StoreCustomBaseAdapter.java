@@ -16,7 +16,7 @@ import android.widget.TextView;
  * @Karl Lloyd
  * @Commented by
  * 
- *            This is creating a custom adapter for the Store Search in order to
+ *            This is creating a custom adapter for the Show Product in order to
  *            provide it with the tools needed to read the information and place
  *            it into an arraylist. An adapter converts an ArrayList into
  *            something the ListView will understand. OTHERWISE, it will not
@@ -45,11 +45,11 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 	/*
 	 * This method begins the construction of the ArrayList<SearchResults>
 	 */
-	private static ArrayList<SearchResults> searchArrayList;
+	private static ArrayList<StoreResults> searchArrayList;
 	private LayoutInflater mInflater;
 
 	public StoreCustomBaseAdapter(Context context,
-			ArrayList<SearchResults> results) {
+			ArrayList<StoreResults> results) {
 		searchArrayList = results;
 		/*
 		 * The Views are constructed via XML files in the Layout folder. What
@@ -63,7 +63,7 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 	/**
 	 * @return the searchArrayList
 	 */
-	public static ArrayList<SearchResults> getSearchArrayList() {
+	public static ArrayList<StoreResults> getSearchArrayList() {
 		return searchArrayList;
 	}
 
@@ -72,7 +72,7 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 	 *            the searchArrayList to set
 	 */
 	public static void setSearchArrayList(
-			ArrayList<SearchResults> searchArrayList) {
+			ArrayList<StoreResults> searchArrayList) {
 		StoreCustomBaseAdapter.searchArrayList = searchArrayList;
 
 	}

@@ -25,6 +25,14 @@
     <string name="zip_code">Zip Code</string>
     <string name="wrongUPC">UPC is 12 numbers</string>
     <string name="enterText">Enter text into one of the following boxes</string>
-    <string name="secondAddress2">Suite 1</string>
+    <string-array name="product_type">
+        <item ></item>
+        <item >Snack Food</item>
+        <item >Sports</item>
+    </string-array>
+        <string name="priceLbl">Price:</string>
+        <string name="itemCount">Item Count:</string>
+        <string name="sectionLbl">Section:</string>
+        <string name="aisleLbl">Aisle:</string>
 
 </resources>
