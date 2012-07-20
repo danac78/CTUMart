@@ -16,12 +16,24 @@ import android.widget.ImageButton;
  * @Source Cite: http://developer.android.com/guide/components/index.html
  * @commented by:
  * 
+<<<<<<< HEAD
  *       This Activity is designed to retrieve the information from the Edit Box on the
  *       screen and turn them into text values. Once that is complete, it will send
  *       the information to validate to ensure the values are correct (i.e. zip code is
  *       not going 8512 instead of 85120). After the validation is complete, it will
  *       pass those values over to ShowStore and start the StoreStore activity.
  *       
+=======
+ *            This Activity is designed to retrieve the information from the
+ *            Edit Box on the screen and turn them into text values. Once that
+ *            is complete, it will send the information to validate to ensure
+ *            the values are correct (i.e. zip code is not going 8512 instead of
+ *            85120). After the validation is complete, it will pass those
+ *            values over to ShowStore and start the StoreStore activity..
+ * 
+ * @Source Cite<DO NOT
+ *         REMOVE>:http://developer.android.com/guide/components/index.html,
+>>>>>>> refs/heads/dana
  */
 
 public class SearchForStore extends Activity {
@@ -72,7 +84,6 @@ public class SearchForStore extends Activity {
 			private String state;
 			private String zip;
 
-			@Override
 			public void onClick(View v) {
 				/*
 				 * gainValues() is designed to obtain the values from EditText
@@ -164,7 +175,6 @@ public class SearchForStore extends Activity {
 		 */
 		clear.setOnClickListener(new View.OnClickListener() {
 
-			@Override
 			public void onClick(View v) {
 				cityTXT.setText(null);
 				stateTXT.setText(null);

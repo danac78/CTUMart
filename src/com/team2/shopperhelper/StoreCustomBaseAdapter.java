@@ -9,6 +9,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+
+
+/**
+ * @author Dana Haywood
+ * @version 0.1.0
+ * @IT482
+ * @Karl Lloyd
+ * @Commented by
+ * 
+ *            This is creating a custom adapter for the Show Product in order to
+ *            provide it with the tools needed to read the information and place
+ *            it into an arraylist. An adapter converts an ArrayList into
+ *            something the ListView will understand. OTHERWISE, it will not
+ *            post right..
+ * 
+ * @Source cite<DO NOT
+ *         REMOVE>:http://geekswithblogs.net/bosuch/archive/2011/01/31
+ *         /android---create-a-custom-multi-line-listview-bound-to-an.aspx.
+ */
+
 public class StoreCustomBaseAdapter extends BaseAdapter {
 /*
  * http://geekswithblogs.net/bosuch/archive/2011/01/31/android---create-a-custom-multi-line-listview-bound-to-an.aspx
@@ -22,48 +42,66 @@ public class StoreCustomBaseAdapter extends BaseAdapter {
 
 	}
 
-	private static ArrayList<SearchResults> searchArrayList;
+
+
+
+	/*
+	 * This method begins the construction of the ArrayList<SearchResults>
+	 */
+	private static ArrayList<StoreResults> searchArrayList;
+
 	private LayoutInflater mInflater;
+
 	
-	public StoreCustomBaseAdapter(Context context, ArrayList<SearchResults> results)
-	{
-		searchArrayList=results;
+
+	public StoreCustomBaseAdapter(Context context,
+			ArrayList<StoreResults> results) {
+		searchArrayList = results;
+		/*
+		 * The Views are constructed via XML files in the Layout folder. What
+		 * LayoutInflater does instantiate an XML layout file into a specific
+		 * view. We are using this to push the Custom Rows XML into the
+		 * readDB.xml
+		 */
+
 		mInflater = LayoutInflater.from(context);
 	}
 	/**
 	 * @return the searchArrayList
 	 */
-	public static ArrayList<SearchResults> getSearchArrayList() {
+	public static ArrayList<StoreResults> getSearchArrayList() {
 		return searchArrayList;
 	}
 
 	/**
 	 * @param searchArrayList the searchArrayList to set
 	 */
-	public static void setSearchArrayList(ArrayList<SearchResults> searchArrayList) {
+
+	
+
+	public static void setSearchArrayList(
+			ArrayList<StoreResults> searchArrayList) {
+
 		StoreCustomBaseAdapter.searchArrayList = searchArrayList;
 		
 	}
 
-	@Override
+
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return searchArrayList.size();
 	}
 
-	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		return searchArrayList.get(position);
 	}
 
-	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return position;
 	}
 
-	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		
