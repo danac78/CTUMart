@@ -21,7 +21,9 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 
 	static class ViewHolder {
-
+/*
+ * This is a type that will be used later on to declare where the items are going.
+ */
 		TextView productNameTXT;
 		TextView priceTXT;
 		TextView inventoryCountTXT;
@@ -50,8 +52,13 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return position;
 	}
-
+/*
+ */
 	public View getView(int position, View convertView, ViewGroup parent) {
+		/*
+		 * pushing the values from the ArrayList into the TextViews we created in
+		 * the custom XML layout.
+		 */
 		ViewHolder holder = new ViewHolder();
 
 		if (convertView == null) {

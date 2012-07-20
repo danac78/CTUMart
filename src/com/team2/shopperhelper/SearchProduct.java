@@ -1,6 +1,7 @@
 package com.team2.shopperhelper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,17 +27,24 @@ public class SearchProduct extends Activity {
 	private String productName;
 	private String productType;
 	private String UPC;
+	private int valueType;
 	private boolean invalid;
-
+	private String storeID;
+	Intent intent;
+	private Bundle bundle = new Bundle();
 	@SuppressWarnings("unused")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
 
-		Bundle bundle = getIntent().getExtras();
+		 bundle = getIntent().getExtras();
 
-		String storeID = bundle.getString("storeID");
+		storeID=bundle.getString("storeID");
+		
+		bundle.clear();
+		
+		intent = new Intent(this, ShowProduct.class);
 
 		/*
 		 * Creating instances of Edit Text and Image Buttons to manipulate.
@@ -50,6 +58,9 @@ public class SearchProduct extends Activity {
 
 		search.setOnClickListener(new View.OnClickListener() {
 
+			private String key;
+			private String value;
+
 			public void onClick(View v) {
 				gainValues();
 				if (UPC.length() > 0) {
@@ -57,8 +68,42 @@ public class SearchProduct extends Activity {
 				}
 
 				if (invalid = false) {
-
+					decideLookup();
+					bundle.putInt("valueType", valueType);
+					switch(valueType)
+					{
+					case 1: valueSaved("productName",productName);break;
+					case 2: valueSaved("productType",productType);break;
+					case 3: valueSaved("UPC",UPC);break;
+					}
+					bundle.putString("storeID", storeID);
+					intent.putExtras(bundle);
+					startActivity(intent); 
 				}
+			}
+
+			private void valueSaved(String key, String value) {
+				this.key = key;
+				this.value = value;
+								
+				bundle.putString(key, value);
+				
+			}
+
+			private void decideLookup() {
+				
+				if(UPC.length()>0)
+				{
+					setValueType(3);
+				} else if (productType.length()>0) 
+				{
+					setValueType(2);
+				} else if (productName.length()>0)
+				{
+					setValueType(1);
+				}
+				
+				
 			}
 
 			private void validateValues() {
@@ -155,5 +200,21 @@ public class SearchProduct extends Activity {
 	public boolean setInvalid(boolean invalid) {
 		this.invalid = invalid;
 		return invalid;
+	}
+
+	public int getValueType() {
+		return valueType;
+	}
+
+	public void setValueType(int valueType) {
+		this.valueType = valueType;
+	}
+
+	public String getStoreID() {
+		return storeID;
+	}
+
+	public void setStoreID(String storeID) {
+		this.storeID = storeID;
 	}
 }

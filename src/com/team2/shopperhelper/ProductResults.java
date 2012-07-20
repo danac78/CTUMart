@@ -1,7 +1,9 @@
 package com.team2.shopperhelper;
 
 public class ProductResults {
-
+/*
+ * Creating a type for the Products for an ArrayList.
+ */
 	private String productName = "";
 	private String price ="";
 	private String inventoryCount="";
