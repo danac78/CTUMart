@@ -12,24 +12,11 @@
     <string name="zipCodeWrong">Please enter the 5 digit Zip Code</string>
     <string name="description">This is a description</string>
     <string name="codeName">Dana</string>
-    <string name="statea">The State cannot contain numbers</string>
-    <string name="cityValueInvalid">The City name you had placed is invalid.</string>
-    <string name="stateb">The state must be in a two letter format</string>
-    <string name="no_numbers_for_states">No numbers for States</string>
     <string name="start_search">Start Search</string>
-    <string name="product_name">Product Name</string>
-    <string name="product_type">Product Type</string>
-    <string name="UPC">UPC</string>
+    <string name="enter_info">Enter Info</string>
     <string name="locations_available">Locations Available</string>
-    <string name="state">State</string>
-    <string name="zip_code">Zip Code</string>
     <string name="wrongUPC">UPC is 12 numbers</string>
     <string name="enterText">Enter text into one of the following boxes</string>
-    <string-array name="product_type">
-        <item ></item>
-        <item >Snack Food</item>
-        <item >Sports</item>
-    </string-array>
         <string name="priceLbl">Price:</string>
         <string name="itemCount">Item Count:</string>
         <string name="sectionLbl">Section:</string>
@@ -42,13 +29,20 @@
             <item >Denver, CO</item><item>Chicago, IL</item>
             <item >Springfield, MA</item>
         </string-array>
-        <string-array name="states_available">
-            <item >AZ</item>
-            <item >CA</item>
-            <item >CO</item>
-            <item >MA</item>
-        </string-array>
-            <string name="yes">Yes</string>
             <string name="search_store_help">Help File to Be Implemented</string>
+            <string-array name="type_search_product">
+                <item >Product Name</item>
+                <item >Product Type</item>
+                <item >UPC</item>
+            </string-array>
+                <string name="type_info">Type</string>
+                <string name="helpProduct">To be implemented from User Documentation (GP3)</string>
+                <string-array name="productType">
+                    <item >Men</item>
+                    <item >Snack Food</item>
+                    <item >Soda</item>
+                    <item >Toys</item>
+                    <item >Video Games</item>
+                </string-array>
 
 </resources>

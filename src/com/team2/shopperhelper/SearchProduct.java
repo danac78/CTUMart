@@ -4,18 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * @author Dana Haywood
  * @date 7/12/2012
- * @version 1.0
+ * @version 0.1.0
  * @IT482
  * @Karl Lloyd
  * @Source Cite http://developer.android.com/guide/components/index.html
  * 
-<<<<<<< HEAD
+
  *       This activity is set to retrieve customer information from the user
  *       interface. Once this is done, it will go through a validation process,
  *       and get passed onto the web parsing and listing process.
@@ -30,181 +34,177 @@ public class SearchProduct extends Activity {
 
 
 	
-
-	private String productName;
-	private String productType;
-	private String UPC;
-	private boolean invalid;
-	private String storeID;
-	Intent intent;
-	private Bundle bundle = new Bundle();
-
+/*
+ * Creating local variables to be used in ShowProducts
+ */
+	private String queryType;
+	private String queryValue;
+	
+	
+		
 	@SuppressWarnings("unused")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
-
-		final Bundle bundle = getIntent().getExtras();
-		
-		final String storeID = bundle.getString("storeID");
-		
-				 		
-		bundle.clear();
-		
-		intent = new Intent(this, ShowProduct.class);
-
-
 		/*
 		 * Creating instances of Edit Text and Image Buttons to manipulate.
 		 */
-		final EditText productNameTXT = (EditText) findViewById(R.id.productnameTXT);
-		final EditText productTypeTXT = (EditText) findViewById(R.id.producttypeTXT);
-		final EditText UPCTXT = (EditText) findViewById(R.id.upcTXT);
-		ImageButton search = (ImageButton) findViewById(R.id.search);
-		ImageButton info = (ImageButton) findViewById(R.id.info);
-		ImageButton clear = (ImageButton) findViewById(R.id.clear);
+		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
+		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
+		final Spinner searchType = (Spinner) findViewById(R.id.typeID);
+		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		
-
-
+		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
+//		
+//		/*
+//		 * creating constants that will not change in this activity.
+//		 * 
+//		 * nextIntent: setting up the next intent so it is ready for when 
+//		 * we go for the next activity.
+//		 * 
+//		 * thisIntent: creating the intent for this class.
+//		 * 
+//		 */
+		final Intent thisIntent = new Intent();
+		final int storeID = thisIntent.getIntExtra("storeID", 0);				
+		final Intent intent = new Intent(this,ShowProduct.class);
+		final TextView help = (TextView) findViewById(R.id.productHelpTXT);
+		
 		search.setOnClickListener(new View.OnClickListener() {
-
-			private String key;
-			private String value;
-
+		int isOk = 0;
 			public void onClick(View v) {
-				gainValues();
-				if (UPC.length() > 0) {
-					validateValues();
-				}
-
-				if (invalid = false) {
+				final int position = searchType.getSelectedItemPosition();
+				/*
+				 * Based on the position of typeSearch, it will decide the 
+				 * query type and value to send to the web. It will also
+				 * do a validation with If/Else statements prior to assigning
+				 * the value.
+				 */
+				
+				switch(position)
+				{
+				case 0:
 					
-					UPCTXT.setText("WORKING!");
-					bundle.putString("storeID", storeID);
-					bundle.putString("productName", productName);
-					bundle.putString("productType", productType);
-					bundle.putString("UPC", UPC);
-					intent.putExtras(bundle);
-					startActivity(intent); 
+					if(productTXT.getText().toString().length()==0)
+					{
+						productTXT.setError("Enter a Product Name");
+					} else 
+					{
+						setQueryType("productName");
+						setQueryValue(productTXT.getText().toString());
+						isOk=1;
+						
+					}					
+					break;
+				case 1:
+					setQueryType("productType");					
+					setQueryValue(productType.getSelectedItem().toString());
+					isOk=1;
+					break;
+				case 2:
+					if(productTXT.getText().toString().length()==0)
+					{
+						productTXT.setError("Enter a UPC");
+					} else if(productTXT.getText().toString().length()!=12)
+					{
+						productTXT.setError("UPC is 12 Digits");
+					
+					} else {
+						setQueryType("UPC");
+						setQueryValue(productTXT.getText().toString());
+						String type = getQueryType();
+						String value = getQueryValue();
+						isOk=1;
+					}
+					
 				}
+				
+				switch(isOk)
+				{
+				case 0:
+					break;
+				case 1:
+					String passType = getQueryType();
+					String passValue = getQueryValue();
+					intent.putExtra("storeID", storeID);
+					intent.putExtra("queryType", passType);
+					intent.putExtra("queryValue", passValue);
+					startActivity(intent);
+					
+				}
+				
 			}
-
+						
 			
 
 			
-
-			private void validateValues() {
-				if ((UPC.length() > 12) ^ (UPC.length() < 12)) {
-					UPCTXT.setText(R.string.wrongUPC);
-					invalid = true;
-
-				}
-
-			}
-
-			/*
-			 * Getting the values from the text fields.
-			 */
-			private void gainValues() {
-				productName = productNameTXT.getText().toString();
-				productType = productTypeTXT.getText().toString();
-				UPC = UPCTXT.getText().toString();
-
-			}
 		});
-
+		
 		/*
-		 * When the clear button is clicked, the value will be erased.
+		 * resets the screen.
 		 */
 		clear.setOnClickListener(new View.OnClickListener() {
-
+			
 			public void onClick(View v) {
-				productNameTXT.setText(null);
-				productTypeTXT.setText(null);
-				UPCTXT.setText(null);
-
+				help.setVisibility(View.GONE);
+				productTXT.setText(null);
+				searchType.setSelection(1);
+				
 			}
 		});
 
+//		
+//		/*
+//		 * This will change the view between productTXT and productType.
+//		 */
+		searchType.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
+					int position, long id) {
+				switch(position)
+				{
+				case 0: productTXT.setVisibility(View.VISIBLE);
+						productType.setVisibility(View.GONE);break;
+				case 1: productTXT.setVisibility(View.GONE);
+						productType.setVisibility(View.VISIBLE);break;
+				case 2: productTXT.setVisibility(View.VISIBLE);
+						productType.setVisibility(View.GONE);break;
+				}
+				
+			}
+
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 	}
 
-	/**
-	 * @return the productName
-	 */
-	public String getProductName() {
-		return productName;
+
+
+	public String getQueryValue() {
+		return queryValue;
 	}
 
-	/**
-	 * @param productName
-	 *            the productName to set
-	 */
-	public void setProductName(String productName) {
-		this.productName = productName;
+
+
+	public void setQueryValue(String queryValue) {
+		this.queryValue = queryValue;
 	}
 
-	/**
-	 * @return the uPC
-	 */
-	public String getUPC() {
-		return UPC;
+
+
+	public String getQueryType() {
+		return queryType;
 	}
 
-	/**
-	 * @param uPC
-	 *            the uPC to set
-	 */
-	public void setUPC(String uPC) {
-		UPC = uPC;
+
+
+	public void setQueryType(String queryType) {
+		this.queryType = queryType;
 	}
 
-	/**
-	 * @return the productType
-	 */
-	public String getProductType() {
-		return productType;
-	}
-
-	/**
-	 * @param productType
-	 *            the productType to set
-	 */
-	public void setProductType(String productType) {
-		this.productType = productType;
-	}
-
-	/**
-	 * @return the invalid
-	 */
-	public boolean isInvalid() {
-		return invalid;
-	}
-
-	/**
-	 * @param invalid
-	 *            the invalid to set
-	 */
-	public boolean setInvalid(boolean invalid) {
-		this.invalid = invalid;
-		return invalid;
-
-	}
-
-	
-	public String getStoreID() {
-		return storeID;
-	}
-
-	public void setStoreID(String storeID) {
-		this.storeID = storeID;
-	}
-
-	public Bundle getBundle() {
-		return bundle;
-	}
-
-	public void setBundle(Bundle bundle) {
-		this.bundle = bundle;
-	}
 }

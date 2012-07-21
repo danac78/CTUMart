@@ -29,7 +29,7 @@ public class SearchForStore extends Activity {
 	 * declaring private variables to be used for this Activity.
 	 */
 
-	protected CharSequence error = "Need to Enter Text";
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class SearchForStore extends Activity {
 		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton info = (ImageButton) findViewById(R.id.info);
-		final TextView help = (TextView) findViewById(R.id.helpTXT);
+		final TextView help = (TextView) findViewById(R.id.storeHelpTXT);
 
 		/*
 		 * Upon the Search Button being pressed, this will collect the
@@ -90,7 +90,7 @@ public class SearchForStore extends Activity {
 				 * if for any reason the help text view is visible, this will
 				 * ensure the XML is set to be invisible.
 				 */
-				help.setVisibility(View.INVISIBLE);
+				help.setVisibility(View.GONE);
 				/*
 				 * stating the Search Product activity
 				 */
@@ -101,8 +101,12 @@ public class SearchForStore extends Activity {
 			public int getStoreID() {
 				return storeID;
 			}
-
+/*
+ * by default, Spinner starts with Position = 0. In order to keep this with 1 through
+ * six, accumulated
+ */
 			public void setStoreID(int storeID) {
+				storeID++;
 				this.storeID = storeID;
 			}
 

@@ -25,6 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/locations_available" />
+
+    <TextView
+        android:id="@+id/storeHelpTXT"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.71"
+        android:text="@string/search_store_help"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,13 +52,5 @@
             android:src="@android:drawable/ic_dialog_info" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/helpTXT"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.71"
-        android:text="@string/search_store_help"
-        android:visibility="invisible" />
 
 </LinearLayout>
