@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * @author Dana Haywood
@@ -16,39 +17,24 @@ import android.widget.ImageButton;
  * @Source Cite: http://developer.android.com/guide/components/index.html
  * @commented by:
  * 
-<<<<<<< HEAD
- *       This Activity is designed to retrieve the information from the Edit Box on the
- *       screen and turn them into text values. Once that is complete, it will send
- *       the information to validate to ensure the values are correct (i.e. zip code is
- *       not going 8512 instead of 85120). After the validation is complete, it will
- *       pass those values over to ShowStore and start the StoreStore activity.
- *       
-=======
- *            This Activity is designed to retrieve the information from the
- *            Edit Box on the screen and turn them into text values. Once that
- *            is complete, it will send the information to validate to ensure
- *            the values are correct (i.e. zip code is not going 8512 instead of
- *            85120). After the validation is complete, it will pass those
- *            values over to ShowStore and start the StoreStore activity..
- * 
- * @Source Cite<DO NOT
- *         REMOVE>:http://developer.android.com/guide/components/index.html,
->>>>>>> refs/heads/dana
+ *            This activity will take the spinner input from the screen, and put
+ *            it into a switch. Based on the position of the spinner, it will
+ *            indicate the store id number (we are only using 6 for academic
+ *            reasons). No validation will be needed as the spinner will only
+ *            list the stores available.
  */
 
 public class SearchForStore extends Activity {
-/*
- * declaring private variables to be used for this Activity.
- */
-	private String zip;
-	private String state;
-	private String city;
-	boolean checkValid;
+	/*
+	 * declaring private variables to be used for this Activity.
+	 */
+
+	protected CharSequence error = "Need to Enter Text";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		/*
 		 * calling the searchstore layout to have it display that screen.
 		 */
@@ -57,177 +43,84 @@ public class SearchForStore extends Activity {
 		/*
 		 * Creating the image buttons and texts inside java to manipulate.
 		 * Additionally, creating an instance of validate to send the
-		 * information in. Additionally, creating a new Bundle and Intent. 
-		 * The bundle is what will hold information we need to pass, and declaring
+		 * information in. Additionally, creating a new Bundle and Intent. The
+		 * bundle is what will hold information we need to pass, and declaring
 		 * it as final for the onClickListener to be able to access it. Also
 		 * declaring the next Intent (new Activity) so it can be called.
 		 */
-		final Bundle bundle = new Bundle();
-		final Intent intent = new Intent(this, ShowStore.class);
+
+		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
-		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
-		final EditText cityTXT = (EditText) findViewById(R.id.cityTXT);
-		final EditText stateTXT = (EditText) findViewById(R.id.stateTXT);
-		final EditText zipTXT = (EditText) findViewById(R.id.zipTXTa);
+		final ImageButton info = (ImageButton) findViewById(R.id.info);
+		final TextView help = (TextView) findViewById(R.id.helpTXT);
 
 		/*
 		 * Upon the Search Button being pressed, this will collect the
-		 * information from the tabs and put them into strings that can be
-		 * validated and sent to the parser.
+		 * information from the spinner and obtain the id.
 		 */
 
 		search.setOnClickListener(new View.OnClickListener() {
 			/*
-			 * Creates a private version of this string for the onclick method
+			 * declaring the storeID variable as that will work with getter and
+			 * setters to push the information through.
 			 */
-			private String city;
-			private String state;
-			private String zip;
+			private int storeID;
 
 			public void onClick(View v) {
-				/*
-				 * gainValues() is designed to obtain the values from EditText
-				 * and place them into the String variables declared above.
-				 * Validate() is being called to ensure these values are in the
-				 * correct format to be checked against the XML.
-				 */
-				gainValues();
-				validate();
 
 				/*
-				 * If the validation process passed, the QueryXML(raw) method
-				 * shall begin. The multiple catches are the result of numerous
-				 * issues that can occur when reading and writing information.
+				 * creates the spinner within Java
 				 */
-				if (checkValid = true) {
-					
-					/*
-					 * putting the city into a bundle in order to pass the information to 
-					 * the next activity.
-					 */
-					bundle.putString("city", city);
-					bundle.putString("state", state);
-					bundle.putString("zip", zip);
+				Spinner locationTXT = (Spinner) findViewById(R.id.locationTXT);
 
-					intent.putExtras(bundle);
-					startActivity(intent);
-				}
+				/*
+				 * getting the location based on the position of the spinner.
+				 * The store id will be: 1. Apache Junction, AZ 2. Beverly
+				 * Hills, CA 3. Colorado Springs, CO 3. Denver, CO 4. Chicago,
+				 * IL 5. Springfield, MA
+				 */
+
+				setStoreID(locationTXT.getSelectedItemPosition());
+				/*
+				 * Putting the store id into the intent to pass along to the
+				 * activity.
+				 */
+				intent.putExtra("storeID", getStoreID());
+				/*
+				 * if for any reason the help text view is visible, this will
+				 * ensure the XML is set to be invisible.
+				 */
+				help.setVisibility(View.INVISIBLE);
+				/*
+				 * stating the Search Product activity
+				 */
+				startActivity(intent);
 
 			}
 
-			/*
-			 * Validate() is checking the values of city, state and zip code.
-			 */
-
-			private void validate() {
-
-				/*
-				 * If the string text length is greater than zero (and honestly,
-				 * this was the only way it would work for some reason), it will
-				 * check the values. The first two are checking to see if they
-				 * contain a number. the third is checking to see if State is
-				 * greater than 2. Zip is ensuring the zip code has five
-				 * numbers.
-				 */
-				if (city.length() > 0) {
-					for (char c : city.toCharArray()) {
-						if (Character.isDigit(c)) {
-							cityTXT.setText(R.string.cityValueInvalid);
-							checkValid = false;
-
-						}
-					}
-				} else if (state.length() > 0) {
-					for (char c : state.toCharArray()) {
-						if (Character.isDigit(c)) {
-							stateTXT.setText(R.string.no_numbers_for_states);
-							checkValid = false;
-						}
-					}
-
-					if (state.length() > 2) {
-						stateTXT.setText(R.string.stateb);
-						checkValid = false;
-					}
-
-				} else if (zip.length() > 0) {
-					if (zip.length() < 5) {
-						zipTXT.setText(R.string.zipCodeWrong);
-						checkValid = false;
-					}
-				}
-
+			public int getStoreID() {
+				return storeID;
 			}
 
-			private void gainValues() {
-				/*
-				 * converting the Edit Text to actual strings.
-				 */
-				city = cityTXT.getText().toString();
-				state = stateTXT.getText().toString();
-				zip = zipTXT.getText().toString();
-
+			public void setStoreID(int storeID) {
+				this.storeID = storeID;
 			}
-		});
+
+		}
+
+		);
 		/*
-		 * Once the clear button is clicked, it will clear the information out
-		 * of the text fields.
+		 * The Info button shall display information
 		 */
-		clear.setOnClickListener(new View.OnClickListener() {
+
+		info.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				cityTXT.setText(null);
-				stateTXT.setText(null);
-				zipTXT.setText(null);
+				help.setVisibility(View.VISIBLE);
 
 			}
 		});
 
-	}
-
-	/**
-	 * @return the zip
-	 */
-	public String getZip() {
-		return zip;
-	}
-
-	/**
-	 * @param zip
-	 *            the zip to set
-	 */
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	/**
-	 * @return the state
-	 */
-	public String getState() {
-		return state;
-	}
-
-	/**
-	 * @param state
-	 *            the state to set
-	 */
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	/**
-	 * @return the city
-	 */
-	public String getCity() {
-		return city;
-	}
-
-	/**
-	 * @param city
-	 *            the city to set
-	 */
-	public void setCity(String city) {
-		this.city = city;
 	}
 
 }

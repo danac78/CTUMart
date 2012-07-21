@@ -60,7 +60,6 @@ public class ShowProduct extends Activity {
 	private InputStream input;
 	private JSONObject json_data;
 	private JSONArray productResults;
-	private int valueType;
 	private HttpEntity httpEntity;
 	ArrayList<ProductResults> pResults = new ArrayList<ProductResults>();
 	ProductResults pr = new ProductResults();
@@ -80,13 +79,16 @@ public class ShowProduct extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 		bundle = getIntent().getExtras();
-		this.valueType = bundle.getInt("valueType");
-		this.storeID = bundle.getString("storeID");
+						
+		
 		/*
 		 * Takes the information from the bundles and adds to add the search
 		 * string. This may be changed in the future.
 		 */
-		decideType(bundle);
+		this.storeID = bundle.getString("storeID");
+		this.queryProduct = bundle.getString("productName");
+		this.queryType = bundle.getString("productType");
+		this.queryUPC = bundle.getString("UPC");
 
 		/*
 		 * Getting the information to list on the web. At the moment, it is only
@@ -113,28 +115,7 @@ public class ShowProduct extends Activity {
 
 	}
 
-	/*
-	 * As mentioned, this may be modified in the refinement stage. We might not
-	 * need three different strings for the value from bundle. But for the
-	 * moment, it is taking the value for the WHERE statement.
-	 */
-	private void decideType(Bundle bundle2) {
-		this.bundle = bundle2;
-
-		switch (valueType) {
-		case 1:
-			queryProduct = bundle.getString("productName");
-			break;
-		case 2:
-			queryType = bundle.getString("productType");
-			break;
-		case 3:
-			queryUPC = bundle.getString("UPC");
-			break;
-		}
-
-	}
-
+	
 	/*
 	 * Not called yet as we do not have a web server available to do any live
 	 * testing. However, this is the process where it is sending the request to
@@ -330,10 +311,7 @@ public class ShowProduct extends Activity {
 		return productResults;
 	}
 
-	public void setProductResults(JSONArray productResults) {
-		productResults = productResults;
-	}
-
+	
 	public ArrayList<NameValuePair> getValueSearch() {
 		return valueSearch;
 	}

@@ -1,15 +1,15 @@
 <resources>
 
-    <string name="app_name">ShopperHelper</string>
+    <string name="app_name">Shopper Helper</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_launch">launch</string>
+    <string name="title_activity_launch">Opening Shopper Helper</string>
     <string name="logo">The branded logo for the CTUMart corporation.</string>
     <string name="error">Error</string>
     <string name="internetError">This Device is not connected to the Internet. Please check the         device and reopen Shopper Helper</string>
     <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 
         or greater, check with your manufacture why it is not reporting this.</string>
-    <string name="zipCodeWrong">The Zip Code you enters was invalid. Please enter the zipcode again.</string>
+    <string name="zipCodeWrong">Please enter the 5 digit Zip Code</string>
     <string name="description">This is a description</string>
     <string name="codeName">Dana</string>
     <string name="statea">The State cannot contain numbers</string>
@@ -20,7 +20,7 @@
     <string name="product_name">Product Name</string>
     <string name="product_type">Product Type</string>
     <string name="UPC">UPC</string>
-    <string name="city">City</string>
+    <string name="locations_available">Locations Available</string>
     <string name="state">State</string>
     <string name="zip_code">Zip Code</string>
     <string name="wrongUPC">UPC is 12 numbers</string>
@@ -34,5 +34,21 @@
         <string name="itemCount">Item Count:</string>
         <string name="sectionLbl">Section:</string>
         <string name="aisleLbl">Aisle:</string>
+        <string-array name="locations_available">
+            <item >Apache Junction, AZ</item>
+            <item >Beverly Hills, CA</item>
+            
+            <item >Colorado Springs, CO</item>
+            <item >Denver, CO</item><item>Chicago, IL</item>
+            <item >Springfield, MA</item>
+        </string-array>
+        <string-array name="states_available">
+            <item >AZ</item>
+            <item >CA</item>
+            <item >CO</item>
+            <item >MA</item>
+        </string-array>
+            <string name="yes">Yes</string>
+            <string name="search_store_help">Help File to Be Implemented</string>
 
 </resources>

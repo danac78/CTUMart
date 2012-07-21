@@ -23,7 +23,7 @@ import android.widget.ImageButton;
  *          This activity is set to retrieve customer information from the user
  *          interface. Once this is done, it will go through a validation
  *          process, and get passed onto the web parsing and listing process...
->>>>>>> refs/heads/dana
+
  * 
  */
 public class SearchProduct extends Activity {
@@ -34,7 +34,6 @@ public class SearchProduct extends Activity {
 	private String productName;
 	private String productType;
 	private String UPC;
-	private int valueType;
 	private boolean invalid;
 	private String storeID;
 	Intent intent;
@@ -80,48 +79,25 @@ public class SearchProduct extends Activity {
 				}
 
 				if (invalid = false) {
-					decideLookup();
-					bundle.putInt("valueType", valueType);
-					switch(valueType)
-					{
-					case 1: valueSaved("productName",productName);break;
-					case 2: valueSaved("productType",productType);break;
-					case 3: valueSaved("UPC",UPC);break;
-					}
+					
+					UPCTXT.setText("WORKING!");
 					bundle.putString("storeID", storeID);
+					bundle.putString("productName", productName);
+					bundle.putString("productType", productType);
+					bundle.putString("UPC", UPC);
 					intent.putExtras(bundle);
 					startActivity(intent); 
 				}
 			}
 
-			private void valueSaved(String key, String value) {
-				this.key = key;
-				this.value = value;
-								
-				bundle.putString(key, value);
-				
-			}
+			
 
-			private void decideLookup() {
-				
-				if(UPC.length()>0)
-				{
-					setValueType(3);
-				} else if (productType.length()>0) 
-				{
-					setValueType(2);
-				} else if (productName.length()>0)
-				{
-					setValueType(1);
-				}
-				
-				
-			}
+			
 
 			private void validateValues() {
-				if ((UPC.length() > 12) ^ (UPC.length() > 12)) {
+				if ((UPC.length() > 12) ^ (UPC.length() < 12)) {
 					UPCTXT.setText(R.string.wrongUPC);
-					setInvalid(true);
+					invalid = true;
 
 				}
 
@@ -215,19 +191,20 @@ public class SearchProduct extends Activity {
 
 	}
 
-	public int getValueType() {
-		return valueType;
-	}
-
-	public void setValueType(int valueType) {
-		this.valueType = valueType;
-	}
-
+	
 	public String getStoreID() {
 		return storeID;
 	}
 
 	public void setStoreID(String storeID) {
 		this.storeID = storeID;
+	}
+
+	public Bundle getBundle() {
+		return bundle;
+	}
+
+	public void setBundle(Bundle bundle) {
+		this.bundle = bundle;
 	}
 }
