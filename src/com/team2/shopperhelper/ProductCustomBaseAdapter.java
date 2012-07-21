@@ -9,6 +9,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+/**
+ * @author Dana Haywood
+ * @7/20/2012
+ * @version 0.1.0
+ * @Karl Lloyd
+ * @IT482
+ * @Source Cite: http://geekswithblogs.net/bosuch/archive/2011/01/31/android---
+ *         create-a-custom-multi-line-listview-bound-to-an.aspx
+ *
+ */
 public class ProductCustomBaseAdapter extends BaseAdapter {
 	/*
 	 * Typically in a List, it will show one value at a time. To make the list a
