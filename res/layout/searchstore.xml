@@ -12,20 +12,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ctumartlogo" />
-
+
     <TextView
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/locations_available"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <Spinner
         android:id="@+id/locationTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/locations_available" />
-
+
     <TextView
         android:id="@+id/storeHelpTXT"
         android:layout_width="match_parent"

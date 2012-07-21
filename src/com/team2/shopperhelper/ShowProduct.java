@@ -43,6 +43,7 @@ import android.widget.ListView;
  *         (temporary) to be able to test that functionality.
  * 
  */
+@SuppressWarnings("unused")
 public class ShowProduct extends Activity {
 
 	
@@ -51,7 +52,7 @@ public class ShowProduct extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
-		final Intent thisIntent = new Intent();
+//		final Intent thisIntent = new Intent();
 //		final int storeID = thisIntent.getIntExtra("storeID", 0);
 //		final String queryType = thisIntent.getStringExtra("queryType");
 //		final String queryValue = thisIntent.getStringExtra("queryValue");
@@ -71,7 +72,7 @@ public class ShowProduct extends Activity {
 		 * Tempory test values.
 		 */
 		ArrayList<ProductResults> results = new ArrayList<ProductResults>();
-		pr1.setProductName("Twinkies");
+		pr1.setName("Twinkies");
 		pr1.setPrice("2.00");
 		pr1.setInventoryCount("200");
 		pr1.setSection("Snack Food");

@@ -33,8 +33,9 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 
 	public ProductCustomBaseAdapter(Context context,
 			ArrayList<ProductResults> results) {
-		setSearchArrayList(results);
-		setmInflater(mInflater);
+		searchArrayList = results;
+		mInflater = LayoutInflater.from(context);
+		
 
 	}
 
@@ -55,14 +56,16 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 /*
  */
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder;
 		/*
 		 * pushing the values from the ArrayList into the TextViews we created in
 		 * the custom XML layout.
 		 */
-		ViewHolder holder = new ViewHolder();
+		
 
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.custom_row_product, null);
+			holder = new ViewHolder();
 			holder.productNameTXT = (TextView) convertView
 					.findViewById(R.id.productname);
 			holder.priceTXT = (TextView) convertView
@@ -73,20 +76,23 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 					.findViewById(R.id.sectionTXT);
 			holder.aisleTXT = (TextView) convertView
 					.findViewById(R.id.aisleTXT);
+			convertView.setTag(holder);
 
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
 		holder.productNameTXT.setText(searchArrayList.get(position)
-				.getProductName());
+				.getName());
 		holder.priceTXT.setText(searchArrayList.get(position).getPrice());
 		holder.inventoryCountTXT.setText(searchArrayList.get(position)
 				.getInventoryCount());
 		holder.sectionTXT.setText(searchArrayList.get(position).getSection());
 		holder.aisleTXT.setText(searchArrayList.get(position).getAisle());
-
+		
 		return convertView;
+
+		
 	}
 
 	/**
@@ -108,15 +114,5 @@ public class ProductCustomBaseAdapter extends BaseAdapter {
 	/**
 	 * @return the mInflater
 	 */
-	public LayoutInflater getmInflater() {
-		return mInflater;
-	}
-
-	/**
-	 * @param mInflater
-	 *            the mInflater to set
-	 */
-	public void setmInflater(LayoutInflater mInflater) {
-		this.mInflater = mInflater;
-	}
+	
 }

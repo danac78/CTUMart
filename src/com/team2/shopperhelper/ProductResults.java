@@ -4,7 +4,7 @@ public class ProductResults {
 /*
  * Creating a type for the Products for an ArrayList.
  */
-	private String productName = "";
+	private String Name = "";
 	private String price ="";
 	private String inventoryCount="";
 	private String section="";
@@ -12,14 +12,14 @@ public class ProductResults {
 	/**
 	 * @return the productName
 	 */
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return Name;
 	}
 	/**
 	 * @param productName the productName to set
 	 */
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String productName) {
+		this.Name = productName;
 	}
 	/**
 	 * @return the price
