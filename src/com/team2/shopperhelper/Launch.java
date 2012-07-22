@@ -15,7 +15,7 @@ import android.widget.TextView;
 /**
  * @author Dana Haywood
  * @date 7/10/2012
- * @version 0.1.2
+ * @version 0.1.5
  * @IT482
  * @Karl Lloyd
  * @Source Cite:http://developer.android.com/guide/components/index.html
@@ -45,12 +45,7 @@ public class Launch extends Activity {
 	 * Declaring the variables required for this activity. These will be
 	 * explained when we bring them to build objects.
 	 */
-	ConnectivityManager connectivity;
-	NetworkInfo wifiInfo, mobileInfo;
-
-	private String version;
-
-	private int versionCheck;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,131 +53,87 @@ public class Launch extends Activity {
 		setContentView(R.layout.activity_launch);
 
 		/*
-		 * Building the objects
+		 * Setting up the objects:
 		 * 
-		 * connectivity will be the primary object that associated with network
-		 * connectivity for the Android
-		 * 
-		 * wifiInfo and mobileInfo are associated with the networkinfo api and
-		 * connectivity to provide information about those devices.
-		 * 
-		 * Both TextView and Button items are creating Java containers so they
-		 * can be access. For instance, the error message for Internet and
-		 * Compatible are invisible in the layout, but these two will be able to
-		 * set the appropriate message visible.
-		 * 
-		 * The okButton.setOnClickListener is listening for the OK button to be
-		 * clicked and will perform the action. In this case, it will tell the
-		 * application to close.
+		 * 1. internetDisplay ties into the textview displaying that message
+		 * 2. compatibleDisplay ties into the textview displaying that message.
+		 * 3. okButton is the button that will be clicked to close the program
+		 * 4. connectivity is tying into Android ConnectivityManager API, which is
+		 *    part of the internet for Android.
+		 * 5. wiFiInfo: Getting the information about the Android's wifi connectivity.
+		 * 6. mobileInfo: Getting the information about the Android's mobile connectivty
+		 * 7. mobileIsConnect: Containing the value if it is connected or not.
+		 * 8. wifiIsConnect: Containing the value if wifi is connected or not.
+		 * 9. version: Obtaining the version build.
+		 * 10. checkVersion: Changing it into an Integer. There is an integer version
+		 *     of this API, but does not work with version 1 phones. It would technically
+		 *     bypass this feature.
 		 */
-
-		connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		wifiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		mobileInfo = connectivity
-				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		final TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
+		
 		final TextView internetDisplay = (TextView) findViewById(R.id.internetError);
+		final TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
 		final Button okButton = (Button) findViewById(R.id.OkButton);
+		ConnectivityManager connectivity = (ConnectivityManager) 
+				getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo wiFiInfo = connectivity.
+				getNetworkInfo(ConnectivityManager.TYPE_WIFI);		
+		NetworkInfo mobileInfo = connectivity.
+				getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+//		
+		/*
+		 * For SOME reason, Android is hating booleans, so using String so I can
+		 * check the contents which has been shown to work.
+		 */
+		String mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
+		String wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
+//		mobileIsConnect = "false";//hard code for testing
+//		wifiIsConnect = "false"; //hard code for testing
+		String version = Build.VERSION.SDK;
+//		String version = "7"; //hardcode for testing.
+		int checkVersion = Integer.parseInt(version);
+		Intent intent = new Intent(this,SearchForStore.class);
+		
+		/*
+		 * When the become visible, it will follow this listener instructions
+		 * to close the program. It will set the two text views back to invisible
+		 * in the XML file.
+		 */
 		okButton.setOnClickListener(new View.OnClickListener() {
+			
 			public void onClick(View v) {
 				okButton.setVisibility(View.INVISIBLE);
 				compatibleDisplay.setVisibility(View.INVISIBLE);
 				internetDisplay.setVisibility(View.INVISIBLE);
 				System.exit(0);
+				
 			}
 		});
-
-		compatibilityTest(compatibleDisplay, okButton); // checking for
-														// compatibility to
-														// ensure it is API 8
-														// and above.
-		internetTest(internetDisplay, okButton); // checking to make sure there
-													// is Internet connectivity.
-
+		
 		/*
-		 * Calling the next activity and closing the launch activity to conserve
-		 * memory. This would follow the same logic as closing a InputStream
-		 * when no longer in use. It would use resource that can be better
-		 * allocated else where.
+		 * Running through a system validation. Any one of these methods will
+		 * stop the program from running. If both mobile and wifi are not connected,
+		 * this will cause an internet issue to be displayed. If the compatible see 
+		 * it is less than 8 (2.2), it will raise that issue. If it makes it through
+		 * there, it will start the next activity. So far, there has been no consensus
+		 * on whether or not someone should see the launch screen. Keeping it this 
+		 * way so the only time they see the launch screen is if there is a problem.
 		 */
-		Intent intent = new Intent(this, SearchForStore.class);
-		startActivity(intent);
-
-	}
-
-	private void internetTest(TextView internetDisplay, Button okButton) {
-		/*
-		 * These two setters will configure wifiInfo and mobileInfo with the
-		 * information needed to complete the task. In this case, it will gain
-		 * if the wifi and mobile are connected.
-		 */
-
-		boolean wifiConnect = getWiFiConnect();
-		boolean mobileConnect = getMobileConnect();
-
-		/*
-		 * if either isWifiConnect or isMobileConnect come back false (not
-		 * connected), the system will report it is not connected. It will
-		 * report this to the user via dialog box and exit the application.
-		 */
-		if ((mobileConnect = false) || (wifiConnect = false)) {
+		if ((mobileIsConnect.contentEquals("false")) && 
+				(wifiIsConnect.contentEquals("false"))) 
+		{
 			internetDisplay.setVisibility(View.VISIBLE);
 			okButton.setVisibility(View.VISIBLE);
-
-		}
-
-	}
-
-	/*
-	 * This setter is returning the information to let the the App know if it
-	 * has mobile connectivity
-	 */
-	private boolean getMobileConnect() {
-		return mobileInfo.isConnected();
-
-	}
-
-	/*
-	 * This getter is returning information letting it know if it has wifi
-	 * connectivity.
-	 */
-	private boolean getWiFiConnect() {
-		return wifiInfo.isConnected();
-
-	}
-
-	private void compatibilityTest(TextView compatibleDisplay, Button okButton) {
-		// capturing the version of the build.
-		version = Build.VERSION.SDK;
-		// version = "7"; // hardcoded variable to test.
-
-		/*
-		 * After obtaining it, we are converting version into an integer for
-		 * numerical comparison. The NumberFormatException The
-		 * NumberFormatException will throw an error if the information we
-		 * provide to versionCheck is not a number inside the string.
-		 */
-
-		try {
-			versionCheck = Integer.parseInt(version);
-		} catch (NumberFormatException numFormat) {
-			System.out.print(numFormat);
-		}
-
-		// If the versionCheck is below API 8, it will report wrong version and
-		// exit the App.
-		if (versionCheck < 8) {
+		} else if (checkVersion < 8) 
+		{
 			compatibleDisplay.setVisibility(View.VISIBLE);
 			okButton.setVisibility(View.VISIBLE);
-
+		} else 
+		{
+			startActivity(intent);
 		}
+		
 
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_launch, menu);
-		return true;
+		
 	}
 
 }
