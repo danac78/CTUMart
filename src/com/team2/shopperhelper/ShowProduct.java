@@ -29,7 +29,7 @@ import android.widget.ListView;
 /**
  * @author Dana Haywood
  * @date 7/19/2012
- * @version 0.1.1
+ * @version 0.1.2
  * @IT482
  * @Karl Lloyd
  * @Comment by:
@@ -93,8 +93,8 @@ public class ShowProduct extends Activity {
 		 */
 		ArrayList<ProductResults> results = new ArrayList<ProductResults>();
 		pr1.setName(Integer.toString(storeID));
-		pr1.setPrice(queryType);
-		pr1.setInventoryCount(queryValue);
+		pr1.setPrice("2.99");
+		pr1.setInventoryCount("200");
 		pr1.setSection("Snack Food");
 		pr1.setAisle("A1");
 
