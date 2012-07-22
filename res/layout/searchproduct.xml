@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/enter_info" />
-
+
     <Spinner
         android:id="@+id/productTypes"
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/type_search_product" />
-
+
     <TextView
         android:id="@+id/productHelpTXT"
         android:layout_width="match_parent"
