@@ -93,8 +93,8 @@ public class ShowProduct extends Activity {
 		 */
 		ArrayList<ProductResults> results = new ArrayList<ProductResults>();
 		pr1.setName(Integer.toString(storeID));
-		pr1.setPrice("2.00");
-		pr1.setInventoryCount("200");
+		pr1.setPrice(queryType);
+		pr1.setInventoryCount(queryValue);
 		pr1.setSection("Snack Food");
 		pr1.setAisle("A1");
 

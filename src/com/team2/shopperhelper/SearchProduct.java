@@ -38,8 +38,7 @@ public class SearchProduct extends Activity {
 /*
  * Creating local variables to be used in ShowProducts
  */
-	private String queryType;
-	private String queryValue;
+	
 	
 	
 		
@@ -73,7 +72,7 @@ public class SearchProduct extends Activity {
 		final TextView help = (TextView) findViewById(R.id.productHelpTXT);
 		
 		search.setOnClickListener(new View.OnClickListener() {
-		int isOk = 0;
+	
 			public void onClick(View v) {
 				final int position = searchType.getSelectedItemPosition();
 				/*
@@ -92,16 +91,12 @@ public class SearchProduct extends Activity {
 						productTXT.setError("Enter a Product Name");
 					} else 
 					{
-						setQueryType("productName");
-						setQueryValue(productTXT.getText().toString());
-						isOk=1;
-						
+						querySave("productName", productTXT.getText().toString());	
 					}					
 					break;
 				case 1:
-					setQueryType("productType");					
-					setQueryValue(productType.getSelectedItem().toString());
-					isOk=1;
+					querySave("productType", productType.getSelectedItem().toString());
+					
 					break;
 				case 2:
 					if(productTXT.getText().toString().length()==0)
@@ -112,31 +107,25 @@ public class SearchProduct extends Activity {
 						productTXT.setError("UPC is 12 Digits");
 					
 					} else {
-						setQueryType("UPC");
-						setQueryValue(productTXT.getText().toString());
-						String type = getQueryType();
-						String value = getQueryValue();
-						isOk=1;
+						
+						querySave("UPC",productTXT.getText().toString());						
 					}
 					
-				}
+				}			
 				
-				switch(isOk)
-				{
-				case 0:
-					break;
-				case 1:
-					String passType = getQueryType();
-					String passValue = getQueryValue();
-					SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
-					SharedPreferences.Editor editor = settings.edit();
-					editor.putString("queryType", passType);
-					editor.putString("queryValue", passValue);
-					editor.commit();									
-					
-					startActivity(intent);
-					
-				}
+				
+			}
+			private void querySave(String valuea,
+					String valueb) {
+				String fielda = "queryType";
+				String fieldb = "queryValue";
+				
+				SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putString(fielda, valuea);
+				editor.putString(fieldb, valueb);
+				editor.commit();
+				startActivity(intent);
 				
 			}
 						
@@ -187,28 +176,6 @@ public class SearchProduct extends Activity {
 		
 	}
 
-
-
-	public String getQueryValue() {
-		return queryValue;
-	}
-
-
-
-	public void setQueryValue(String queryValue) {
-		this.queryValue = queryValue;
-	}
-
-
-
-	public String getQueryType() {
-		return queryType;
-	}
-
-
-
-	public void setQueryType(String queryType) {
-		this.queryType = queryType;
-	}
+	
 
 }
