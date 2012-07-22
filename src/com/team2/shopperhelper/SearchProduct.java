@@ -2,6 +2,7 @@ package com.team2.shopperhelper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 /**
  * @author Dana Haywood
  * @date 7/12/2012
- * @version 0.1.0
+ * @version 0.1.1
  * @IT482
  * @Karl Lloyd
  * @Source Cite http://developer.android.com/guide/components/index.html
@@ -32,7 +33,7 @@ import android.widget.TextView;
  */
 public class SearchProduct extends Activity {
 
-
+	public static final String PREF_NAME = "shopPref";
 	
 /*
  * Creating local variables to be used in ShowProducts
@@ -127,9 +128,12 @@ public class SearchProduct extends Activity {
 				case 1:
 					String passType = getQueryType();
 					String passValue = getQueryValue();
-					intent.putExtra("storeID", storeID);
-					intent.putExtra("queryType", passType);
-					intent.putExtra("queryValue", passValue);
+					SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putString("queryType", passType);
+					editor.putString("queryValue", passValue);
+					editor.commit();									
+					
 					startActivity(intent);
 					
 				}

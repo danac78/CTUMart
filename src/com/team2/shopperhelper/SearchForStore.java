@@ -2,6 +2,7 @@ package com.team2.shopperhelper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 /**
  * @author Dana Haywood
  * @date 7/10/2012
- * @version 0.1.0
+ * @version 0.1.1
  * @IT482
  * @Karl Lloyd
  * @Source Cite: http://developer.android.com/guide/components/index.html
@@ -28,8 +29,7 @@ public class SearchForStore extends Activity {
 	/*
 	 * declaring private variables to be used for this Activity.
 	 */
-
-	
+	public static final String PREF_NAME = "shopPref";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,20 +77,27 @@ public class SearchForStore extends Activity {
 				 * getting the location based on the position of the spinner.
 				 * The store id will be: 1. Apache Junction, AZ 2. Beverly
 				 * Hills, CA 3. Colorado Springs, CO 3. Denver, CO 4. Chicago,
-				 * IL 5. Springfield, MA
+				 * IL 5. Springfield, MA. Adding a plus 1 since position starts
+				 * at zero
 				 */
 
-				setStoreID(locationTXT.getSelectedItemPosition());
-				/*
-				 * Putting the store id into the intent to pass along to the
-				 * activity.
-				 */
-				intent.putExtra("storeID", getStoreID());
+				storeID = (locationTXT.getSelectedItemPosition()) + 1;
+
 				/*
 				 * if for any reason the help text view is visible, this will
 				 * ensure the XML is set to be invisible.
 				 */
 				help.setVisibility(View.GONE);
+				
+				/*
+				 * Creating a preference file that will be called upon from
+				 * each activity.
+				 */
+				SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putInt("storeID", storeID);
+				editor.commit();
+				
 				/*
 				 * stating the Search Product activity
 				 */
@@ -101,10 +108,11 @@ public class SearchForStore extends Activity {
 			public int getStoreID() {
 				return storeID;
 			}
-/*
- * by default, Spinner starts with Position = 0. In order to keep this with 1 through
- * six, accumulated
- */
+
+			/*
+			 * by default, Spinner starts with Position = 0. In order to keep
+			 * this with 1 through six, accumulated
+			 */
 			public void setStoreID(int storeID) {
 				storeID++;
 				this.storeID = storeID;
