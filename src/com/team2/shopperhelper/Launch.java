@@ -1,13 +1,12 @@
 package com.team2.shopperhelper;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,7 +38,7 @@ import android.widget.TextView;
  * @Commenters .
 
  */
-@SuppressWarnings("unused")
+
 public class Launch extends Activity {
 	/*
 	 * Declaring the variables required for this activity. These will be

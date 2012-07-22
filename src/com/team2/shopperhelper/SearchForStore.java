@@ -105,19 +105,8 @@ public class SearchForStore extends Activity {
 
 			}
 
-			public int getStoreID() {
-				return storeID;
-			}
-
-			/*
-			 * by default, Spinner starts with Position = 0. In order to keep
-			 * this with 1 through six, accumulated
-			 */
-			public void setStoreID(int storeID) {
-				storeID++;
-				this.storeID = storeID;
-			}
-
+			
+		
 		}
 
 		);
