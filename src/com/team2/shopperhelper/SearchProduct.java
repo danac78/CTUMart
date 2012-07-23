@@ -116,6 +116,12 @@ public class SearchProduct extends Activity {
 				
 				
 			}
+			
+			/*
+			 * Instead of writing the code three different times, creating a method to
+			 * accomplish all of this. The fields It will write the values passed into
+			 * the preferences to open in 
+			 */
 			private void querySave(String valuea,
 					String valueb) {
 				String fielda = "queryType";
@@ -126,6 +132,9 @@ public class SearchProduct extends Activity {
 				editor.putString(fielda, valuea);
 				editor.putString(fieldb, valueb);
 				editor.commit();
+				UPCTXT.setVisibility(View.GONE);
+				productTXT.setVisibility(View.VISIBLE);
+				productType.setVisibility(View.GONE);
 				startActivity(intent);
 				
 			}
