@@ -121,6 +121,7 @@ public class Launch extends Activity {
 				(wifiIsConnect.contentEquals("false"))) 
 		{
 			internetDisplay.setVisibility(View.VISIBLE);
+	
 			okButton.setVisibility(View.VISIBLE);
 		} else if (checkVersion < 8) 
 		{

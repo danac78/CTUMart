@@ -78,7 +78,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
-
+
     <LinearLayout
         android:id="@+id/aisleLayout"
         android:layout_width="match_parent"

@@ -51,6 +51,7 @@ public class SearchProduct extends Activity {
 		 * Creating instances of Edit Text and Image Buttons to manipulate.
 		 */
 		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
+		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
 		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
 		final Spinner searchType = (Spinner) findViewById(R.id.typeID);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
@@ -108,7 +109,7 @@ public class SearchProduct extends Activity {
 					
 					} else {
 						
-						querySave("UPC",productTXT.getText().toString());						
+						querySave("UPC",UPCTXT.getText().toString());						
 					}
 					
 				}			
@@ -149,7 +150,7 @@ public class SearchProduct extends Activity {
 
 //		
 //		/*
-//		 * This will change the view between productTXT and productType.
+//		 * This will change the view between productTXT,productType, and UPCTXT.
 //		 */
 		searchType.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -158,11 +159,17 @@ public class SearchProduct extends Activity {
 				switch(position)
 				{
 				case 0: productTXT.setVisibility(View.VISIBLE);
-						productType.setVisibility(View.GONE);break;
+						productType.setVisibility(View.GONE);
+						UPCTXT.setVisibility(View.GONE);
+						break;
 				case 1: productTXT.setVisibility(View.GONE);
-						productType.setVisibility(View.VISIBLE);break;
-				case 2: productTXT.setVisibility(View.VISIBLE);
-						productType.setVisibility(View.GONE);break;
+						productType.setVisibility(View.VISIBLE);
+						UPCTXT.setVisibility(View.GONE);
+						break;
+				case 2: productTXT.setVisibility(View.GONE);
+						productType.setVisibility(View.GONE);
+						UPCTXT.setVisibility(View.VISIBLE);
+						break;
 				}
 				
 			}
