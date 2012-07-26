@@ -76,8 +76,8 @@ public class SearchForStore extends Activity {
 				/*
 				 * getting the location based on the position of the spinner.
 				 * The store id will be: 1. Apache Junction, AZ 2. Beverly
-				 * Hills, CA 3. Colorado Springs, CO 3. Denver, CO 4. Chicago,
-				 * IL 5. Springfield, MA. Adding a plus 1 since position starts
+				 * Hills, CA 3. Colorado Springs, CO 4. Denver, CO 5. Chicago,
+				 * IL 6. Springfield, MA. Adding a plus 1 since position starts
 				 * at zero
 				 */
 
