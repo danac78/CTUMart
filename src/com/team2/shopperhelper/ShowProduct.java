@@ -72,7 +72,7 @@ public class ShowProduct extends Activity {
 		 * webpage.
 		 */
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
-		final int storeID = setting.getInt("storeID", 0);
+		final String storeID = setting.getString("storeID", null);
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
 		final ListView listView = (ListView) findViewById(R.id.webList);
@@ -84,8 +84,7 @@ public class ShowProduct extends Activity {
 		nameValuePairs.add(new BasicNameValuePair("queryStoreID",
 				"tblStore_storeID"));
 
-		nameValuePairs.add(new BasicNameValuePair("storeID", Integer
-				.toString(storeID)));
+		nameValuePairs.add(new BasicNameValuePair("storeID", storeID));
 		nameValuePairs.add(new BasicNameValuePair("queryType", queryType));
 		nameValuePairs.add(new BasicNameValuePair("queryValue", queryValue));
 		InputStream input = null;
@@ -142,7 +141,7 @@ public class ShowProduct extends Activity {
 
 		try {
 			BufferedReader read = new BufferedReader(new InputStreamReader(
-					input, "iso-8859-1"), 8);
+					input, "utf-8"), 8);
 
 			StringBuilder sb = new StringBuilder();
 

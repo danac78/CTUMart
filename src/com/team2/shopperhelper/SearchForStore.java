@@ -64,7 +64,7 @@ public class SearchForStore extends Activity {
 			 * declaring the storeID variable as that will work with getter and
 			 * setters to push the information through.
 			 */
-			private int storeID;
+			private String storeID;
 
 			public void onClick(View v) {
 
@@ -81,23 +81,50 @@ public class SearchForStore extends Activity {
 				 * at zero
 				 */
 
-				storeID = (locationTXT.getSelectedItemPosition()) + 1;
+				int getPosition = locationTXT.getSelectedItemPosition();
+
+				switch (getPosition) {
+				case 0:
+					storeID = "6498430010";
+					break;
+				case 1:
+					storeID = "6498431417";
+					break;
+				case 2:
+					storeID = "6498432295";
+					break;
+				case 3:
+					storeID = "6498432468";
+					break;
+				case 4:
+					storeID = "6498432796";
+					break;
+				case 5:
+					storeID = "6498432809";
+					break;
+				case 6:
+					storeID = "6498435021";
+					break;
+				case 7:
+					storeID = "6498438009";
+					break;
+				}
 
 				/*
 				 * if for any reason the help text view is visible, this will
 				 * ensure the XML is set to be invisible.
 				 */
 				help.setVisibility(View.GONE);
-				
+
 				/*
-				 * Creating a preference file that will be called upon from
-				 * each activity.
+				 * Creating a preference file that will be called upon from each
+				 * activity.
 				 */
-				SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 				SharedPreferences.Editor editor = settings.edit();
-				editor.putInt("storeID", storeID);
+				editor.putString("storeID", storeID);
 				editor.commit();
-				
+
 				/*
 				 * stating the Search Product activity
 				 */
@@ -105,8 +132,6 @@ public class SearchForStore extends Activity {
 
 			}
 
-			
-		
 		}
 
 		);
