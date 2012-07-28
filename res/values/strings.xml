@@ -18,12 +18,14 @@
         <string name="sectionLbl">Section:</string>
         <string name="aisleLbl">Aisle:</string>
         <string-array name="locations_available">
-            <item >Apache Junction, AZ</item>
+            <item >Denver, CO</item>
             <item >Beverly Hills, CA</item>
-            
+            <item >Boise, ID</item>
+            <item >Chicago, IL</item>
             <item >Colorado Springs, CO</item>
-            <item >Denver, CO</item><item>Chicago, IL</item>
             <item >Springfield, MA</item>
+            <item >Portland, OR</item>
+            <item >Richland, WA</item>
         </string-array>
             <string name="search_store_help">Help File to Be Implemented</string>
             <string-array name="type_search_product">

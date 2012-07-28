@@ -35,7 +35,7 @@
 
         <requestFocus />
     </EditText>
-
+
     <EditText
         android:id="@+id/UPCTXT"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/type_search_product" />
-
+
     <TextView
         android:id="@+id/productHelpTXT"
         android:layout_width="match_parent"
