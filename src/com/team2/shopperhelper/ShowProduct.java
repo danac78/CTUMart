@@ -77,7 +77,7 @@ public class ShowProduct extends Activity {
 		final String queryValue = setting.getString("queryValue", null);
 		final ListView listView = (ListView) findViewById(R.id.webList);
 		final HttpPost httppost = new HttpPost(
-				"http://www.fuelradio.fm/ctumart/android.php");
+				"http://www.fuelradio.fm/ctumart/");
 
 		ProductResults pr1 = new ProductResults();
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

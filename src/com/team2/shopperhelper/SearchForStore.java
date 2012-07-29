@@ -120,16 +120,20 @@ public class SearchForStore extends Activity {
 				 * Creating a preference file that will be called upon from each
 				 * activity.
 				 */
-				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("storeID", storeID);
-				editor.commit();
+				prefWrite(storeID);
 
 				/*
 				 * stating the Search Product activity
 				 */
 				startActivity(intent);
 
+			}
+
+			private void prefWrite(String storeID2) {
+				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+				SharedPreferences.Editor editor = settings.edit();
+				editor.putString("storeID", storeID);
+				editor.commit();
 			}
 
 		}
