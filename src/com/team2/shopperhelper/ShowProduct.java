@@ -76,6 +76,10 @@ public class ShowProduct extends Activity {
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
 		final ListView listView = (ListView) findViewById(R.id.webList);
+		/*
+		 * This is where the android php page that be responsible for populating
+		 * this page.
+		 */
 		final HttpPost httppost = new HttpPost(
 				"http://www.fuelradio.fm/ctumart/");
 

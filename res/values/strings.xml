@@ -36,11 +36,19 @@
                 <string name="type_info">Type</string>
                 <string name="helpProduct">To be implemented from User Documentation (GP3)</string>
                 <string-array name="productType">
-                    <item >Men</item>
-                    <item >Snack Food</item>
-                    <item >Soda</item>
-                    <item >Toys</item>
                     <item >Video Games</item>
+                    <item>Soda</item>
+                    <item>Pop</item>
+                    <item>Chips</item>
+                    <item >Corn Chips</item>
+                    <item >Snacks</item>
+                    <item >Crackers</item>
+                    <item >Cupcakes</item>
+                    <item >Bread</item>
+                    <item >White Bread</item>
+                    <item >Coke</item>
+                    <item >Entertainment</item>
+                    <item >Electronics</item>
                 </string-array>
 
 </resources>
