@@ -21,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -44,7 +43,7 @@ import android.widget.ListView;
  *         text views to have a customized listing.
  * 
  */
-@SuppressWarnings("unused")
+
 public class ShowProduct extends Activity {
 	public static final String PREF_NAME = "shopPref";
 
