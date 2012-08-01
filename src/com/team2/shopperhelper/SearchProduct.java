@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.team2.shopperhelper.R;
+
 /**
  * @author Dana Haywood
  * @date 7/12/2012

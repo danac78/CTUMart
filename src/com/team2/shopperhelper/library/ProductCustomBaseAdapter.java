@@ -1,4 +1,4 @@
-package com.team2.shopperhelper;
+package com.team2.shopperhelper.library;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.team2.shopperhelper.R;
 
 /**
  * @author Dana Haywood

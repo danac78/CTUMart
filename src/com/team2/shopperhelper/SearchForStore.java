@@ -1,5 +1,6 @@
 package com.team2.shopperhelper;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -81,34 +82,9 @@ public class SearchForStore extends Activity {
 				 * at zero
 				 */
 
-				int getPosition = locationTXT.getSelectedItemPosition();
+				storeID = Integer.toString((locationTXT.getSelectedItemPosition())+1);
 
-				switch (getPosition) {
-				case 0:
-					storeID = "6498430010";
-					break;
-				case 1:
-					storeID = "6498431417";
-					break;
-				case 2:
-					storeID = "6498432295";
-					break;
-				case 3:
-					storeID = "6498432468";
-					break;
-				case 4:
-					storeID = "6498432796";
-					break;
-				case 5:
-					storeID = "6498432809";
-					break;
-				case 6:
-					storeID = "6498435021";
-					break;
-				case 7:
-					storeID = "6498438009";
-					break;
-				}
+				
 
 				/*
 				 * if for any reason the help text view is visible, this will

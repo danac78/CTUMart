@@ -1,4 +1,4 @@
-package com.team2.shopperhelper;
+package com.team2.shopperhelper.library;
 
 /**
  * @author Dana Haywood
