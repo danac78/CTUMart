@@ -94,11 +94,12 @@ public class ShowProduct extends Activity {
 		final String storeID = setting.getString("storeID", null);
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
-		ArrayList<SearchResults> result = new ArrayList<SearchResults>();
+		
 		
 		/*
 		 * This is where the android php page that be responsible for populating
-		 * this page.
+		 * this page. The first thing we need to do is create name value pairs 
+		 * that will hold the values we are passing to the web page.
 		 */
 
 		List<NameValuePair> parms = new ArrayList<NameValuePair>();
@@ -113,8 +114,11 @@ public class ShowProduct extends Activity {
 
 		try {
 			/*
-			 * The httpClient is simpilar to using a webbrowser, but
-			 * within 
+			 *Creating a connection to the webpage. Once the connection
+			 *is made, HttpResponse is going send out the request,
+			 *and HttpEntity will be responsible for retrieving the
+			 *feedback. Inputstream will be responsible to inputting
+			 *the information into Java.
 			 */
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(
@@ -135,7 +139,13 @@ public class ShowProduct extends Activity {
 			Log.e("IOException", e.toString());
 
 		}
-
+		/*
+		 * Converting the inputstream into a String. Additionally, we need
+		 * to create two JSON types. The first one is obtaining the JSON
+		 * information from the converted string. The second one is 
+		 * gaining information from that object, and it is asking for
+		 * a particular set of data.
+		 */
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					is, "iso-8859-1"), 8);
@@ -160,6 +170,13 @@ public class ShowProduct extends Activity {
 			e.printStackTrace();
 		}
 
+		/*
+		 * This is going to cycle through each set of data involved with the 
+		 * array and turn them into individual values. Once this is done,
+		 * it is going to assign it to the arraylist that will be posted to
+		 * the ListView.
+		 */
+		
 		ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
 
 		try {
@@ -180,14 +197,18 @@ public class ShowProduct extends Activity {
 						.getString("Aisle").toString();
 
 				pr1.setName(database_pName);
-				pr1.setPrice(database_Price);
-				pr1.setInventoryCount(database_inventoryCount);
-				pr1.setSections(database_section);
-				pr1.setAisle(database_aisle);
+				pr1.setPrice(stringChange("Price: $",database_Price));
+				pr1.setInventoryCount(stringChange("Inventory: ",database_inventoryCount));
+				pr1.setSections(stringChange("Section: ",database_section));
+				pr1.setAisle(stringChange("Aisle: ",database_aisle));
 				arrayResults.add(pr1);
 
 				pr1 = new SearchResults();
 			}
+			/*
+			 * Posting the information to ListView that was obtained from 
+			 * the arraylist.
+			 */
 			final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 			lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
 
@@ -198,5 +219,15 @@ public class ShowProduct extends Activity {
 			
 
 		}
+	}
+/*
+ * adding field names for each bit of information. (i.e. Price: $)
+ */
+	private String stringChange(String type, String database) {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(type);
+		sb.append(database);
+		return sb.toString();
 	}
 }

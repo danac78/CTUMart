@@ -76,10 +76,10 @@ public class SearchForStore extends Activity {
 
 				/*
 				 * getting the location based on the position of the spinner.
-				 * The store id will be: 1. Apache Junction, AZ 2. Beverly
-				 * Hills, CA 3. Colorado Springs, CO 4. Denver, CO 5. Chicago,
-				 * IL 6. Springfield, MA. Adding a plus 1 since position starts
-				 * at zero
+				 * The store id will be: 1. Denver, CO, 2. Beverly Hill, CA, 
+				 * 3. Boise ID, 4. Chicago, IL, 5. Colorado Springs, CO, 6. Springfield, MA
+				 * 7. Portland, OR, 8. Richland, WA . 
+				 * Adding a plus 1 since position starts at zero
 				 */
 
 				storeID = Integer.toString((locationTXT.getSelectedItemPosition())+1);
