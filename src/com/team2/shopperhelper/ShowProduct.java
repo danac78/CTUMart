@@ -216,7 +216,7 @@ public class ShowProduct extends Activity {
 			 * Posting the information to ListView that was obtained from 
 			 * the arraylist.
 			 */
-			final ListView lv1 = (ListView) findViewById(R.id.aisleLayout);
+			final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 			lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
 
 		} catch (JSONException e) {
