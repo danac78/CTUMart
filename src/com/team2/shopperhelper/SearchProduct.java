@@ -104,10 +104,10 @@ public class SearchProduct extends Activity {
 				case 2:
 					if(productTXT.getText().toString().length()==0)
 					{
-						productTXT.setError("Enter a UPC");
+						UPCTXT.setError("Enter a UPC");
 					} else if(productTXT.getText().toString().length()!=12)
 					{
-						productTXT.setError("UPC is 12 Digits");
+						UPCTXT.setError("UPC is 12 Digits");
 					
 					} else {
 						

@@ -31,6 +31,7 @@
         <activity android:name=".SearchForStore" />
         <activity android:name=".SearchProduct" />
         <activity android:name=".ShowProduct" />
+        <activity android:name=".testList"/>
         
     </application>
 
