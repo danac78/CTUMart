@@ -1,0 +1,18 @@
+<?xml version='1.0' ?><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book>
+	<title>README</title>
+	<chapter id="Purpose">
+		<section>
+			<title>Purpose</title>
+			<para>
+				This is an academic project for IT482 at CTUOnline. The team members include Thomas Johns, 
+				Dana Haywood, Charles Jarvis, Kevin Kahl, Jeff Kiesel, and Michael Lane. As part of this project, 
+				we are creating a fictional store and producing an Android Application that will find a store,
+				find a product, and potentially show where the product is in the store.
+				</para><para>
+				The primary Android Developer for this class project is Dana Haywood.
+				The primary PHP developer is Thomas Johns and Kevin Kahl.
+				Jeff, Charles, and Michael serve as testers and commenters for this project itself.</para>
+		</section>
+	</chapter>
+</book>
