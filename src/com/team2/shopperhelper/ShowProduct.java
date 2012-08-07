@@ -11,8 +11,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.team2.shopperhelper.library.CustomBaseAdapter;
@@ -56,6 +59,7 @@ public class ShowProduct extends Activity {
 	private JSONArray listObjects;
 
 	private static final String url = "http://darkenvisuals.com/android/";
+	//private static final String url = "http://http://www.fuelradio.fm/ctumart/android.php";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,8 @@ public class ShowProduct extends Activity {
 		final String storeID = setting.getString("storeID", null);
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
+		final Button backButton = (Button) findViewById(R.id.back);
+		final Intent prevIntent = new Intent(this,SearchProduct.class);
 
 		/*
 		 * This is where the android php page that be responsible for populating
@@ -155,6 +161,16 @@ public class ShowProduct extends Activity {
 			e.printStackTrace();
 
 		}
+		
+		backButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				startActivity(prevIntent);
+				finish();
+				
+			}
+		});
 	}
 
 	/*

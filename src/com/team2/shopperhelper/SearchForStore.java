@@ -102,6 +102,7 @@ public class SearchForStore extends Activity {
 				 * stating the Search Product activity
 				 */
 				startActivity(intent);
+				finish();
 
 			}
 

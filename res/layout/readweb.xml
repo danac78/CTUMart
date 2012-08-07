@@ -6,7 +6,15 @@
     android:orientation="vertical" >
  
   <ListView
-   android:id="@+id/ListView01"
-   android:layout_height="wrap_content"
-   android:layout_width="fill_parent"/>
+      android:id="@+id/ListView01"
+      android:layout_width="fill_parent"
+      android:layout_height="379dp" />
+
+  <Button
+      android:id="@+id/back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="@string/backButton" />
+
 </LinearLayout>

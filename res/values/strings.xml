@@ -41,5 +41,6 @@
                     <item>Bread</item>
                     <item>Electronic Entertainment</item>
                 </string-array>
+                    <string name="backButton">Back</string>
 
 </resources>

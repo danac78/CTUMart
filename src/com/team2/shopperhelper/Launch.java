@@ -125,6 +125,7 @@ public class Launch extends Activity {
 			okButton.setVisibility(View.VISIBLE);
 		} else {
 			startActivity(intent);
+			finish();
 		}
 
 	}

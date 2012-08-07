@@ -138,6 +138,7 @@ public class SearchProduct extends Activity {
 				productTXT.setVisibility(View.VISIBLE);
 				productType.setVisibility(View.GONE);
 				startActivity(intent);
+				finish();
 				
 			}
 						
@@ -154,6 +155,7 @@ public class SearchProduct extends Activity {
 			public void onClick(View v) {
 				help.setVisibility(View.GONE);
 				productTXT.setText(null);
+				UPCTXT.setText(null);
 				searchType.setSelection(1);
 				
 			}
