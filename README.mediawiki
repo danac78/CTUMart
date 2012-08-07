@@ -1,10 +1,10 @@
 == Purpose ==
-<div>
+<p>
 This is an academic project for IT482 at CTUOnline. The team members include Thomas Johns, 
 Dana Haywood, Charles Jarvis, Kevin Kahl, Jeff Kiesel, and Michael Lane. As part of this project, 
 we are creating a fictional store and producing an Android Application that will find a store,
 find a product, and potentially show where the product is in the store.
-</div>
+</p>
 The primary Android Developer for this class project is Dana Haywood.
 The primary PHP developer is Thomas Johns and Kevin Kahl.
 Jeff, Charles, and Michael serve as testers and commenters for this project itself.
@@ -12,62 +12,62 @@ Jeff, Charles, and Michael serve as testers and commenters for this project itse
 == Changes ==
 
 ===Version 0.0.0	7/8/2012===
-<div>This is the beginning of the Development process.  Making the screens per the IT481GP5. Also beginning initial programming to make all of that work.</div>	
+<p>This is the beginning of the Development process.  Making the screens per the IT481GP5. Also beginning initial programming to make all of that work.</P>	
 ===Version 0.1.0	7/20/2012===
-<div>Initial prototype Release: Code Name Dana.</div><div>
-This is the initial prototype that features all the screens necessary for this application to function at this time. </div>
-<div>
+<p>Initial prototype Release: Code Name Dana.</p><p>
+This is the initial prototype that features all the screens necessary for this application to function at this time. </p>
+<p>
 The Launch Activity at the present moment will only appear if there is an issue. The two issues it is watching out for is compatibility and internet. The purpose for compatibility is in case of software corruption within the Android OS. If it does not recognize the OS or they somehow got it to work on lower than 2.2, this will attempt to stop them as some features require 2.2. Additionally, the internet connectivity is important for the database searching. If it is down, it will simply waste the customer time.	
-</div>
-<div>		 
+</p>
+<p>		 
 If the Launch activity does not find any issues, this is the first screen the customer will see. All the available locations are put into the dropdown box. 
-</div>
-<div>
+</p>
+<p>
 Right now, the Stores are in alphabetical order, but this might change with 0.1.5 with the database/php.  This dropdown box will pass a position value to java to indicate a store id value.
-</div>
-<div>
+</p>
+<p>
 This was done for a few reasons. This was to prevent the customer fussing over city, state, and zip code. Additionally, it made the validation and selection a lot simpler.  In the code, there will be an accumulated value, but this is because position starts at 0. So without it, Apache Junction would have started with storeID=0. With it being an accumulated value, it is now storeID=1.
-</div><div>
+</p><p>
 Additionally, it is getting the names from String.xml under a String Array. This means that adding or moving values will be very simple. 
-</div><div>
+</p><p>
  If you press the information button (subject to change), it will create the Help File text box. This will be modified after GP3, or removed completely as this screen should be self-explanatory.
-</div><div>
+</p><p>
 Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
-</div><div>
+</p><p>
 It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
-</div><div>
+</p><p>
 There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
-</div>
+</p>
 There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show an error message.	
-</div>
-<div>		 
+</p>
+<p>		 
 			 
 		Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
-</div><div>
+</p><p>
 It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
-</div><div>
+</p><p>
 There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
-</div><div>
+</p><p>
 There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show this error message.
-</div><div>			 
-This is the screen that will display when the search brings back results. The List has a TextView imported into it with the values. Right now, everything is hard coded in for testing purposes.	 </div>
+</p><p>			 
+This is the screen that will display when the search brings back results. The List has a TextView imported into it with the values. Right now, everything is hard coded in for testing purposes.	 </p>
 ===Version 0.1.1	7/21/12	7/21/2012===
-<div> Fixed GitHub Issue: 5: Values are not being passed
-This was causing a NullpointException with the way I was trying to pass values through. This was fixed by storing all the values collected from Search Store and Search Product into internal storage. This allows for us to call for those values in Show Products without an issue. </div>
+<p> Fixed GitHub Issue: 5: Values are not being passed
+This was causing a NullpointException with the way I was trying to pass values through. This was fixed by storing all the values collected from Search Store and Search Product into internal storage. This allows for us to call for those values in Show Products without an issue. </p>
 	
 ===Version 0.1.2	7/21/12	=== 
 
-<div>Fixed GitHub Issue 6: Despite validation fail, it still goes to next screen.
-I changed the validation scheme with the if then. The only way the next screen will appear if it comes it makes it all the way down to else.</div>
+<p>Fixed GitHub Issue 6: Despite validation fail, it still goes to next screen.
+I changed the validation scheme with the if then. The only way the next screen will appear if it comes it makes it all the way down to else.</p>
 	
 ===Version 0.1.3===
-<div>		The files may list 0.1.5, but this is in anticipation of the next step and the fact that I caught this error very late. The issue was listed as Issue 7: Launch is not stopping app if there is a problem. Once again, I do not think Android likes Booleans . There two resolutions to this problem. The first one was rewriting the launch activity so that it had a condition like what was written for the validation on SearchProduct. Additionally, the Booleans responsible for checking for mobile and wifi connection convert into a string to use ContentsEquals(). Right now it is working just perfectly. There are three hard coded values in launch for testing purposes and they will be removed prior to release.</div>
+<p>		The files may list 0.1.5, but this is in anticipation of the next step and the fact that I caught this error very late. The issue was listed as Issue 7: Launch is not stopping app if there is a problem. Once again, I do not think Android likes Booleans . There two resolutions to this problem. The first one was rewriting the launch activity so that it had a condition like what was written for the validation on SearchProduct. Additionally, the Booleans responsible for checking for mobile and wifi connection convert into a string to use ContentsEquals(). Right now it is working just perfectly. There are three hard coded values in launch for testing purposes and they will be removed prior to release.</p>
 
 === Version 0.1.5 8/5/2012 ===
-<div>As stated in the version list, this was fixing any errors as well as getting the Android to talk to a webpage.  The output displayed in  this list form is from the website. The previous screen shot were hardcoded values. The back button was recently added in to allow to be able to go back. This might be the beginning to add save search (which will be stored in internal memory. It has not been added into the code yet). </div>
-<div>Also noted for 0.1.5 codename Chuck, this was also fixing any bugs. To date, there aren’t any noticeable bugs that has: 
+<p>As stated in the version list, this was fixing any errors as well as getting the Android to talk to a webpage.  The output displayed in  this list form is from the website. The previous screen shot were hardcoded values. The back button was recently added in to allow to be able to go back. This might be the beginning to add save search (which will be stored in internal memory. It has not been added into the code yet). </p>
+<p>Also noted for 0.1.5 codename Chuck, this was also fixing any bugs. To date, there aren’t any noticeable bugs that has: 
 1.	Noticed when I do a test run on my system.
 2.	Been listed and not fixed in the Issues table of GitHub.com
-</div>
-<div>After this functionality has been put in, we are moving to 0.5.0 codename Jeff. It seems actually kind of perfect that it is at a half minor version of a major version (we won’t reach that until we release the App..which is when it is finally done at the end of class.)</div>
+</p>
+<p>After this functionality has been put in, we are moving to 0.5.0 codename Jeff. It seems actually kind of perfect that it is at a half minor version of a major version (we won’t reach that until we release the App..which is when it is finally done at the end of class.)</p>
 	
