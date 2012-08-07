@@ -4,11 +4,13 @@
     android:layout_height="fill_parent"
     android:background="@drawable/background"
     android:orientation="vertical" >
- 
+ 
   <ListView
       android:id="@+id/ListView01"
       android:layout_width="fill_parent"
-      android:layout_height="379dp" />
+      android:layout_height="379dp"
+      android:background="@drawable/background"
+      android:divider="@drawable/divider" />
 
   <Button
       android:id="@+id/back"
