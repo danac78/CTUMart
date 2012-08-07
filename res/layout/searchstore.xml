@@ -24,7 +24,8 @@
         android:id="@+id/locationTXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/locations_available" />
+        android:entries="@array/locations_available"
+        android:prompt="@string/selectCity" />
 
     <TextView
         android:id="@+id/storeHelpTXT"
@@ -46,12 +47,13 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/search" />
-
+
         <ImageButton
-            android:id="@+id/info"
+            android:id="@+id/helpStoreBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_info" />
+            android:background="@null"
+            android:src="@drawable/questionmarkicon" />
 
     </LinearLayout>
 

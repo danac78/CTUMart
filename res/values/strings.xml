@@ -42,5 +42,6 @@
                     <item>Electronic Entertainment</item>
                 </string-array>
                     <string name="backButton">Back</string>
+                    <string name="selectCity">Select the Store City</string>
 
 </resources>

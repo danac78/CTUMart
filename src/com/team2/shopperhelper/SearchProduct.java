@@ -1,12 +1,14 @@
 package com.team2.shopperhelper;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -57,7 +59,7 @@ public class SearchProduct extends Activity {
 		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
 		final Spinner searchType = (Spinner) findViewById(R.id.typeID);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
-		
+		final ImageButton info = (ImageButton) findViewById(R.id.searchProductHelp);
 		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
 //		
 //		/*
@@ -74,6 +76,31 @@ public class SearchProduct extends Activity {
 		final Intent intent = new Intent(this,ShowProduct.class);
 		final TextView help = (TextView) findViewById(R.id.productHelpTXT);
 		
+		info.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				final Dialog dialog = new Dialog(SearchProduct.this);
+				
+			dialog.setContentView(R.layout.helpstore);
+			dialog.setTitle("Search Product Help");
+			dialog.setCancelable(true);
+			
+			TextView text = (TextView) dialog.findViewById(R.id.storeHelpDialog);
+			text.setText("Awaiting manual \n Still waiting");
+			
+			Button button = (Button) dialog.findViewById(R.id.storeHelpBTNBack);
+			
+			button.setOnClickListener(new View.OnClickListener() {
+				
+				public void onClick(View v) {
+					
+					dialog.cancel();			
+					
+				}
+			});
+				dialog.show();
+			}
+		});
 		search.setOnClickListener(new View.OnClickListener() {
 	
 			public void onClick(View v) {
