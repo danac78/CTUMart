@@ -20,6 +20,21 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * @author Dana Haywood
+ * @version 0.5.0
+ * @date 8/4/2012
+ * @source cite:
+ *         http://www.androidhive.info/2012/01/android-login-and-registration
+ *         -with-php-mysql-and-sqlite/ @ Commented By:
+ * 
+ *         The purpose of this class is to provide a parser for the JSON encoded
+ *         data that will be provided by the website. Additionally, this was made into a 
+ *         separate class to provide portability by declaring parms and url as items that
+ *         will be passed in from other methods and used to obtain information and 
+ *         sent back to the calling procedure.
+ * 
+ */
 public class JSONParser {
 	public int database_storeID;
 	public String database_pName;
@@ -37,17 +52,15 @@ public class JSONParser {
 
 	public JSONParser() {
 	}
-	
-	public JSONArray getJSONInformation(List<NameValuePair> parms, String url)
-	{
+
+	public JSONArray getJSONInformation(List<NameValuePair> parms, String url) {
 
 		try {
 			/*
-			 *Creating a connection to the webpage. Once the connection
-			 *is made, HttpResponse is going send out the request,
-			 *and HttpEntity will be responsible for retrieving the
-			 *feedback. Inputstream will be responsible to inputting
-			 *the information into Java.
+			 * Creating a connection to the webpage. Once the connectionis made,
+			 * HttpResponse is going send out the request,and HttpEntity will be
+			 * responsible for retrieving thefeedback. Inputstream will be
+			 * responsible to inputtingthe information into Java.
 			 */
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(url);
@@ -55,7 +68,7 @@ public class JSONParser {
 
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			HttpEntity httpEntity = httpResponse.getEntity();
-			is  = httpEntity.getContent();
+			is = httpEntity.getContent();
 
 		} catch (UnsupportedEncodingException e) {
 			Log.e("UnsupportedEncoding", e.toString());
@@ -68,11 +81,11 @@ public class JSONParser {
 
 		}
 		/*
-		 * Converting the inputstream into a String. Additionally, we need
-		 * to create two JSON types. The first one is obtaining the JSON
-		 * information from the converted string. The second one is 
-		 * gaining information from that object, and it is asking for
-		 * a particular set of data.
+		 * Converting the inputstream into a String. Additionally, we need to
+		 * create two JSON types. The first one is obtaining the JSON
+		 * information from the converted string. The second one is gaining
+		 * information from that object, and it is asking for a particular set
+		 * of data.
 		 */
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -89,7 +102,6 @@ public class JSONParser {
 
 			listObjects = jsonObject.getJSONArray("productlist");
 
-			
 		} catch (UnsupportedEncodingException e) {
 			Log.e("UnsupportedEncoding", e.toString());
 		} catch (IOException e) {
@@ -99,7 +111,10 @@ public class JSONParser {
 			e.printStackTrace();
 		}
 		
+		/*
+		 * Returning the JSON object to the procedure caller.
+		 */
 		return listObjects;
 	}
-	
+
 }

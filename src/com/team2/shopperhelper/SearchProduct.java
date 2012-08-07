@@ -17,7 +17,7 @@ import com.team2.shopperhelper.R;
 /**
  * @author Dana Haywood
  * @date 7/12/2012
- * @version 0.1.5
+ * @version 0.5.0
  * @IT482
  * @Karl Lloyd
  * @Source Cite http://developer.android.com/guide/components/index.html
@@ -26,7 +26,7 @@ import com.team2.shopperhelper.R;
  *       This activity is set to retrieve customer information from the user
  *       interface. Once this is done, it will go through a validation process,
  *       and get passed onto the web parsing and listing process.
-=======
+
  *          This activity is set to retrieve customer information from the user
  *          interface. Once this is done, it will go through a validation
  *          process, and get passed onto the web parsing and listing process...

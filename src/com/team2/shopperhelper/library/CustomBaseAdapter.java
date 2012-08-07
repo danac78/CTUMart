@@ -58,7 +58,15 @@ public class CustomBaseAdapter extends BaseAdapter {
 
 		ViewHolder holder;
 		if (convertView == null) {
+			/*
+			 * This is setting it up so custom_row_product will be pushed into
+			 * the readweb.xml UI.
+			 */
 			convertView = mInflater.inflate(R.layout.custom_row_product, null);
+			/*
+			 * Instantiate holder to 1. associate the appropriate field with the
+			 * UI as well as getting information into that field.
+			 */
 			holder = new ViewHolder();
 			holder.txtName = (TextView) convertView.findViewById(R.id.name);
 			holder.txtPrice = (TextView) convertView.findViewById(R.id.price);
@@ -82,7 +90,9 @@ public class CustomBaseAdapter extends BaseAdapter {
 
 		return convertView;
 	}
-
+/*
+ * Creating the type ViewHolder.
+ */
 	static class ViewHolder {
 		TextView txtName;
 		TextView txtPrice;

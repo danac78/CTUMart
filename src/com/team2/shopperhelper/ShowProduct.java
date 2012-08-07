@@ -25,7 +25,7 @@ import com.team2.shopperhelper.library.SearchResults;
 /**
  * @author Dana Haywood
  * @date 7/19/2012
- * @version 0.1.5
+ * @version 0.5.0
  * @IT482
  * @Karl Lloyd
  * @Comment by:
