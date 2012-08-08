@@ -84,6 +84,7 @@ public class ShowProduct extends Activity {
 		 * input and sqlResults are for gaining and storing the results from the
 		 * webpage.
 		 */
+		
 		JSONParser jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
 		final String storeID = setting.getString("storeID", null);

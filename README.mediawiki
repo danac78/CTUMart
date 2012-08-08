@@ -124,9 +124,20 @@ I changed the validation scheme with the if then. The only way the next screen w
 <p>After this functionality has been put in, we are moving to 0.5.0 codename Jeff. It seems actually kind of perfect that it is at a half minor version of a major version (we won’t reach that until we release the App..which is when it is finally done at the end of class.)</p>
 
 ===Version 0.5.0 Codename Jeff===
+
 <p>Primarly this was a beautification and simplification effort for the project. For Instance, the background and the buttons were change with
 web 2.0 style gradients. Additionally, a Help menu dialog box was introduced.</P
+
+<p>Primarily this was a beautification and simpification effort for the project. For Instance, the background and the buttons were change with
+web 2.0 style gradiants. Additionally, a Help menu dialog box was introduced.</P
+
 <p>Cleaned up the Launch Activity to have it use dialog.xml instead of two 
 different dialog boxes for error messages. This simplifies the design.</p>
+
+
+
+<p>Split off the Dialog box because it was being repeated with the only 
+difference between was the message. Tried to do it for shared preferences, 
+but it caused it to crashed so not going to bother.</p>
 
 	
