@@ -12,7 +12,7 @@ Jeff, Charles, and Michael serve as testers and commenters for this project itse
 == Changes ==
 
 ===Version 0.0.0	7/8/2012===
-<<<<<<< HEAD
+
 <div>This is the beginning of the Development process.  Making the screens per the IT481GP5. Also beginning initial programming to make all of that work.</div>	
 ===Version 0.1.0	7/20/2012===
 <div>Initial prototype Release: Code Name Dana.</div><div>
