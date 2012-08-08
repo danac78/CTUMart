@@ -8,7 +8,7 @@
     <string name="internetError">This Device is not connected to the Internet. Please check the         device and reopen Shopper Helper</string>
     <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 
         or greater, check with your manufacture why it is not reporting this.</string>
-    <string name="description">Shopper Helper is an application available for API 8+, which will assist with finding a product in the Shopper Helper Store. This is an Academic Project for IT482-1203C-01 Team 2.</string>
+    <string name="description">Shopper Helper is an application available for API 8+, which will assist with finding a product in the Shopper Helper Store. This is an Academic Project for IT482–1203C-01 Team 2.</string>
     <string name="codeName">Jeff</string>
     <string name="start_search">Start Search</string>
     <string name="enter_info">Enter Info</string>
@@ -43,5 +43,6 @@
                 </string-array>
                     <string name="backButton">Back</string>
                     <string name="selectCity">Select the Store City</string>
+                    <string name="close">Close</string>
 
 </resources>

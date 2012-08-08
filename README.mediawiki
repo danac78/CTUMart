@@ -73,5 +73,7 @@ I changed the validation scheme with the if then. The only way the next screen w
 
 ===Version 0.5.0 Codename Jeff===
 <p>Primarly this was a beautification and simpification effort for the project. For Instance, the background and the buttons were change with
-web 2.0 style gradiants. Additionally, a Help menu dialog box was introduced.
+web 2.0 style gradiants. Additionally, a Help menu dialog box was introduced.</P
+<p>Cleaned up the Launch Activity to have it use dialog.xml instead of two 
+different dialog boxes for error messages. This simplifies the design.</p>
 	

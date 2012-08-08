@@ -1,0 +1,30 @@
+<!-- This is a basic format for the dialog box we will use for error
+messages and help items. It is a scrollable layout with a textbox and a button. -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="285dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.55" >
+
+            <TextView
+                android:id="@+id/dialogTXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/dialogCloseBTN"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/close" />
+
+    </LinearLayout>

@@ -123,14 +123,14 @@ public class SearchForStore extends Activity {
 
 			public void onClick(View v) {
 				final Dialog dialog = new Dialog(SearchForStore.this);
-				dialog.setContentView(R.layout.helpstore);
+				dialog.setContentView(R.layout.dialog);
 				dialog.setTitle("Search Store Help");
 				dialog.setCancelable(true);
 				
-				TextView text = (TextView) dialog.findViewById(R.id.storeHelpDialog);
+				TextView text = (TextView) dialog.findViewById(R.id.dialogTXT);
 				
 				text.setText("Awaiting some manual");
-				Button button = (Button) dialog.findViewById(R.id.storeHelpBTNBack);
+				Button button = (Button) dialog.findViewById(R.id.dialogCloseBTN);
 				
 				button.setOnClickListener(new View.OnClickListener() {
 					

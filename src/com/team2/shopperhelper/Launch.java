@@ -1,6 +1,7 @@
 package com.team2.shopperhelper;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -67,9 +68,7 @@ public class Launch extends Activity {
 		 * feature.
 		 */
 
-		final TextView internetDisplay = (TextView) findViewById(R.id.internetError);
-		final TextView compatibleDisplay = (TextView) findViewById(R.id.compatiableError);
-		final Button okButton = (Button) findViewById(R.id.OkButton);
+		
 		ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo wiFiInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -85,25 +84,13 @@ public class Launch extends Activity {
 		// mobileIsConnect = "false";//hard code for testing
 		// wifiIsConnect = "false"; //hard code for testing
 		String version = Build.VERSION.SDK;
-		// String version = "7"; //hardcode for testing.
+//		String version = "7"; //hardcode for testing.
 		int checkVersion = Integer.parseInt(version);
 		Intent intent = new Intent(this, SearchForStore.class);
 
-		/*
-		 * When the become visible, it will follow this listener instructions to
-		 * close the program. It will set the two text views back to invisible
-		 * in the XML file.
-		 */
-		okButton.setOnClickListener(new View.OnClickListener() {
+		
+		
 
-			public void onClick(View v) {
-				okButton.setVisibility(View.INVISIBLE);
-				compatibleDisplay.setVisibility(View.INVISIBLE);
-				internetDisplay.setVisibility(View.INVISIBLE);
-				System.exit(0);
-
-			}
-		});
 
 		/*
 		 * Running through a system validation. Any one of these methods will
@@ -117,17 +104,51 @@ public class Launch extends Activity {
 		 */
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
-			internetDisplay.setVisibility(View.VISIBLE);
+			
+			dialogCreate(R.string.internetError);	
 
-			okButton.setVisibility(View.VISIBLE);
+			
 		} else if (checkVersion < 8) {
-			compatibleDisplay.setVisibility(View.VISIBLE);
-			okButton.setVisibility(View.VISIBLE);
+			
+			dialogCreate(R.string.compatibleError);
 		} else {
 			startActivity(intent);
 			finish();
 		}
 
+	}
+    /*
+     * As this activity contains two potential (at the moment) error messages,
+     * we are going to create a universal dialog box to fit this. Error message
+     * is the ID sent along, which it will pull from Strings.xml for the actual
+     * message. 
+     */
+	private void dialogCreate(int errorMsg) {
+		Dialog dialog = new Dialog(Launch.this);
+		
+		dialog.setContentView(R.layout.dialog);
+		dialog.setTitle("Error");
+		dialog.setCancelable(true);
+		
+		TextView text = (TextView) dialog.findViewById(R.id.dialogTXT);
+		
+		text.setText(errorMsg);
+		/*
+		 * Creating the button and setting up the listener. Once the person
+		 * clicks the button, the application will completely close.
+		 */
+		Button button = (Button) dialog.findViewById(R.id.dialogCloseBTN);
+		
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				System.exit(0);
+				
+			}
+		});
+		
+		dialog.show();
+		
 	}
 
 }
