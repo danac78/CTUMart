@@ -1,17 +1,14 @@
 package com.team2.shopperhelper;
 
-
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.team2.shopperhelper.library.DialogBox;
 
 /**
  * @author Dana Haywood
@@ -57,7 +54,6 @@ public class SearchForStore extends Activity {
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton info = (ImageButton) findViewById(R.id.helpStoreBTN);
 
-
 		/*
 		 * Upon the Search Button being pressed, this will collect the
 		 * information from the spinner and obtain the id.
@@ -79,17 +75,14 @@ public class SearchForStore extends Activity {
 
 				/*
 				 * getting the location based on the position of the spinner.
-				 * The store id will be: 1. Denver, CO, 2. Beverly Hill, CA, 
-				 * 3. Boise ID, 4. Chicago, IL, 5. Colorado Springs, CO, 6. Springfield, MA
-				 * 7. Portland, OR, 8. Richland, WA . 
-				 * Adding a plus 1 since position starts at zero
+				 * The store id will be: 1. Denver, CO, 2. Beverly Hill, CA, 3.
+				 * Boise ID, 4. Chicago, IL, 5. Colorado Springs, CO, 6.
+				 * Springfield, MA 7. Portland, OR, 8. Richland, WA . Adding a
+				 * plus 1 since position starts at zero
 				 */
 
-				storeID = Integer.toString((locationTXT.getSelectedItemPosition())+1);
-
-				
-
-				
+				storeID = Integer.toString((locationTXT
+						.getSelectedItemPosition()) + 1);
 
 				/*
 				 * Creating a preference file that will be called upon from each
@@ -105,6 +98,9 @@ public class SearchForStore extends Activity {
 
 			}
 
+			/*
+			 * A very basic method to save storeID into external memory.
+			 */
 			private void prefWrite(String storeID2) {
 				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 				SharedPreferences.Editor editor = settings.edit();
@@ -116,32 +112,18 @@ public class SearchForStore extends Activity {
 
 		);
 		/*
-		 * The Info button shall display information
+		 * The Info button shall display information. It will call the 
+		 * DialogBox class from the library with the pertainent information.
 		 */
 
 		info.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				final Dialog dialog = new Dialog(SearchForStore.this);
-				dialog.setContentView(R.layout.dialog);
-				dialog.setTitle("Search Store Help");
-				dialog.setCancelable(true);
-				
-				TextView text = (TextView) dialog.findViewById(R.id.dialogTXT);
-				
-				text.setText("Awaiting some manual");
-				Button button = (Button) dialog.findViewById(R.id.dialogCloseBTN);
-				
-				button.setOnClickListener(new View.OnClickListener() {
-					
-					public void onClick(View v) {
-						dialog.cancel();
-						
-					}
-				});
-				
-				dialog.show();
-						
+
+				DialogBox dialogS = new DialogBox();
+
+				dialogS.postDialog(SearchForStore.this, "Search Store Help",
+						R.string.search_store_help);
 
 			}
 		});
