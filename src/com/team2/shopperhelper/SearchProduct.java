@@ -81,14 +81,14 @@ public class SearchProduct extends Activity {
 			public void onClick(View v) {
 				final Dialog dialog = new Dialog(SearchProduct.this);
 				
-			dialog.setContentView(R.layout.helpstore);
+			dialog.setContentView(R.layout.dialog);
 			dialog.setTitle("Search Product Help");
 			dialog.setCancelable(true);
 			
-			TextView text = (TextView) dialog.findViewById(R.id.storeHelpDialog);
+			TextView text = (TextView) dialog.findViewById(R.id.dialogTXT);
 			text.setText("Awaiting manual \n Still waiting");
 			
-			Button button = (Button) dialog.findViewById(R.id.storeHelpBTNBack);
+			Button button = (Button) dialog.findViewById(R.id.dialogCloseBTN);
 			
 			button.setOnClickListener(new View.OnClickListener() {
 				
@@ -129,7 +129,7 @@ public class SearchProduct extends Activity {
 					
 					break;
 				case 2:
-					if(productTXT.getText().toString().length()==0)
+					if(UPCTXT.getText().toString().length()==0)
 					{
 						UPCTXT.setError("Enter a UPC");
 					} else if(productTXT.getText().toString().length()!=12)
@@ -183,7 +183,7 @@ public class SearchProduct extends Activity {
 				
 				productTXT.setText(null);
 				UPCTXT.setText(null);
-				searchType.setSelection(1);
+				searchType.setSelection(0);
 				
 			}
 		});
