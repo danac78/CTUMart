@@ -70,4 +70,8 @@ I changed the validation scheme with the if then. The only way the next screen w
 2.	Been listed and not fixed in the Issues table of GitHub.com
 </p>
 <p>After this functionality has been put in, we are moving to 0.5.0 codename Jeff. It seems actually kind of perfect that it is at a half minor version of a major version (we won’t reach that until we release the App..which is when it is finally done at the end of class.)</p>
+
+===Version 0.5.0 Codename Jeff===
+<p>Primarly this was a beautification and simpification effort for the project. For Instance, the background and the buttons were change with
+web 2.0 style gradiants. Additionally, a Help menu dialog box was introduced.
 	

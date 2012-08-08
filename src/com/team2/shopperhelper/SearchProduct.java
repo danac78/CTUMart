@@ -74,7 +74,7 @@ public class SearchProduct extends Activity {
 		final Intent thisIntent = new Intent();
 		final int storeID = thisIntent.getIntExtra("storeID", 0);				
 		final Intent intent = new Intent(this,ShowProduct.class);
-		final TextView help = (TextView) findViewById(R.id.productHelpTXT);
+		
 		
 		info.setOnClickListener(new View.OnClickListener() {
 			
@@ -180,7 +180,7 @@ public class SearchProduct extends Activity {
 		clear.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				help.setVisibility(View.GONE);
+				
 				productTXT.setText(null);
 				UPCTXT.setText(null);
 				searchType.setSelection(1);

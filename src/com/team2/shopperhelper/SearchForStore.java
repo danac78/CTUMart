@@ -56,7 +56,7 @@ public class SearchForStore extends Activity {
 		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton info = (ImageButton) findViewById(R.id.helpStoreBTN);
-		final TextView help = (TextView) findViewById(R.id.storeHelpTXT);
+
 
 		/*
 		 * Upon the Search Button being pressed, this will collect the
@@ -89,11 +89,7 @@ public class SearchForStore extends Activity {
 
 				
 
-				/*
-				 * if for any reason the help text view is visible, this will
-				 * ensure the XML is set to be invisible.
-				 */
-				help.setVisibility(View.GONE);
+				
 
 				/*
 				 * Creating a preference file that will be called upon from each
