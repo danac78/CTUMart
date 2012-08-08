@@ -183,7 +183,7 @@ public class SearchProduct extends Activity {
 				
 				productTXT.setText(null);
 				UPCTXT.setText(null);
-				searchType.setSelection(1);
+				searchType.setSelection(0);
 				
 			}
 		});
