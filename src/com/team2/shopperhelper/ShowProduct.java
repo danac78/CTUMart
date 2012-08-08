@@ -143,8 +143,8 @@ public class ShowProduct extends Activity {
 				pr1.setPrice(stringChange("Price: $", database_Price));
 				pr1.setInventoryCount(stringChange("Inventory: ",
 						database_inventoryCount));
-				pr1.setSections(stringChange("Section: ", database_section));
-				pr1.setAisle(stringChange("Aisle: ", database_aisle));
+				pr1.setSections(database_section);
+				pr1.setAisle(database_aisle);
 				arrayResults.add(pr1);
 
 				pr1 = new SearchResults();

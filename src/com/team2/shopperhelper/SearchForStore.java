@@ -1,11 +1,14 @@
 package com.team2.shopperhelper;
 
 
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,8 +55,8 @@ public class SearchForStore extends Activity {
 
 		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
-		final ImageButton info = (ImageButton) findViewById(R.id.info);
-		final TextView help = (TextView) findViewById(R.id.storeHelpTXT);
+		final ImageButton info = (ImageButton) findViewById(R.id.helpStoreBTN);
+
 
 		/*
 		 * Upon the Search Button being pressed, this will collect the
@@ -86,11 +89,7 @@ public class SearchForStore extends Activity {
 
 				
 
-				/*
-				 * if for any reason the help text view is visible, this will
-				 * ensure the XML is set to be invisible.
-				 */
-				help.setVisibility(View.GONE);
+				
 
 				/*
 				 * Creating a preference file that will be called upon from each
@@ -123,7 +122,26 @@ public class SearchForStore extends Activity {
 		info.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				help.setVisibility(View.VISIBLE);
+				final Dialog dialog = new Dialog(SearchForStore.this);
+				dialog.setContentView(R.layout.helpstore);
+				dialog.setTitle("Search Store Help");
+				dialog.setCancelable(true);
+				
+				TextView text = (TextView) dialog.findViewById(R.id.storeHelpDialog);
+				
+				text.setText("Awaiting some manual");
+				Button button = (Button) dialog.findViewById(R.id.storeHelpBTNBack);
+				
+				button.setOnClickListener(new View.OnClickListener() {
+					
+					public void onClick(View v) {
+						dialog.cancel();
+						
+					}
+				});
+				
+				dialog.show();
+						
 
 			}
 		});
