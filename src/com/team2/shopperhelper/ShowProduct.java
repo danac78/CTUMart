@@ -124,7 +124,7 @@ public class ShowProduct extends Activity {
 		if (productInfo.isNull("productlist")) {
 
 			DialogBox dialog = new DialogBox();
-			dialog.postDialog(ShowProduct.this, "No Product Found",R.string.helpProduct);
+			dialog.postDialog(ShowProduct.this, "No Product Found",R.string.no_product_found);
 
 		} else {
 
