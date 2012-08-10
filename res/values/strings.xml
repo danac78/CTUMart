@@ -44,5 +44,6 @@
                     <string name="backButton">Back</string>
                     <string name="selectCity">Select the Store City</string>
                     <string name="close">Close</string>
+                    <string name="no_product_found">No Products Found.</string>
 
 </resources>

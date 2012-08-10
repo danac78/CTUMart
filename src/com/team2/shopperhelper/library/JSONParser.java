@@ -29,10 +29,10 @@ import android.util.Log;
  *         -with-php-mysql-and-sqlite/ @ Commented By:
  * 
  *         The purpose of this class is to provide a parser for the JSON encoded
- *         data that will be provided by the website. Additionally, this was made into a 
- *         separate class to provide portability by declaring parms and url as items that
- *         will be passed in from other methods and used to obtain information and 
- *         sent back to the calling procedure.
+ *         data that will be provided by the website. Additionally, this was
+ *         made into a separate class to provide portability by declaring parms
+ *         and url as items that will be passed in from other methods and used
+ *         to obtain information and sent back to the calling procedure.
  * 
  */
 public class JSONParser {
@@ -53,7 +53,7 @@ public class JSONParser {
 	public JSONParser() {
 	}
 
-	public JSONArray getJSONInformation(List<NameValuePair> parms, String url) {
+	public JSONObject getJSONInformation(List<NameValuePair> parms, String url) {
 
 		try {
 			/*
@@ -100,21 +100,19 @@ public class JSONParser {
 			results = sb.toString();
 			jsonObject = new JSONObject(results);
 
-			listObjects = jsonObject.getJSONArray("productlist");
-
 		} catch (UnsupportedEncodingException e) {
 			Log.e("UnsupportedEncoding", e.toString());
 		} catch (IOException e) {
 			Log.e("IOException", e.toString());
 		} catch (JSONException e) {
 			Log.e("JSON", e.toString());
-			e.printStackTrace();
+
 		}
-		
+
 		/*
 		 * Returning the JSON object to the procedure caller.
 		 */
-		return listObjects;
+		return jsonObject;
 	}
 
 }

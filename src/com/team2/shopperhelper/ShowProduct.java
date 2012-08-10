@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.team2.shopperhelper.library.CustomBaseAdapter;
+import com.team2.shopperhelper.library.DialogBox;
 import com.team2.shopperhelper.library.JSONParser;
 import com.team2.shopperhelper.library.SearchResults;
 
@@ -41,7 +42,6 @@ import com.team2.shopperhelper.library.SearchResults;
  * 
  */
 
-
 public class ShowProduct extends Activity {
 	public static final String PREF_NAME = "shopPref";
 	static InputStream is = null;
@@ -56,10 +56,12 @@ public class ShowProduct extends Activity {
 	private String database_Price;
 	private String results;
 	private JSONObject jsonObject;
+	private JSONObject productInfo;
 	private JSONArray listObjects;
-
 	private static final String url = "http://darkenvisuals.com/android/";
-	//private static final String url = "http://http://www.fuelradio.fm/ctumart/android.php";
+
+	// private static final String url =
+	// "http://http://www.fuelradio.fm/ctumart/android.php";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,14 +86,14 @@ public class ShowProduct extends Activity {
 		 * input and sqlResults are for gaining and storing the results from the
 		 * webpage.
 		 */
-		
+
 		JSONParser jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
 		final String storeID = setting.getString("storeID", null);
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
 		final Button backButton = (Button) findViewById(R.id.back);
-		final Intent prevIntent = new Intent(this,SearchProduct.class);
+		final Intent prevIntent = new Intent(this, SearchProduct.class);
 
 		/*
 		 * This is where the android php page that be responsible for populating
@@ -107,69 +109,83 @@ public class ShowProduct extends Activity {
 		parms.add(new BasicNameValuePair("queryType", queryType));
 		parms.add(new BasicNameValuePair("storeID", storeID));
 		parms.add(new BasicNameValuePair("queryValue", queryValue));
-
 		/*
-		 * Calling the JSONParser from the Shopper Helper Library
+		 * Calling the JSONParser to get the JSONObject with the results from
+		 * the website.
 		 */
-
-		listObjects = jsonParser.getJSONInformation(parms, url);
-
+		productInfo = jsonParser.getJSONInformation(parms, url);
 		/*
-		 * Instantiating arrayResults that will be used to populate the list
+		 * It is checking to see if productInfo is null at the productlist.
+		 * Without this, trying to put this object into an array will cause an
+		 * exception. Instead, we will put this object through a test. If it is
+		 * null, it will produce a dialog box saying no products found. If not,
+		 * it will produce the list.
 		 */
-		ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
+		if (productInfo.isNull("productlist")) {
 
-		try {
+			DialogBox dialog = new DialogBox();
+			dialog.postDialog(ShowProduct.this, "No Product Found",
+					R.string.no_product_found);
 
-			SearchResults pr1 = new SearchResults();
+		} else {
+
 			/*
-			 * Pulling information from the JSON Array, and putting them into
-			 * holders. They will then be pushed into an array that is following
-			 * the format of SearchResults of the Shopper Helper Library.
+			 * Instantiating arrayResults that will be used to populate the list
 			 */
-			for (int i = 0; i < listObjects.length(); i++) {
+			ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
 
-				database_pName = listObjects.getJSONObject(i)
-						.getString("productName").toString();
-				database_Price = listObjects.getJSONObject(i)
-						.getString("price").toString();
-				database_inventoryCount = listObjects.getJSONObject(i)
-						.getString("inventoryCount").toString();
-				database_section = listObjects.getJSONObject(i)
-						.getString("Sections").toString();
-				database_aisle = listObjects.getJSONObject(i)
-						.getString("Aisle").toString();
+			try {
+				listObjects = productInfo.getJSONArray("productlist");
+				SearchResults pr1 = new SearchResults();
+				/*
+				 * Pulling information from the JSON Array, and putting them
+				 * into holders. They will then be pushed into an array that is
+				 * following the format of SearchResults of the Shopper Helper
+				 * Library.
+				 */
+				for (int i = 0; i < listObjects.length(); i++) {
 
-				pr1.setName(database_pName);
-				pr1.setPrice(stringChange("Price: $", database_Price));
-				pr1.setInventoryCount(stringChange("Inventory: ",
-						database_inventoryCount));
-				pr1.setSections(database_section);
-				pr1.setAisle(database_aisle);
-				arrayResults.add(pr1);
+					database_pName = listObjects.getJSONObject(i)
+							.getString("productName").toString();
+					database_Price = listObjects.getJSONObject(i)
+							.getString("price").toString();
+					database_inventoryCount = listObjects.getJSONObject(i)
+							.getString("inventoryCount").toString();
+					database_section = listObjects.getJSONObject(i)
+							.getString("Sections").toString();
+					database_aisle = listObjects.getJSONObject(i)
+							.getString("Aisle").toString();
 
-				pr1 = new SearchResults();
+					pr1.setName(database_pName);
+					pr1.setPrice(stringChange("Price: $", database_Price));
+					pr1.setInventoryCount(stringChange("Inventory: ",
+							database_inventoryCount));
+					pr1.setSections(database_section);
+					pr1.setAisle(database_aisle);
+					arrayResults.add(pr1);
+
+					pr1 = new SearchResults();
+				}
+				/*
+				 * Posting the information to ListView that was obtained from
+				 * the arraylist.
+				 */
+				final ListView lv1 = (ListView) findViewById(R.id.ListView01);
+				lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
 			}
-			/*
-			 * Posting the information to ListView that was obtained from the
-			 * arraylist.
-			 */
-			final ListView lv1 = (ListView) findViewById(R.id.ListView01);
-			lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
 		}
-		
 		backButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
-				
+
 				startActivity(prevIntent);
 				finish();
-				
+
 			}
 		});
 	}
