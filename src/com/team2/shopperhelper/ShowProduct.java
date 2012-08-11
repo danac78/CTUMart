@@ -61,6 +61,7 @@ public class ShowProduct extends Activity {
 	private JSONObject productInfo;
 	private JSONArray listObjects;
 	private static final String url = "http://darkenvisuals.com/android/";
+	//Intent intent = new Intent(this,ShowSection.class);
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
@@ -69,7 +70,7 @@ public class ShowProduct extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
-
+		final Intent intent = new Intent(this,ShowSection.class);
 		/*
 		 * setting : Used to store information internally. queryType and
 		 * queryValue should be seen like:
@@ -138,6 +139,8 @@ public class ShowProduct extends Activity {
 
 			try {
 				listObjects = productInfo.getJSONArray("productlist");
+				final ArrayList<String> getSection = new ArrayList<String>();
+				final ArrayList<String> getAisle = new ArrayList<String>();
 				SearchResults pr1 = new SearchResults();
 				/*
 				 * Pulling information from the JSON Array, and putting them
@@ -157,6 +160,10 @@ public class ShowProduct extends Activity {
 							.getString("Sections").toString();
 					database_aisle = listObjects.getJSONObject(i)
 							.getString("Aisle").toString();
+					getSection.add(listObjects.getJSONObject(i)
+							.getString("sectionId").toString());
+					getAisle.add(listObjects.getJSONObject(i)
+							.getString("aisleId").toString());
 
 					pr1.setName(database_pName);
 					pr1.setPrice(stringChange("Price: $", database_Price));
@@ -174,25 +181,25 @@ public class ShowProduct extends Activity {
 				 */
 				final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 				lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
-				
-				lv1.setOnItemClickListener(new OnItemClickListener(){
+
+				lv1.setOnItemClickListener(new OnItemClickListener() {
 
 					public void onItemClick(AdapterView<?> arg, View view,
 							int position, long id) {
-						Object object = lv1.getItemAtPosition(position);
-						SearchResults fullObject = (SearchResults)object;
-						String saveSection = fullObject.getSections();
-						String saveAisle = fullObject.getAisle();
+									
 						
-						SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+						SharedPreferences settings = getSharedPreferences(
+								PREF_NAME, 0);
 						SharedPreferences.Editor edit = settings.edit();
-						
-						edit.putString("Sections", saveSection);
-						edit.putString("aisle", saveAisle);
+
+						edit.putInt("section", Integer.parseInt(getSection.get(position)));
+						edit.putInt("aisle", Integer.parseInt(getAisle.get(position)));
 						edit.commit();
-						
+						startActivity(intent);
+						finish();
+
 					}
-					
+
 				});
 
 			} catch (JSONException e) {
