@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -172,6 +174,26 @@ public class ShowProduct extends Activity {
 				 */
 				final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 				lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+				
+				lv1.setOnItemClickListener(new OnItemClickListener(){
+
+					public void onItemClick(AdapterView<?> arg, View view,
+							int position, long id) {
+						Object object = lv1.getItemAtPosition(position);
+						SearchResults fullObject = (SearchResults)object;
+						String saveSection = fullObject.getSections();
+						String saveAisle = fullObject.getAisle();
+						
+						SharedPreferences settings = getSharedPreferences(PREF_NAME,0);
+						SharedPreferences.Editor edit = settings.edit();
+						
+						edit.putString("Sections", saveSection);
+						edit.putString("aisle", saveAisle);
+						edit.commit();
+						
+					}
+					
+				});
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
