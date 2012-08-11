@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -26,7 +28,7 @@ import com.team2.shopperhelper.library.SearchResults;
 /**
  * @author Dana Haywood
  * @date 7/19/2012
- * @version 0.5.0
+ * @version 0.5.2
  * @IT482
  * @Karl Lloyd
  * @Comment by:
@@ -85,6 +87,9 @@ public class ShowProduct extends Activity {
 		 * 
 		 * input and sqlResults are for gaining and storing the results from the
 		 * webpage.
+		 * 
+		 * intent shall be used to get us to the next activity, which will show
+		 * the section map.
 		 */
 
 		JSONParser jsonParser = new JSONParser();
@@ -94,7 +99,7 @@ public class ShowProduct extends Activity {
 		final String queryValue = setting.getString("queryValue", null);
 		final Button backButton = (Button) findViewById(R.id.back);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
-
+		final Intent intent = new Intent(this, ShowSection.class);
 		/*
 		 * This is where the android php page that be responsible for populating
 		 * this page. The first thing we need to do is create name value pairs
@@ -135,6 +140,8 @@ public class ShowProduct extends Activity {
 
 			try {
 				listObjects = productInfo.getJSONArray("productlist");
+				final ArrayList<String> getSection = new ArrayList<String>();
+				final ArrayList<String> getAisle = new ArrayList<String>();
 				SearchResults pr1 = new SearchResults();
 				/*
 				 * Pulling information from the JSON Array, and putting them
@@ -154,6 +161,7 @@ public class ShowProduct extends Activity {
 							.getString("Sections").toString();
 					database_aisle = listObjects.getJSONObject(i)
 							.getString("Aisle").toString();
+					
 
 					pr1.setName(database_pName);
 					pr1.setPrice(stringChange("Price: $", database_Price));
@@ -162,6 +170,10 @@ public class ShowProduct extends Activity {
 					pr1.setSections(database_section);
 					pr1.setAisle(database_aisle);
 					arrayResults.add(pr1);
+					getSection.add(listObjects.getJSONObject(i).getString(
+							"sectionMap"));
+					getAisle.add(listObjects.getJSONObject(i)
+							.getString("aisleMap"));
 
 					pr1 = new SearchResults();
 				}
@@ -171,6 +183,30 @@ public class ShowProduct extends Activity {
 				 */
 				final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 				lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+
+				lv1.setOnItemClickListener(new OnItemClickListener() {
+
+					public void onItemClick(AdapterView<?> arg, View view,
+							int position, long id) {
+
+						SharedPreferences settings = getSharedPreferences(
+								PREF_NAME, 0);
+						SharedPreferences.Editor edit = settings.edit();
+						/*
+						 * Saving the Map reference as it is in Android R.Java
+						 * so we can load the images up easily. We are saving
+						 * them into internal store.
+						 */
+						edit.putString("sectionMap", getSection.get(position));
+
+						edit.putString("aisleMap", getAisle.get(position));
+						edit.commit();
+						startActivity(intent);
+						finish();
+
+					}
+
+				});
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

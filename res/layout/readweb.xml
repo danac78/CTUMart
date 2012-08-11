@@ -5,23 +5,19 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
-  <ListView
-
-      android:id="@+id/ListView01"
-      android:layout_width="fill_parent"
-
-      android:layout_height="379dp" />
-
-
+    <ListView
+        android:id="@+id/ListView01"
+        android:layout_width="fill_parent"
+        android:layout_height="379dp" />
       android:layout_height="379dp"
       android:background="@drawable/background"
       android:divider="@drawable/divider" />
 
-  <Button
-      android:id="@+id/back"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:text="@string/backButton" />
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/backButton" />
 
 </LinearLayout>

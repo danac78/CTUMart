@@ -14,7 +14,7 @@ import android.widget.TextView;
 /**
  * @author Dana Haywood
  * @7/20/2012
- * @version 0.1.5
+ * @version 0.5.2
  * @Karl Lloyd
  * @IT482
  * @Source Cite: http://geekswithblogs.net/bosuch/archive/2011/01/31/android---

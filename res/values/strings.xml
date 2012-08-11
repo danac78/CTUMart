@@ -13,37 +13,45 @@
     <string name="start_search">Start Search</string>
     <string name="enter_info">Enter Info</string>
     <string name="locations_available">Locations Available</string>
-        <string name="priceLbl">Price:</string>
-        <string name="itemCount">Item Count:</string>
-        <string name="sectionLbl">Section:</string>
-        <string name="aisleLbl">Aisle:</string>
-        <string-array name="locations_available">
-            <item >Denver, CO</item>
-            <item >Beverly Hills, CA</item>
-            <item >Boise, ID</item>
-            <item >Chicago, IL</item>
-            <item >Colorado Springs, CO</item>
-            <item >Springfield, MA</item>
-            <item >Portland, OR</item>
-            <item >Richland, WA</item>
-        </string-array>
-            <string name="search_store_help">Help File to Be Implemented</string>
-            <string-array name="type_search_product">
-                <item >Product Name</item>
-                <item >Product Type</item>
-                <item >UPC</item>
-            </string-array>
-                <string name="type_info">Type</string>
-                <string name="helpProduct">To be implemented from User Documentation (GP3)</string>
-                <string-array name="productType">
-                    <item >Beverage</item>
-                    <item>Snacks</item>
-                    <item>Bread</item>
-                    <item>Electronic Entertainment</item>
-                </string-array>
-                    <string name="backButton">Back</string>
-                    <string name="selectCity">Select the Store City</string>
-                    <string name="close">Close</string>
-                    <string name="no_product_found">No Products Found.</string>
+    <string name="priceLbl">Price:</string>
+    <string name="itemCount">Item Count:</string>
+    <string name="sectionLbl">Section:</string>
+    <string name="aisleLbl">Aisle:</string>
+
+    <string-array name="locations_available">
+        <item>Denver, CO</item>
+        <item>Beverly Hills, CA</item>
+        <item>Boise, ID</item>
+        <item>Chicago, IL</item>
+        <item>Colorado Springs, CO</item>
+        <item>Springfield, MA</item>
+        <item>Portland, OR</item>
+        <item>Richland, WA</item>
+    </string-array>
+
+    <string name="search_store_help">Help File to Be Implemented</string>
+
+    <string-array name="type_search_product">
+        <item>Product Name</item>
+        <item>Product Type</item>
+        <item>UPC</item>
+    </string-array>
+
+    <string name="type_info">Type</string>
+    <string name="helpProduct">To be implemented from User Documentation (GP3)</string>
+
+    <string-array name="productType">
+        <item>Beverage</item>
+        <item>Snacks</item>
+        <item>Bread</item>
+        <item>Electronic Entertainment</item>
+    </string-array>
+
+    <string name="backButton">Back</string>
+    <string name="selectCity">Select the Store City</string>
+    <string name="close">Close</string>
+    <string name="no_product_found">No Products Found.</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_show_section">ShowSection</string>
 
 </resources>

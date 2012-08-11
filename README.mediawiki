@@ -139,5 +139,9 @@ different dialog boxes for error messages. This simplifies the design.</p>
 <p>Split off the Dialog box because it was being repeated with the only 
 difference between was the message. Tried to do it for shared preferences, 
 but it caused it to crashed so not going to bother.</p>
+<<<<<<< HEAD
 
+=======
+<p>Fixed a bug as listed in Issue #8. Right now, it will give a dialog box if productlist is giving a null value. IF it is not null, it will proceed turning it into a JSONArray.</p>
+>>>>>>> refs/heads/versionJeff
 	

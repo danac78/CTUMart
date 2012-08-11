@@ -11,8 +11,7 @@ messages and help items. It is a scrollable layout with a textbox and a button. 
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.55" >
-
-
+     
             <TextView
                 android:id="@+id/dialogTXT"
                 android:layout_width="match_parent"
