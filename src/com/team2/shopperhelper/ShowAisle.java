@@ -28,13 +28,13 @@ public class ShowAisle extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	setContentView(R.layout.showmap);
+		setContentView(R.layout.showmap);
 		final Intent intent = new Intent(this,ShowProduct.class);
-	//	Button back = (Button) findViewById(R.id.mapBTN);
+		Button back = (Button) findViewById(R.id.mapBTN);
 		/*
 		 * Setting up the imageview to set an image onto the screen
 		 */
-	//	ImageView image = (ImageView) findViewById(R.id.mapView);
+		ImageView image = (ImageView) findViewById(R.id.mapView);
 		/*
 		 * Setting up sharedpreferences to be able to read values from internal
 		 * storage.
@@ -46,16 +46,16 @@ public class ShowAisle extends Activity {
 		 */
 		
 		drawable = Integer.valueOf(settings.getString("aisleMap", null));
-	//	image.setImageResource(drawable);
+		image.setImageResource(drawable);
 		
-	/*	back.setOnClickListener(new View.OnClickListener() {
+		back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				startActivity(intent);
 				finish();
 				
 			}
-		});*/
+		});
 		
 
 	}

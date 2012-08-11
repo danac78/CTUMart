@@ -29,7 +29,7 @@ public class ShowSection extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	setContentView(R.layout.showmap);
+		setContentView(R.layout.showmap);
 		
 		/*
 		 * Declaring two intents: One is to return to ShowProduct and
@@ -37,29 +37,29 @@ public class ShowSection extends Activity {
 		 */
 		final Intent aisleIntent = new Intent(this,ShowAisle.class);
 		final Intent backIntent = new Intent(this,ShowProduct.class);
-		//Button back = (Button) findViewById(R.id.mapBTN);
+		Button back = (Button) findViewById(R.id.mapBTN);
 		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-		//ImageView image = (ImageView) findViewById(R.id.mapView);
+		ImageView image = (ImageView) findViewById(R.id.mapView);
 		drawable = Integer.valueOf(settings.getString("sectionMap", null));
 
-		//image.setImageResource(drawable);
-	/*	image.setOnClickListener(new View.OnClickListener() {
+		image.setImageResource(drawable);
+		image.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				startActivity(aisleIntent);
 				finish();
 				
 			}
-		});*/
+		});
 		
-		/*back.setOnClickListener(new View.OnClickListener() {
+		back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
 				startActivity(backIntent);
 				finish();
 				
 			}
-		});*/
+		});
 
 	}
 
