@@ -63,9 +63,9 @@ public class SearchProduct extends Activity {
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton info = (ImageButton) findViewById(R.id.searchProductHelp);
 		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
-		final ImageButton back = (ImageButton) findViewById(R.id.showProductBackBtn);
+		final ImageButton back = (ImageButton) findViewById(R.id.productBack);
 		final Intent intent = new Intent(this, ShowProduct.class);
-		final Intent prevIntent = new Intent(this,SearchForStore.class);
+		final Intent previous = new Intent(this,SearchForStore.class);
 
 		/*
 		 * This sequence is listening to see if the info button (?) was pressed.
@@ -207,11 +207,11 @@ public class SearchProduct extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				startActivity(prevIntent);
+				startActivity(previous);
 				finish();
 				
 			}
-		});
+		}); 
 		
 	}
 	
