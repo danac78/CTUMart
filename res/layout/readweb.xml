@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
@@ -8,16 +9,16 @@
     <ListView
         android:id="@+id/ListView01"
         android:layout_width="fill_parent"
-        android:layout_height="379dp" />
-      android:layout_height="379dp"
-      android:background="@drawable/background"
-      android:divider="@drawable/divider" />
+        android:layout_height="379dp"
+        android:background="@drawable/background"
+        android:divider="@drawable/divider" />
 
-    <Button
-        android:id="@+id/back"
+    <ImageButton
+        android:id="@+id/showProductBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/backButton" />
+        android:layout_gravity="center"
+        android:background="@null"
+        android:src="@drawable/back" />
 
 </LinearLayout>
