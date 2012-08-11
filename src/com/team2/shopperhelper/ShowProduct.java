@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.team2.shopperhelper.library.CustomBaseAdapter;
@@ -97,7 +98,7 @@ public class ShowProduct extends Activity {
 		final String storeID = setting.getString("storeID", null);
 		final String queryType = setting.getString("queryType", null);
 		final String queryValue = setting.getString("queryValue", null);
-		final Button backButton = (Button) findViewById(R.id.back);
+		final ImageButton backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
 		final Intent intent = new Intent(this, ShowSection.class);
 		/*

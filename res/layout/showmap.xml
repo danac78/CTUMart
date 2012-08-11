@@ -4,7 +4,8 @@
     android:layout_height="fill_parent"
     android:background="@drawable/background"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:ignore="ContentDescription" >
 
     <ImageView
         android:id="@+id/imageView2"
@@ -13,7 +14,7 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ctumartlogo"
         tools:ignore="ContentDescription" />
-
+
     <ImageView
         android:id="@+id/mapView"
         android:layout_width="wrap_content"
@@ -25,14 +26,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" >
-
-        <Button
-            android:id="@+id/mapBTN"
+
+        <ImageButton
+            android:id="@+id/mapBackBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/backButton" />
-
+            android:background="@null"
+            android:src="@drawable/back" />
+
         <ImageButton
             android:id="@+id/helpBtnMap"
             android:layout_width="wrap_content"
