@@ -13,7 +13,7 @@ import com.team2.shopperhelper.library.DialogBox;
 /**
  * @author Dana Haywood
  * @date 7/10/2012
- * @version 0.5.0
+ * @version 0.5.2
  * @IT482
  * @Karl Lloyd
  * @Source Cite: http://developer.android.com/guide/components/index.html

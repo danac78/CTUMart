@@ -33,6 +33,7 @@
         <activity android:name=".ShowSection"
             android:label="@string/title_activity_show_section" >            
         </activity>
+        <activity android:name=".ShowAisle"/>
     </application>
 
 </manifest>

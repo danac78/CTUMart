@@ -28,7 +28,7 @@ import com.team2.shopperhelper.library.SearchResults;
 /**
  * @author Dana Haywood
  * @date 7/19/2012
- * @version 0.5.0
+ * @version 0.5.2
  * @IT482
  * @Karl Lloyd
  * @Comment by:
@@ -162,10 +162,7 @@ public class ShowProduct extends Activity {
 							.getString("Sections").toString();
 					database_aisle = listObjects.getJSONObject(i)
 							.getString("Aisle").toString();
-					getSection.add(listObjects.getJSONObject(i)
-							.getString("sectionId").toString());
-					getAisle.add(listObjects.getJSONObject(i)
-							.getString("aisleId").toString());
+					
 
 					pr1.setName(database_pName);
 					pr1.setPrice(stringChange("Price: $", database_Price));
@@ -174,6 +171,10 @@ public class ShowProduct extends Activity {
 					pr1.setSections(database_section);
 					pr1.setAisle(database_aisle);
 					arrayResults.add(pr1);
+					getSection.add(listObjects.getJSONObject(i).getString(
+							"sectionMap"));
+					getAisle.add(listObjects.getJSONObject(i)
+							.getString("aisleMap"));
 
 					pr1 = new SearchResults();
 				}
@@ -193,16 +194,13 @@ public class ShowProduct extends Activity {
 								PREF_NAME, 0);
 						SharedPreferences.Editor edit = settings.edit();
 						/*
-						 * Using the values acquired for section and aisle and
-						 * saving them into internal The reason why we are using
-						 * integers (which is pulling from the primary keys on
-						 * the database), it is going to use a switch to assign
-						 * the appropriate image to the view.
+						 * Saving the Map reference as it is in Android R.Java
+						 * so we can load the images up easily. We are saving
+						 * them into internal store.
 						 */
-						edit.putInt("section",
-								Integer.parseInt(getSection.get(position)));
-						edit.putInt("aisle",
-								Integer.parseInt(getAisle.get(position)));
+						edit.putString("sectionMap", getSection.get(position));
+
+						edit.putString("aisleMap", getAisle.get(position));
 						edit.commit();
 						startActivity(intent);
 						finish();

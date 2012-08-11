@@ -22,7 +22,7 @@ import android.util.Log;
 
 /**
  * @author Dana Haywood
- * @version 0.5.0
+ * @version 0.5.2
  * @date 8/4/2012
  * @source cite:
  *         http://www.androidhive.info/2012/01/android-login-and-registration
