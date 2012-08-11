@@ -3,6 +3,7 @@ package com.team2.shopperhelper;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 public class ShowSection extends Activity {
@@ -14,13 +15,20 @@ public class ShowSection extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.showsection);
+		setContentView(R.layout.showmap);
 
 		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 		ImageView image = (ImageView) findViewById(R.id.sectionView);
 		section = settings.getInt("section", 0);
 
 		image.setImageResource(getDrawable(section));
+		image.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 	}
 

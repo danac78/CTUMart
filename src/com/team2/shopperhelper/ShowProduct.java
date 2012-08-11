@@ -61,7 +61,6 @@ public class ShowProduct extends Activity {
 	private JSONObject productInfo;
 	private JSONArray listObjects;
 	private static final String url = "http://darkenvisuals.com/android/";
-	//Intent intent = new Intent(this,ShowSection.class);
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
@@ -70,7 +69,7 @@ public class ShowProduct extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
-		final Intent intent = new Intent(this,ShowSection.class);
+
 		/*
 		 * setting : Used to store information internally. queryType and
 		 * queryValue should be seen like:
@@ -88,6 +87,9 @@ public class ShowProduct extends Activity {
 		 * 
 		 * input and sqlResults are for gaining and storing the results from the
 		 * webpage.
+		 * 
+		 * intent shall be used to get us to the next activity, which will show
+		 * the section map.
 		 */
 
 		JSONParser jsonParser = new JSONParser();
@@ -97,7 +99,7 @@ public class ShowProduct extends Activity {
 		final String queryValue = setting.getString("queryValue", null);
 		final Button backButton = (Button) findViewById(R.id.back);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
-
+		final Intent intent = new Intent(this, ShowSection.class);
 		/*
 		 * This is where the android php page that be responsible for populating
 		 * this page. The first thing we need to do is create name value pairs
@@ -186,14 +188,21 @@ public class ShowProduct extends Activity {
 
 					public void onItemClick(AdapterView<?> arg, View view,
 							int position, long id) {
-									
-						
+
 						SharedPreferences settings = getSharedPreferences(
 								PREF_NAME, 0);
 						SharedPreferences.Editor edit = settings.edit();
-
-						edit.putInt("section", Integer.parseInt(getSection.get(position)));
-						edit.putInt("aisle", Integer.parseInt(getAisle.get(position)));
+						/*
+						 * Using the values acquired for section and aisle and
+						 * saving them into internal The reason why we are using
+						 * integers (which is pulling from the primary keys on
+						 * the database), it is going to use a switch to assign
+						 * the appropriate image to the view.
+						 */
+						edit.putInt("section",
+								Integer.parseInt(getSection.get(position)));
+						edit.putInt("aisle",
+								Integer.parseInt(getAisle.get(position)));
 						edit.commit();
 						startActivity(intent);
 						finish();
