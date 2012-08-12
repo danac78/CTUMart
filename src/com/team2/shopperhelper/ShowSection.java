@@ -11,10 +11,12 @@ import android.widget.ImageView;
 /**
  * @author Dana Haywood
  * @version 0.5.2
- * @date 8/10/2012
- * @Karl Lloyd
- * @IT482
- * @Source Cite: http://developer.android.com/index.html
+ * @since 8/10/2012
+ * <br>
+ *        Instructor: Karl Lloyd<br>
+ *        Class: IT482<br>
+ *        University: Colorado Technical University<br>
+ *        Source Cite: http://developer.android.com/index.html
  * 
  *         This activity is simply calling the map that from the value grabbed
  *         from the database. It will display the correct map from drawable.
@@ -24,7 +26,7 @@ public class ShowSection extends Activity {
 
 	private static final String PREF_NAME = "shopPref";
 	
-	private int drawable;
+	
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,7 @@ public class ShowSection extends Activity {
 		ImageButton back = (ImageButton) findViewById(R.id.mapBackBtn);
 		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 		ImageView image = (ImageView) findViewById(R.id.mapView);
-		drawable = Integer.valueOf(settings.getString("sectionMap", null));
-
-		image.setImageResource(drawable);
+		image.setImageResource(Integer.valueOf(settings.getString("sectionMap", null)));
 		image.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {

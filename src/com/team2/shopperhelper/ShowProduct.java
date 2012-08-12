@@ -26,13 +26,14 @@ import com.team2.shopperhelper.library.JSONParser;
 import com.team2.shopperhelper.library.SearchResults;
 
 /**
+ * Showing the Product in a List
  * @author Dana Haywood
- * @date 7/19/2012
+ * @since 7/19/2012
  * @version 0.5.2
- * @IT482
- * @Karl Lloyd
- * @Comment by:
- * @Source Cite: http://www.helloandroid.com/tutorials/connecting-mysql-database
+ *Instructor: Karl Lloyd<br>
+ *        Class: IT482<br>
+ *        University: Colorado Technical University<br>
+ *        Source Cite: http://www.helloandroid.com/tutorials/connecting-mysql-database
  *         and http://geekswithblogs.net/bosuch/archive/2011/01/31/android---
  *         create-a-custom-multi-line-listview-bound-to-an.aspx
  * 
@@ -45,6 +46,9 @@ import com.team2.shopperhelper.library.SearchResults;
  */
 
 public class ShowProduct extends Activity {
+	/*
+	 * Using PREF_NAME to get the values back.
+	 */
 	public static final String PREF_NAME = "shopPref";
 	static InputStream is = null;
 	private int database_storeID;
@@ -64,33 +68,34 @@ public class ShowProduct extends Activity {
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
-
+	/**
+	 * Parsing the web and showing the results.
+	 * setting : Used to store information internally. queryType and
+	 * queryValue should be seen like:
+	 * 
+	 * WHERE queryType=queryValue;
+	 * 
+	 * ListView where the custom rows will be inserted into.
+	 * 
+	 * httppost will be connecting the android to the webpage
+	 * 
+	 * ProductResult will create a string array to place into an arraylist.
+	 * 
+	 * nameValuePairs will contain the information required to do the search
+	 * function.
+	 * 
+	 * input and sqlResults are for gaining and storing the results from the
+	 * webpage.
+	 * 
+	 * intent shall be used to get us to the next activity, which will show
+	 * the section map.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 
-		/*
-		 * setting : Used to store information internally. queryType and
-		 * queryValue should be seen like:
-		 * 
-		 * WHERE queryType=queryValue;
-		 * 
-		 * ListView where the custom rows will be inserted into.
-		 * 
-		 * httppost will be connecting the android to the webpage
-		 * 
-		 * ProductResult will create a string array to place into an arraylist.
-		 * 
-		 * nameValuePairs will contain the information required to do the search
-		 * function.
-		 * 
-		 * input and sqlResults are for gaining and storing the results from the
-		 * webpage.
-		 * 
-		 * intent shall be used to get us to the next activity, which will show
-		 * the section map.
-		 */
+		
 
 		JSONParser jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);

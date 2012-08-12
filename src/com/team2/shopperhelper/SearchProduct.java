@@ -14,47 +14,54 @@ import android.widget.Spinner;
 import com.team2.shopperhelper.library.DialogBox;
 
 /**
+ * Searching for a Product.
+ * 
  * @author Dana Haywood
- * @date 7/12/2012
  * @version 0.5.2
- * @IT482
- * @Karl Lloyd
- * @Source Cite http://developer.android.com/guide/components/index.html
+ * @since 7/12/2012
+ * 
+ *        Instructor: Karl Lloyd<br>
+ *        Class: IT482<br>
+ *        University: Colorado Technical University<br>
+ *        Source Cite:
+ *        http://developer.android.com/guide/components/index.html</br>
  * 
  * 
- *         This activity is set to retrieve customer information from the user
- *         interface. Once this is done, it will go through a validation
- *         process, and get passed onto the web parsing and listing process.
+ *        This activity is set to retrieve customer information from the user
+ *        interface. Once this is done, it will go through a validation process,
+ *        and get passed onto the web parsing and listing process.
  * 
- *         This activity is set to retrieve customer information from the user
- *         interface. Once this is done, it will go through a validation
- *         process, and get passed onto the web parsing and listing process...
+ *        This activity is set to retrieve customer information from the user
+ *        interface. Once this is done, it will go through a validation process,
+ *        and get passed onto the web parsing and listing process...
  * 
  * 
  */
 public class SearchProduct extends Activity {
-
+	/**
+	 * Setting up a value for Shared Preferences to store the query type and
+	 * value.
+	 */
 	public static final String PREF_NAME = "shopPref";
 
-	/*
-	 * Creating local variables to be used in ShowProducts
+	/**
+	 * Creating instances of Edit Text and Image Buttons to manipulate.
+	 * 
+	 * productTXT is for collecting the Product Name. UPCTXT is set to only
+	 * accept numbers, so only the UPC. productType is a spinner that will have
+	 * the different productType searchType will tell the application which one
+	 * is going to be used.
+	 * 
+	 * this activity has three buttons: search, info, and clear.
+	 * 
+	 * intent is setting up information for the next activity.
 	 */
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
 		/*
-		 * Creating instances of Edit Text and Image Buttons to manipulate.
-		 * 
-		 * productTXT is for collecting the Product Name. UPCTXT is set to only
-		 * accept numbers, so only the UPC. productType is a spinner that will
-		 * have the different productType searchType will tell the application
-		 * which one is going to be used.
-		 * 
-		 * this activity has three buttons: search, info, and clear.
-		 * 
-		 * intent is setting up information for the next activity.
+		 *
 		 */
 		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
 		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
@@ -65,7 +72,7 @@ public class SearchProduct extends Activity {
 		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
 		final ImageButton back = (ImageButton) findViewById(R.id.productBack);
 		final Intent intent = new Intent(this, ShowProduct.class);
-		final Intent previous = new Intent(this,SearchForStore.class);
+		final Intent previous = new Intent(this, SearchForStore.class);
 
 		/*
 		 * This sequence is listening to see if the info button (?) was pressed.
@@ -200,19 +207,19 @@ public class SearchProduct extends Activity {
 			}
 
 		});
-		
+
 		/*
 		 * Returning to Search For Store.
 		 */
 		back.setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
 				startActivity(previous);
 				finish();
-				
+
 			}
 		});
-		
+
 	}
-	
+
 }

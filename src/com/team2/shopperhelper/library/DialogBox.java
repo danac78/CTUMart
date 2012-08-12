@@ -10,12 +10,15 @@ import android.widget.TextView;
 import com.team2.shopperhelper.R;
 
 /**
+ * Making the Dialog Box option reusuable without repeating code.
  * @author Dana Haywood
- * @date 8/8/2012
+ * @since 8/8/2012
  * @version 0.5.0
- * @Commented By:
- * @Karl Lloyd
- * @IT482
+ * <br>
+ *        Instructor: Karl Lloyd<br>
+ *        Class: IT482<br>
+ *        University: Colorado Technical University<br>
+ *        Source Cite: http://developer.android.com
  * 
  *        As the dialog box is repeated in numerous activities, it was separated
  *        into a library to allow re-useability amongs the different activities

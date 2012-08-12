@@ -139,9 +139,14 @@ different dialog boxes for error messages. This simplifies the design.</p>
 <p>Split off the Dialog box because it was being repeated with the only 
 difference between was the message. Tried to do it for shared preferences, 
 but it caused it to crashed so not going to bother.</p>
-<<<<<<< HEAD
 
-=======
+
+===Version 0.5.1 ===
 <p>Fixed a bug as listed in Issue #8. Right now, it will give a dialog box if productlist is giving a null value. IF it is not null, it will proceed turning it into a JSONArray.</p>
->>>>>>> refs/heads/versionJeff
+
+===Version 0.5.2 ===
+<p>Added the ShowSection and ShowAisle activities to be able to show the map of the store. They each reuse
+showmap.xml. Additionally, added back buttons that will take the customer to a previous screen. After Issue #8, there has not been any issues that really been overlooked. Due to the simplicity of the application, there is not much that will cause it to forced close that I will not see in a test run</p>
+<p>The primary focus from this point on is bug fix and documentation. As this is an academic project, need to ensure that each activity has a source cite. Not bothering to do this with the xml files since eclipse something really messes with them. However, I will be focusing on delivering as detailed comments I can to help the group. </p>
+
 	

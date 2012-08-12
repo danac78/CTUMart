@@ -14,54 +14,86 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.util.Log;
 
 /**
+ * Gathering the information from the web..
+ * 
  * @author Dana Haywood
  * @version 0.5.2
- * @date 8/4/2012
- * @source cite:
- *         http://www.androidhive.info/2012/01/android-login-and-registration
- *         -with-php-mysql-and-sqlite/ @ Commented By:
+ * @since 8/4/2012 <br>
+ *        Instructor: Karl Lloyd<br>
+ *        Class: IT482<br>
+ *        University: Colorado Technical University<br>
+ *        Source Cite::
+ *        http://www.androidhive.info/2012/01/android-login-and-registration
+ *        -with-php-mysql-and-sqlite/ @ Commented By:
  * 
- *         The purpose of this class is to provide a parser for the JSON encoded
- *         data that will be provided by the website. Additionally, this was
- *         made into a separate class to provide portability by declaring parms
- *         and url as items that will be passed in from other methods and used
- *         to obtain information and sent back to the calling procedure.
+ *        The purpose of this class is to provide a parser for the JSON encoded
+ *        data that will be provided by the website. Additionally, this was made
+ *        into a separate class to provide portability by declaring parms and
+ *        url as items that will be passed in from other methods and used to
+ *        obtain information and sent back to the calling procedure.
  * 
  */
 public class JSONParser {
-	public int database_storeID;
-	public String database_pName;
-	public String database_price;
-	public String database_inventoryCount;
-	public String database_section;
-	public String database_aisle;
-	public String database_pType;
-	public String database_UPC;
-	public String database_Price;
+	/**
+	 * Going to contain the values retrieve from the web.
+	 */
 	public String results;
+
+	/**
+	 * Going to contain the values we will be returning to Show Product.
+	 */
 	public JSONObject jsonObject;
-	public JSONArray listObjects;
+
 	private InputStream is = null;
 
+	/**
+	 * A simple JSONParser constructor.
+	 */
 	public JSONParser() {
 	}
 
+	/**
+	 * This method is going to do the following:
+	 * <p>
+	 * Creating a connection to the webpage. Once the connection is made,
+	 * HttpResponse is going send out the request,and HttpEntity will be
+	 * responsible for retrieving the feedback. Inputstream will be responsible
+	 * to inputting the information into Java.
+	 * </p>
+	 * <p>
+	 * Converting the inputstream into a String. Additionally, we need to create
+	 * two JSON types. The first one is obtaining the JSON information from the
+	 * converted string. The second one is gaining information from that object,
+	 * and it is asking for a particular set of data.
+	 * </p>
+	 * Converting the inputstream into a String. Additionally, we need to create
+	 * two JSON types. The first one is obtaining the JSON information from the
+	 * converted string. The second one is gaining information from that object,
+	 * and it is asking for a particular set of data.
+	 * <p>
+	 * 
+	 * 
+	 * @param parms
+	 *            This is an list with the name value pairs (storeID, queryType,
+	 *            QueryValue) to be used by the HttpPost process.
+	 * 
+	 * @param url
+	 *            This is the url that the parser will be looking at for
+	 *            information.
+	 * @return Returning the JSON OBject for further parsing in ShowProduct.
+	 */
 	public JSONObject getJSONInformation(List<NameValuePair> parms, String url) {
-
+		/*
+		 * Connect to the web and gather the information
+		 */
 		try {
-			/*
-			 * Creating a connection to the webpage. Once the connectionis made,
-			 * HttpResponse is going send out the request,and HttpEntity will be
-			 * responsible for retrieving thefeedback. Inputstream will be
-			 * responsible to inputtingthe information into Java.
-			 */
+
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.setEntity(new UrlEncodedFormEntity(parms));
@@ -81,11 +113,7 @@ public class JSONParser {
 
 		}
 		/*
-		 * Converting the inputstream into a String. Additionally, we need to
-		 * create two JSON types. The first one is obtaining the JSON
-		 * information from the converted string. The second one is gaining
-		 * information from that object, and it is asking for a particular set
-		 * of data.
+		 * Convert it to a string and into a JSON object.
 		 */
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
