@@ -1,8 +1,10 @@
 package com.team2.shopperhelper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,13 +23,16 @@ import com.team2.shopperhelper.library.DialogBox;
  *          University: Colorado Technical University<br>
  *          Source Cite:http://developer.android.com/guide/components/index.html<br>
  * 
- *          <p>This activity will take the spinner information containing the store and
- *          store it in storeID to be placed in Internal Store. It shall use a +1 since
- *          position starts at 0. This value will then be used in ShowProducts to filter
- *          and items not in that store. Each button has a listener that will do the following:
+ *          <p>
+ *          This activity will take the spinner information containing the store
+ *          and store it in storeID to be placed in Internal Store. It shall use
+ *          a +1 since position starts at 0. This value will then be used in
+ *          ShowProducts to filter and items not in that store. Each button has
+ *          a listener that will do the following:
  *          </p>
  *          <ol>
- *          <li>Search: Brings us to the next screen as well as save the values.</li>
+ *          <li>Search: Brings us to the next screen as well as save the values.
+ *          </li>
  *          <li>Info: Brings up the help dialog.</li>
  *          </ol>
  */
@@ -38,6 +43,7 @@ public class SearchForStore extends Activity {
 	 * internal memory.
 	 */
 	public static final String PREF_NAME = "shopPref";
+	private static final String key = "queryType";
 
 	/**
 	 * Creating the Java logic for Search for Store.
@@ -54,7 +60,7 @@ public class SearchForStore extends Activity {
 	 * into Internal Storage</li>
 	 * </ol>
 	 */
-	@Override
+	@SuppressLint("CommitPrefEdits") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -62,29 +68,49 @@ public class SearchForStore extends Activity {
 		 * calling the searchstore layout to have it display that screen.
 		 */
 		setContentView(R.layout.searchstore);
-
+		final Intent loadIntent = new Intent(this, ShowProduct.class);
 		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
 		final ImageButton info = (ImageButton) findViewById(R.id.helpStoreBTN);
-
+		final ImageButton load = (ImageButton) findViewById(R.id.productLoadBtn);
+		final SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+		final Spinner locationTXT = (Spinner) findViewById(R.id.locationTXT);
 		/*
 		 * Upon the Search Button being pressed, this will collect the
 		 * information from the spinner and obtain the id.
 		 */
+		
+		if (settings.contains(key)) {
+			load.setVisibility(View.VISIBLE);
+		}
+		final SharedPreferences.Editor editor = settings.edit();
+		load.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				prefWrite("storeID", Integer.toString((locationTXT
+						.getSelectedItemPosition()) + 1), editor);
+				startActivity(loadIntent);
+				finish();
+
+			}
+		});
 
 		search.setOnClickListener(new View.OnClickListener() {
 			/*
 			 * declaring the storeID variable as that will work with getter and
 			 * setters to push the information through.
 			 */
-			private String storeID;
 
 			public void onClick(View v) {
 
 				/*
 				 * creates the spinner within Java
 				 */
-				Spinner locationTXT = (Spinner) findViewById(R.id.locationTXT);
+
+				/*
+				 * Creating a preference file that will be called upon from each
+				 * activity.
+				 */
 
 				/*
 				 * getting the location based on the position of the spinner.
@@ -93,15 +119,8 @@ public class SearchForStore extends Activity {
 				 * Springfield, MA 7. Portland, OR, 8. Richland, WA . Adding a
 				 * plus 1 since position starts at zero
 				 */
-
-				storeID = Integer.toString((locationTXT
-						.getSelectedItemPosition()) + 1);
-
-				/*
-				 * Creating a preference file that will be called upon from each
-				 * activity.
-				 */
-				prefWrite(storeID);
+				prefWrite("storeID", Integer.toString((locationTXT
+						.getSelectedItemPosition()) + 1), editor);
 
 				/*
 				 * stating the Search Product activity
@@ -109,16 +128,6 @@ public class SearchForStore extends Activity {
 				startActivity(intent);
 				finish();
 
-			}
-
-			/*
-			 * A very basic method to save storeID into external memory.
-			 */
-			private void prefWrite(String storeID2) {
-				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString("storeID", storeID);
-				editor.commit();
 			}
 
 		}
@@ -143,4 +152,12 @@ public class SearchForStore extends Activity {
 
 	}
 
+	/*
+	 * Saving the preferences.
+	 */
+	protected void prefWrite(String field, String value, Editor editor) {
+		editor.putString("storeID", value);
+		editor.commit();
+
+	}
 }
