@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/search" />
-
+
         <ImageButton
             android:id="@+id/helpStoreBTN"
             android:layout_width="wrap_content"
