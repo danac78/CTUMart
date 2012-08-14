@@ -27,6 +27,13 @@
         android:entries="@array/productType"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/productTypeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/productTypeLbl"
+        android:visibility="gone" />
+
     <EditText
         android:id="@+id/productTXT"
         android:layout_width="match_parent"

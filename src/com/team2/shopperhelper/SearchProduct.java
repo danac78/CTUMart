@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.team2.shopperhelper.library.DialogBox;
 
@@ -65,6 +66,8 @@ public class SearchProduct extends Activity {
 		/*
 		 *
 		 */
+		final TextView productLbl = (TextView) findViewById(R.id.productLbl);
+		final TextView productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
 		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
 		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
 		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
@@ -127,7 +130,7 @@ public class SearchProduct extends Activity {
 				case 2:
 					if (UPCTXT.getText().toString().length() == 0) {
 						UPCTXT.setError("Enter a UPC");
-					} else if (productTXT.getText().toString().length() != 12) {
+					} else if (productTXT.getText().toString().length() > 12) {
 						UPCTXT.setError("UPC is 12 Digits");
 
 					} else {
@@ -175,16 +178,22 @@ public class SearchProduct extends Activity {
 					View selectedItemView, int position, long id) {
 				switch (position) {
 				case 0:
+					productLbl.setVisibility(View.VISIBLE);
 					productTXT.setVisibility(View.VISIBLE);
 					productType.setVisibility(View.GONE);
 					UPCTXT.setVisibility(View.GONE);
+					productTypeLbl.setVisibility(View.GONE);
 					break;
 				case 1:
+					productLbl.setVisibility(View.GONE);
+					productTypeLbl.setVisibility(View.VISIBLE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.VISIBLE);
 					UPCTXT.setVisibility(View.GONE);
 					break;
 				case 2:
+					productLbl.setVisibility(View.VISIBLE);
+					productTypeLbl.setVisibility(View.GONE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.GONE);
 					UPCTXT.setVisibility(View.VISIBLE);

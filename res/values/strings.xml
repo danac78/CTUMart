@@ -53,5 +53,6 @@
     <string name="no_product_found">No Products Found.</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_show_section">ShowSection</string>
+    <string name="productTypeLbl">Select a Type</string>
 
 </resources>
