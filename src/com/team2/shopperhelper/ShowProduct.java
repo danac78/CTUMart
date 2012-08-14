@@ -103,11 +103,11 @@ public class ShowProduct extends Activity {
 		 * Adding the parameters that will be required to do the search.
 		 */
 		parms.add(new BasicNameValuePair("queryType", setting.getString(
-				"queryType", null)));
+				"queryType", null).toString()));
 		parms.add(new BasicNameValuePair("storeID", setting.getString(
-				"storeID", null)));
+				"storeID", null).toString()));
 		parms.add(new BasicNameValuePair("queryValue", setting.getString(
-				"queryValue", null)));
+				"queryValue", null).toString()));
 		/*
 		 * Calling the JSONParser to get the JSONObject with the results from
 		 * the website.
