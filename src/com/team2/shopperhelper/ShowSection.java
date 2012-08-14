@@ -42,7 +42,14 @@ public class ShowSection extends Activity {
 		ImageButton back = (ImageButton) findViewById(R.id.mapBackBtn);
 		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 		ImageView image = (ImageView) findViewById(R.id.mapView);
+		
+		/**
+		 * Acquiring the sectionMap value from preference and assigning it to imageview
+		 */
 		image.setImageResource(Integer.valueOf(settings.getString("sectionMap", null)));
+		/**
+		 * Allows it to be clicked on and pushed into Aisle.
+		 */
 		image.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {

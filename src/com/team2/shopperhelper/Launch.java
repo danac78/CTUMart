@@ -35,10 +35,6 @@ import com.team2.shopperhelper.library.DialogBox;
  *        second and the customer will not * notice these tests being conducted
  *        at all.
  *        </p>
- * 
- * 
- * 
- * 
  */
 
 public class Launch extends Activity {

@@ -27,21 +27,22 @@ import com.team2.shopperhelper.library.SearchResults;
 
 /**
  * Showing the Product in a List
+ * 
  * @author Dana Haywood
  * @since 7/19/2012
- * @version 0.5.2
- *Instructor: Karl Lloyd<br>
- *        Class: IT482<br>
- *        University: Colorado Technical University<br>
- *        Source Cite: http://www.helloandroid.com/tutorials/connecting-mysql-database
- *         and http://geekswithblogs.net/bosuch/archive/2011/01/31/android---
- *         create-a-custom-multi-line-listview-bound-to-an.aspx
+ * @version 0.5.2 Instructor: Karl Lloyd<br>
+ *          Class: IT482<br>
+ *          University: Colorado Technical University<br>
+ *          Source Cite:
+ *          http://www.helloandroid.com/tutorials/connecting-mysql-database and
+ *          http://geekswithblogs.net/bosuch/archive/2011/01/31/android---
+ *          create-a-custom-multi-line-listview-bound-to-an.aspx
  * 
- *         The ShowProduct class will receive the information from the
- *         SearchProduct activity and attempt to pull the information from the
- *         PHP site. Once the information is received, it will post it into a
- *         custom list view. The list view will have customrow injected with
- *         text views to have a customized listing.
+ *          The ShowProduct class will receive the information from the
+ *          SearchProduct activity and attempt to pull the information from the
+ *          PHP site. Once the information is received, it will post it into a
+ *          custom list view. The list view will have customrow injected with
+ *          text views to have a customized listing.
  * 
  */
 
@@ -51,15 +52,6 @@ public class ShowProduct extends Activity {
 	 */
 	public static final String PREF_NAME = "shopPref";
 	static InputStream is = null;
-	private int database_storeID;
-	private String database_pName;
-	private String database_price;
-	private String database_inventoryCount;
-	private String database_section;
-	private String database_aisle;
-	private String database_pType;
-	private String database_UPC;
-	private String database_Price;
 	private String results;
 	private JSONObject jsonObject;
 	private JSONObject productInfo;
@@ -69,9 +61,8 @@ public class ShowProduct extends Activity {
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
 	/**
-	 * Parsing the web and showing the results.
-	 * setting : Used to store information internally. queryType and
-	 * queryValue should be seen like:
+	 * Parsing the web and showing the results. setting : Used to store
+	 * information internally. queryType and queryValue should be seen like:
 	 * 
 	 * WHERE queryType=queryValue;
 	 * 
@@ -87,21 +78,16 @@ public class ShowProduct extends Activity {
 	 * input and sqlResults are for gaining and storing the results from the
 	 * webpage.
 	 * 
-	 * intent shall be used to get us to the next activity, which will show
-	 * the section map.
+	 * intent shall be used to get us to the next activity, which will show the
+	 * section map.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 
-		
-
 		JSONParser jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
-		final String storeID = setting.getString("storeID", null);
-		final String queryType = setting.getString("queryType", null);
-		final String queryValue = setting.getString("queryValue", null);
 		final ImageButton backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
 		final Intent intent = new Intent(this, ShowSection.class);
@@ -116,9 +102,12 @@ public class ShowProduct extends Activity {
 		/*
 		 * Adding the parameters that will be required to do the search.
 		 */
-		parms.add(new BasicNameValuePair("queryType", queryType));
-		parms.add(new BasicNameValuePair("storeID", storeID));
-		parms.add(new BasicNameValuePair("queryValue", queryValue));
+		parms.add(new BasicNameValuePair("queryType", setting.getString(
+				"queryType", null).toString()));
+		parms.add(new BasicNameValuePair("storeID", setting.getString(
+				"storeID", null).toString()));
+		parms.add(new BasicNameValuePair("queryValue", setting.getString(
+				"queryValue", null).toString()));
 		/*
 		 * Calling the JSONParser to get the JSONObject with the results from
 		 * the website.
@@ -134,7 +123,8 @@ public class ShowProduct extends Activity {
 		if (productInfo.isNull("productlist")) {
 
 			DialogBox dialog = new DialogBox();
-			dialog.postDialog(ShowProduct.this, "No Product Found",R.string.no_product_found);
+			dialog.postDialog(ShowProduct.this, "No Product Found",
+					R.string.no_product_found);
 
 		} else {
 
@@ -152,33 +142,34 @@ public class ShowProduct extends Activity {
 				 * Pulling information from the JSON Array, and putting them
 				 * into holders. They will then be pushed into an array that is
 				 * following the format of SearchResults of the Shopper Helper
-				 * Library.
+				 * Library. Additionally, adding the maps values to an array.
 				 */
 				for (int i = 0; i < listObjects.length(); i++) {
 
-					database_pName = listObjects.getJSONObject(i)
-							.getString("productName").toString();
-					database_Price = listObjects.getJSONObject(i)
-							.getString("price").toString();
-					database_inventoryCount = listObjects.getJSONObject(i)
-							.getString("inventoryCount").toString();
-					database_section = listObjects.getJSONObject(i)
-							.getString("Sections").toString();
-					database_aisle = listObjects.getJSONObject(i)
-							.getString("Aisle").toString();
-					
+					pr1.setName(listObjects.getJSONObject(i)
+							.getString("productName").toString());
 
-					pr1.setName(database_pName);
-					pr1.setPrice(stringChange("Price: $", database_Price));
-					pr1.setInventoryCount(stringChange("Inventory: ",
-							database_inventoryCount));
-					pr1.setSections(database_section);
-					pr1.setAisle(database_aisle);
+					pr1.setPrice(stringChange("Price: $", listObjects
+							.getJSONObject(i).getString("price").toString()));
+
+					pr1.setInventoryCount(stringChange(
+							"Inventory: ",
+							listObjects.getJSONObject(i)
+									.getString("inventoryCount").toString()));
+
+					pr1.setSections(listObjects.getJSONObject(i)
+							.getString("Sections").toString());
+
+					pr1.setAisle(listObjects.getJSONObject(i)
+							.getString("Aisle").toString());
+
+					listObjects.getJSONObject(i).getString("Aisle").toString();
+
 					arrayResults.add(pr1);
 					getSection.add(listObjects.getJSONObject(i).getString(
 							"sectionMap"));
-					getAisle.add(listObjects.getJSONObject(i)
-							.getString("aisleMap"));
+					getAisle.add(listObjects.getJSONObject(i).getString(
+							"aisleMap"));
 
 					pr1 = new SearchResults();
 				}
@@ -241,38 +232,7 @@ public class ShowProduct extends Activity {
 		return sb.toString();
 	}
 
-	public int getDatabase_storeID() {
-		return database_storeID;
-	}
-
-	public void setDatabase_storeID(int database_storeID) {
-		this.database_storeID = database_storeID;
-	}
-
-	public String getDatabase_price() {
-		return database_price;
-	}
-
-	public void setDatabase_price(String database_price) {
-		this.database_price = database_price;
-	}
-
-	public String getDatabase_pType() {
-		return database_pType;
-	}
-
-	public void setDatabase_pType(String database_pType) {
-		this.database_pType = database_pType;
-	}
-
-	public String getDatabase_UPC() {
-		return database_UPC;
-	}
-
-	public void setDatabase_UPC(String database_UPC) {
-		this.database_UPC = database_UPC;
-	}
-
+	
 	public String getResults() {
 		return results;
 	}

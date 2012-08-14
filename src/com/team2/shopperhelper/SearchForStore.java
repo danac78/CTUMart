@@ -43,7 +43,7 @@ public class SearchForStore extends Activity {
 	 * internal memory.
 	 */
 	public static final String PREF_NAME = "shopPref";
-	private static final String key = "queryType";
+	private static final String KEY = "queryType";
 
 	/**
 	 * Creating the Java logic for Search for Store.
@@ -60,7 +60,8 @@ public class SearchForStore extends Activity {
 	 * into Internal Storage</li>
 	 * </ol>
 	 */
-	@SuppressLint("CommitPrefEdits") @Override
+	@SuppressLint("CommitPrefEdits")
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -75,15 +76,20 @@ public class SearchForStore extends Activity {
 		final ImageButton load = (ImageButton) findViewById(R.id.productLoadBtn);
 		final SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
 		final Spinner locationTXT = (Spinner) findViewById(R.id.locationTXT);
-		/*
-		 * Upon the Search Button being pressed, this will collect the
-		 * information from the spinner and obtain the id.
+		final SharedPreferences.Editor editor = settings.edit();
+		/**
+		 * What this feature does is checks to see if shopPref has been created
+		 * and contains a queryType. If it does, the load button will be
+		 * available.
 		 */
-		
-		if (settings.contains(key)) {
+		if (settings.contains(KEY)) {
 			load.setVisibility(View.VISIBLE);
 		}
-		final SharedPreferences.Editor editor = settings.edit();
+
+		/**
+		 * When the Load button is clicked, it will send the new storeID to the
+		 * pref and send the user straight to ShowProduct.
+		 */
 		load.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -94,7 +100,10 @@ public class SearchForStore extends Activity {
 
 			}
 		});
-
+		/*
+		 * Upon the Search Button being pressed, this will collect the
+		 * information from the spinner and obtain the id.
+		 */
 		search.setOnClickListener(new View.OnClickListener() {
 			/*
 			 * declaring the storeID variable as that will work with getter and
@@ -102,16 +111,6 @@ public class SearchForStore extends Activity {
 			 */
 
 			public void onClick(View v) {
-
-				/*
-				 * creates the spinner within Java
-				 */
-
-				/*
-				 * Creating a preference file that will be called upon from each
-				 * activity.
-				 */
-
 				/*
 				 * getting the location based on the position of the spinner.
 				 * The store id will be: 1. Denver, CO, 2. Beverly Hill, CA, 3.
@@ -123,7 +122,7 @@ public class SearchForStore extends Activity {
 						.getSelectedItemPosition()) + 1), editor);
 
 				/*
-				 * stating the Search Product activity
+				 * starting the Search Product activity
 				 */
 				startActivity(intent);
 				finish();
@@ -135,7 +134,7 @@ public class SearchForStore extends Activity {
 		);
 		/*
 		 * The Info button shall display information. It will call the DialogBox
-		 * class from the library with the pertainent information.
+		 * class from the library with the pertinent information.
 		 */
 
 		info.setOnClickListener(new View.OnClickListener() {

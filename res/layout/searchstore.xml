@@ -54,7 +54,6 @@
             android:background="@null"
             android:src="@drawable/load"
             android:visibility="gone" />
-
     </LinearLayout>
 
 </LinearLayout>
