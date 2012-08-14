@@ -66,6 +66,7 @@ public class SearchProduct extends Activity {
 		/*
 		 *
 		 */
+		final TextView productLbl = (TextView) findViewById(R.id.productLbl);
 		final TextView productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
 		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
 		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
@@ -177,18 +178,21 @@ public class SearchProduct extends Activity {
 					View selectedItemView, int position, long id) {
 				switch (position) {
 				case 0:
+					productLbl.setVisibility(View.VISIBLE);
 					productTXT.setVisibility(View.VISIBLE);
 					productType.setVisibility(View.GONE);
 					UPCTXT.setVisibility(View.GONE);
 					productTypeLbl.setVisibility(View.GONE);
 					break;
 				case 1:
+					productLbl.setVisibility(View.GONE);
 					productTypeLbl.setVisibility(View.VISIBLE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.VISIBLE);
 					UPCTXT.setVisibility(View.GONE);
 					break;
 				case 2:
+					productLbl.setVisibility(View.VISIBLE);
 					productTypeLbl.setVisibility(View.GONE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.GONE);
