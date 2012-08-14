@@ -127,7 +127,7 @@ public class SearchProduct extends Activity {
 				case 2:
 					if (UPCTXT.getText().toString().length() == 0) {
 						UPCTXT.setError("Enter a UPC");
-					} else if (productTXT.getText().toString().length() != 12) {
+					} else if (productTXT.getText().toString().length() > 12) {
 						UPCTXT.setError("UPC is 12 Digits");
 
 					} else {
