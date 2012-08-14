@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.team2.shopperhelper.library.DialogBox;
 
@@ -65,6 +66,7 @@ public class SearchProduct extends Activity {
 		/*
 		 *
 		 */
+		final TextView productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
 		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
 		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
 		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
@@ -178,13 +180,16 @@ public class SearchProduct extends Activity {
 					productTXT.setVisibility(View.VISIBLE);
 					productType.setVisibility(View.GONE);
 					UPCTXT.setVisibility(View.GONE);
+					productTypeLbl.setVisibility(View.GONE);
 					break;
 				case 1:
+					productTypeLbl.setVisibility(View.VISIBLE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.VISIBLE);
 					UPCTXT.setVisibility(View.GONE);
 					break;
 				case 2:
+					productTypeLbl.setVisibility(View.GONE);
 					productTXT.setVisibility(View.GONE);
 					productType.setVisibility(View.GONE);
 					UPCTXT.setVisibility(View.VISIBLE);
