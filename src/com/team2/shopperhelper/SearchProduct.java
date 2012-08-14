@@ -1,8 +1,10 @@
 package com.team2.shopperhelper;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +58,7 @@ public class SearchProduct extends Activity {
 	 * 
 	 * intent is setting up information for the next activity.
 	 */
-	@Override
+	@SuppressLint("CommitPrefEdits") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
@@ -73,7 +75,8 @@ public class SearchProduct extends Activity {
 		final ImageButton back = (ImageButton) findViewById(R.id.productBack);
 		final Intent intent = new Intent(this, ShowProduct.class);
 		final Intent previous = new Intent(this, SearchForStore.class);
-
+		final SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+		final SharedPreferences.Editor editor = settings.edit();
 		/*
 		 * This sequence is listening to see if the info button (?) was pressed.
 		 * If it was, it is going to trigger the dialog box, which will display
@@ -111,12 +114,14 @@ public class SearchProduct extends Activity {
 						productTXT.setError("Enter a Product Name");
 					} else {
 						querySave("productName", productTXT.getText()
-								.toString());
+								.toString(),editor);
+						newActivity(intent,productTXT,searchType,UPCTXT);
 					}
 					break;
 				case 1:
 					querySave("productType", productType.getSelectedItem()
-							.toString());
+							.toString(),editor);
+					newActivity(intent,productTXT,searchType,UPCTXT);
 
 					break;
 				case 2:
@@ -127,7 +132,8 @@ public class SearchProduct extends Activity {
 
 					} else {
 
-						querySave("UPC", UPCTXT.getText().toString());
+						querySave("UPC", UPCTXT.getText().toString(),editor);
+						newActivity(intent,productTXT,searchType,UPCTXT);
 					}
 
 				}
@@ -139,22 +145,8 @@ public class SearchProduct extends Activity {
 			 * method to accomplish all of this. The fields It will write the
 			 * values passed into the preferences to open in
 			 */
-			private void querySave(String valuea, String valueb) {
-				String fielda = "queryType";
-				String fieldb = "queryValue";
-
-				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putString(fielda, valuea);
-				editor.putString(fieldb, valueb);
-				editor.commit();
-				UPCTXT.setVisibility(View.GONE);
-				productTXT.setVisibility(View.VISIBLE);
-				productType.setVisibility(View.GONE);
-				startActivity(intent);
-				finish();
-
-			}
+			
+			
 
 		});
 
@@ -220,6 +212,35 @@ public class SearchProduct extends Activity {
 			}
 		});
 
+	}
+/**
+ * Resetting the display as well as starting the new activity.
+ * @param intent The Intent that will start the new activity
+ * @param productTXT the edit box for product name
+ * @param searchType the spinner for product type
+ * @param uPCTXT the edit box for UPC.
+ */
+	protected void newActivity(Intent intent, EditText productTXT, Spinner searchType, EditText uPCTXT) {
+		productTXT.setVisibility(View.VISIBLE);
+		searchType.setVisibility(View.GONE);
+		uPCTXT.setVisibility(View.GONE);
+		startActivity(intent);
+		finish();
+		
+	}
+/**
+ * Saving information to preference
+ * @param valueA the value for queryType
+ * @param valueB the value for queryValue
+ * @param editor the editor to commit this to pref.
+ */
+	protected void querySave(String valueA, String valueB, Editor editor) {
+		String fieldA = "queryType";
+		String fieldB = "queryValue";
+		editor.putString(fieldA, valueA);
+		editor.putString(fieldB, valueB);
+		editor.commit();
+		
 	}
 
 }
