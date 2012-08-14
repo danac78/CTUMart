@@ -102,12 +102,10 @@ public class ShowProduct extends Activity {
 		/*
 		 * Adding the parameters that will be required to do the search.
 		 */
-		parms.add(new BasicNameValuePair("queryType", setting.getString(
-				"queryType", null).toString()));
-		parms.add(new BasicNameValuePair("storeID", setting.getString(
-				"storeID", null).toString()));
-		parms.add(new BasicNameValuePair("queryValue", setting.getString(
-				"queryValue", null).toString()));
+		addParms("storeID", parms, setting);
+		addParms("queryType", parms, setting);
+		addParms("queryValue", parms, setting);
+
 		/*
 		 * Calling the JSONParser to get the JSONObject with the results from
 		 * the website.
@@ -146,30 +144,21 @@ public class ShowProduct extends Activity {
 				 */
 				for (int i = 0; i < listObjects.length(); i++) {
 
-					pr1.setName(listObjects.getJSONObject(i)
-							.getString("productName").toString());
+					pr1.setName(getListObject("productName", listObjects, i));
 
-					pr1.setPrice(stringChange("Price: $", listObjects
-							.getJSONObject(i).getString("price").toString()));
+					pr1.setPrice(stringChange("Price: $",
+							getListObject("price", listObjects, i)));
 
-					pr1.setInventoryCount(stringChange(
-							"Inventory: ",
-							listObjects.getJSONObject(i)
-									.getString("inventoryCount").toString()));
+					pr1.setInventoryCount(stringChange("Inventory: ",
+							getListObject("inventoryCount", listObjects, i)));
 
-					pr1.setSections(listObjects.getJSONObject(i)
-							.getString("Sections").toString());
+					pr1.setSections(getListObject("Sections", listObjects, i));
 
-					pr1.setAisle(listObjects.getJSONObject(i)
-							.getString("Aisle").toString());
-
-					listObjects.getJSONObject(i).getString("Aisle").toString();
+					pr1.setAisle(getListObject("Aisle", listObjects, i));
 
 					arrayResults.add(pr1);
-					getSection.add(listObjects.getJSONObject(i).getString(
-							"sectionMap"));
-					getAisle.add(listObjects.getJSONObject(i).getString(
-							"aisleMap"));
+					getSection.add(getListObject("sectionMap", listObjects, i));
+					getAisle.add(getListObject("aisleMap", listObjects, i));
 
 					pr1 = new SearchResults();
 				}
@@ -221,6 +210,34 @@ public class ShowProduct extends Activity {
 		});
 	}
 
+	/**
+	 * 
+	 * @param value
+	 * @param listObjects2
+	 * @param i
+	 * @return
+	 * @throws JSONException
+	 */
+	private String getListObject(String value, JSONArray listObjects, int i)
+			throws JSONException {
+
+		return listObjects.getJSONObject(i).getString(value).toString();
+	}
+
+	/**
+	 * Reducing the amount of times this array is typed out
+	 * 
+	 * @param value
+	 * @param parms
+	 * @param setting
+	 */
+	private void addParms(String value, List<NameValuePair> parms,
+			SharedPreferences setting) {
+
+		parms.add(new BasicNameValuePair(value, setting.getString(value, null)
+				.toString()));
+	}
+
 	/*
 	 * adding field names for each bit of information. (i.e. Price: $)
 	 */
@@ -232,7 +249,6 @@ public class ShowProduct extends Activity {
 		return sb.toString();
 	}
 
-	
 	public String getResults() {
 		return results;
 	}

@@ -92,6 +92,46 @@ public class JSONParser {
 		/*
 		 * Connect to the web and gather the information
 		 */
+
+		is = getHttp(parms, url);
+		/*
+		 * Convert it to a string and into a JSON object.
+		 */
+		try {
+			jsonObject = new JSONObject(getResults(is));
+		} catch (JSONException e) {
+
+			Log.e("JSON:", e.toString());
+		}
+
+		/*
+		 * Returning the JSON object to the procedure caller.
+		 */
+		return jsonObject;
+	}
+
+	private String getResults(InputStream is) {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "/n");
+			}
+			is.close();
+			results = sb.toString();
+
+		} catch (UnsupportedEncodingException e) {
+			Log.e("UnsupportedEncoding", e.toString());
+		} catch (IOException e) {
+			Log.e("IOException", e.toString());
+		}
+		return results;
+	}
+
+	private InputStream getHttp(List<NameValuePair> parms, String url) {
 		try {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -112,35 +152,8 @@ public class JSONParser {
 			Log.e("IOException", e.toString());
 
 		}
-		/*
-		 * Convert it to a string and into a JSON object.
-		 */
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					is, "iso-8859-1"), 8);
-			StringBuilder sb = new StringBuilder();
-			String line = null;
+		return is;
 
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "/n");
-			}
-			is.close();
-			results = sb.toString();
-			jsonObject = new JSONObject(results);
-
-		} catch (UnsupportedEncodingException e) {
-			Log.e("UnsupportedEncoding", e.toString());
-		} catch (IOException e) {
-			Log.e("IOException", e.toString());
-		} catch (JSONException e) {
-			Log.e("JSON", e.toString());
-
-		}
-
-		/*
-		 * Returning the JSON object to the procedure caller.
-		 */
-		return jsonObject;
 	}
 
 }
