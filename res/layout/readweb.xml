@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This will serve as the primary layout to display the listing of products available in the store. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -6,12 +7,18 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
 
+    <!--
+This is where each product will be listed individually, and will be divided by the divider to separate them visually. The
+background is different from the one used in the linearlayout to provide a contrasting color to separate them.
+    -->
+
     <ListView
         android:id="@+id/ListView01"
         android:layout_width="fill_parent"
         android:layout_height="379dp"
         android:background="@drawable/background"
         android:divider="@drawable/divider" />
+<!-- This is the back button that will be used to move to the previous screen. -->
 
     <ImageButton
         android:id="@+id/showProductBackBtn"
@@ -19,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@null"
+        android:contentDescription="@string/back_button"
         android:src="@drawable/back" />
 
 </LinearLayout>

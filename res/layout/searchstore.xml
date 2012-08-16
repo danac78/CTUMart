@@ -1,17 +1,24 @@
+<!-- This layout will be for the Search for Store process. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/background"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:ignore="ContentDescription" >
+    android:orientation="vertical" >
+
+<!-- Showing the logo of the store. -->
 
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ctumartlogo" />
+        android:contentDescription="@string/the_logo_for_the_store_"
+        android:src="@drawable/storelogo" />
+    <!--
+TextView and Spinner are presenting the store choices. The Spinner is connected to the String Array locations_available
+to bring information in.
+    -->
 
     <TextView
         android:id="@+id/location"
@@ -27,34 +34,49 @@
         android:entries="@array/locations_available"
         android:prompt="@string/selectCity" />
 
+<!-- This layout is to contain the buttons necessary to complete this operation. -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:gravity="center_horizontal" >
 
+<!-- The search button shall be assigned in Java to obtain the store Id and move to the next activity/layout. -->
+
         <ImageButton
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:contentDescription="@string/search_button"
             android:src="@drawable/search" />
+
+<!-- This button will be used for activating the in-app help options. -->
 
         <ImageButton
             android:id="@+id/helpStoreBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:contentDescription="@string/help_button"
             android:src="@drawable/questionmarkicon" />
+
+        <!--
+This button will appear if there were previous seaches, which is why the visability is set to gone. 
+What gone does is that it acts as if the button is not even part of the layout. This is different from
+invisible because invisable would just make the item disappear, but the layout would act as if something
+is there. Gone will act like nothing is there, which will prove useful in later layouts.
+        -->
 
         <ImageButton
             android:id="@+id/productLoadBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:contentDescription="@string/load_search_button"
             android:src="@drawable/load"
             android:visibility="gone" />
-
     </LinearLayout>
 
 </LinearLayout>

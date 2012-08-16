@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+This layout is for the Search Product layout. This is a little more complex than the search store because
+we are looking at multiple input. Although there is multiple input, we are only displaying one at a time.
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:ignore="HardcodedText,ContentDescription" >
+    android:orientation="vertical" >
+
+    <!-- The logo branding a particular store -->
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ctumartlogo" />
+        android:contentDescription="@string/the_logo_for_the_store_"
+        android:src="@drawable/storelogo" />
+    <!-- The default text that is displayed is enter info. This will apply for both UPC and Product Name searches. -->
 
     <TextView
         android:id="@+id/productLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_info" />
+        android:text="@string/enter_info"
+        android:visibility="visible" />
+
+    <!--
+The product type label is when the Product Type spinner is called for. It would seem odd to say "enter info"
+when the customer is selecting a type from the a dropdown.
+    -->
 
     <TextView
         android:id="@+id/productTypeLbl"
@@ -26,6 +39,12 @@
         android:layout_height="wrap_content"
         android:text="@string/productTypeLbl"
         android:visibility="gone" />
+    <!--
+As mentioned, the Spinner (dropdown) will be used for Product Type. It is associated with the string array
+productType, which holds each product type the stores will contain. Additionally, the gone is the default
+visibility for this layout. Without it, it would create a gap. With it, it will act like it is not even 
+there.
+    -->
 
     <Spinner
         android:id="@+id/productTypes"
@@ -33,6 +52,11 @@
         android:layout_height="wrap_content"
         android:entries="@array/productType"
         android:visibility="gone" />
+    <!--
+This edit text will be for entering product name, and will allow alphanumeric input. Java will pull
+from this information and decipher it in searchproduct.java. It also has the option for autocomplete,
+which will help type in commonly known words.
+    -->
 
     <EditText
         android:id="@+id/productTXT"
@@ -42,6 +66,10 @@
 
         <requestFocus />
     </EditText>
+    <!--
+The only difference between this and product is that this will only accept numbers. This removes
+an unnecessary validation tool because it is stopped in the layout. 
+    -->
 
     <EditText
         android:id="@+id/UPCTXT"
@@ -49,52 +77,66 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:visibility="gone" />
+    <!-- This is the label for the spinner for type of search. -->
 
     <TextView
         android:id="@+id/typeLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/type_info" />
+    <!--
+This spinner is holding the string array information that will dictate the type of search that will occur. There are
+only three types: UPC, Product Name, and Product Type.
+    -->
 
     <Spinner
         android:id="@+id/typeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/type_search_product" />
+    <!-- This is the layout that will hold the the search and back buttons -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal" >
 
+        <!-- Image Button for Search -->
+
         <ImageButton
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/search_button"
             android:src="@drawable/search" />
+        <!-- Image button for Back -->
 
         <ImageButton
             android:id="@+id/productBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:contentDescription="@string/back_button"
             android:src="@drawable/back" />
     </LinearLayout>
+    <!-- Image Button for Clear -->
 
     <ImageButton
         android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:contentDescription="@string/clear_button"
         android:src="@drawable/clear" />
+    <!-- Image Button for the Help functionality. -->
 
     <ImageButton
         android:id="@+id/searchProductHelp"
         android:layout_width="73dp"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:contentDescription="@string/help_button"
         android:src="@drawable/questionmarkicon" />
 
 </LinearLayout>
