@@ -49,8 +49,34 @@ public class JSONParser {
 	 * Going to contain the values we will be returning to Show Product.
 	 */
 	public JSONObject jsonObject;
-
+/**
+ * The input stream will read the values brought in by the web entity and help transfer them to a string.
+ */
 	private InputStream is = null;
+/**
+ * Creating a client for the application to connect to the Web with.
+ */
+	private DefaultHttpClient httpClient;
+/**
+ * Creates a POST in a format that the webpage will understand.
+ */
+	private HttpPost httpPost;
+/**
+ * Sends the POST to the webpage and receives the response.
+ */
+	private HttpResponse httpResponse;
+/**
+ * Generates an Entity with the information received.
+ */
+	private HttpEntity httpEntity;
+/**
+ * Setting up a Reader that will read all the information to translate to a string.
+ */
+	private BufferedReader reader;
+/**
+ * Translates the receives material into a string.
+ */
+	private StringBuilder sb;
 
 	/**
 	 * A simple JSONParser constructor.
@@ -92,14 +118,63 @@ public class JSONParser {
 		/*
 		 * Connect to the web and gather the information
 		 */
+
+		is = getHttp(parms, url);
+		/*
+		 * Convert it to a string and into a JSON object.
+		 */
+		try {
+			jsonObject = new JSONObject(getResults(is));
+		} catch (JSONException e) {
+
+			Log.e("JSON:", e.toString());
+		}
+
+		/*
+		 * Returning the JSON object to the procedure caller.
+		 */
+		return jsonObject;
+	}
+/**
+ * This is taking the input from the Web and translating it into a string.
+ * @param is The InputSteam containing the information.
+ * @return THe end results after the information changed into a string.
+ */
+	private String getResults(InputStream is) {
+		try {
+			reader = new BufferedReader(new InputStreamReader(
+					is, "iso-8859-1"), 8);
+			sb = new StringBuilder();
+			String line = null;
+
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "/n");
+			}
+			is.close();
+			results = sb.toString();
+
+		} catch (UnsupportedEncodingException e) {
+			Log.e("UnsupportedEncoding", e.toString());
+		} catch (IOException e) {
+			Log.e("IOException", e.toString());
+		}
+		return results;
+	}
+/**
+ * Sends the paramaters to the Web and receives a response for us to read.
+ * @param parms The name parameters (storeID, queryValue, queryType) used for the database to search.
+ * @param url The URL that the HTTP post will search for.
+ * @return the Input stream for further parsing.
+ */
+	private InputStream getHttp(List<NameValuePair> parms, String url) {
 		try {
 
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(url);
+			httpClient = new DefaultHttpClient();
+			httpPost = new HttpPost(url);
 			httpPost.setEntity(new UrlEncodedFormEntity(parms));
 
-			HttpResponse httpResponse = httpClient.execute(httpPost);
-			HttpEntity httpEntity = httpResponse.getEntity();
+			httpResponse = httpClient.execute(httpPost);
+			httpEntity = httpResponse.getEntity();
 			is = httpEntity.getContent();
 
 		} catch (UnsupportedEncodingException e) {
@@ -112,35 +187,8 @@ public class JSONParser {
 			Log.e("IOException", e.toString());
 
 		}
-		/*
-		 * Convert it to a string and into a JSON object.
-		 */
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					is, "iso-8859-1"), 8);
-			StringBuilder sb = new StringBuilder();
-			String line = null;
+		return is;
 
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "/n");
-			}
-			is.close();
-			results = sb.toString();
-			jsonObject = new JSONObject(results);
-
-		} catch (UnsupportedEncodingException e) {
-			Log.e("UnsupportedEncoding", e.toString());
-		} catch (IOException e) {
-			Log.e("IOException", e.toString());
-		} catch (JSONException e) {
-			Log.e("JSON", e.toString());
-
-		}
-
-		/*
-		 * Returning the JSON object to the procedure caller.
-		 */
-		return jsonObject;
 	}
 
 }

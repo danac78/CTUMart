@@ -1,6 +1,5 @@
 package com.team2.shopperhelper;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -47,16 +47,41 @@ import com.team2.shopperhelper.library.SearchResults;
  */
 
 public class ShowProduct extends Activity {
-	/*
+	/**
 	 * Using PREF_NAME to get the values back.
 	 */
 	public static final String PREF_NAME = "shopPref";
-	static InputStream is = null;
-	private String results;
-	private JSONObject jsonObject;
+
+	/**
+	 * Creating a jsonObject to contain the items received from JSONParser.
+	 */
 	private JSONObject productInfo;
+	/**
+	 * Creating an Array from productInfo.
+	 */
 	private JSONArray listObjects;
-	private static final String url = "http://darkenvisuals.com/android/";
+	/**
+	 * A constant that will be the URL that will be used for gathering the
+	 * information.
+	 */
+	private static final String URL = "http://darkenvisuals.com/android/";
+	/**
+	 * Used to store the section map values from the JSON parse.
+	 */
+	ArrayList<String> getSection = new ArrayList<String>();
+	/**
+	 * Used to store the aisle map values from the JSON parse.
+	 */
+	ArrayList<String> getAisle = new ArrayList<String>();
+	/**
+	 * Containing the items taken from the listObjects JSONArray and turning it
+	 * into a list item.
+	 */
+	ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
+	/**
+	 * This will create the connection to JSONParser.
+	 */
+	private JSONParser jsonParser;
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
@@ -86,11 +111,12 @@ public class ShowProduct extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 
-		JSONParser jsonParser = new JSONParser();
+		jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
 		final ImageButton backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
 		final Intent intent = new Intent(this, ShowSection.class);
+		final ListView lv1 = (ListView) findViewById(R.id.ListView01);
 		/*
 		 * This is where the android php page that be responsible for populating
 		 * this page. The first thing we need to do is create name value pairs
@@ -102,17 +128,15 @@ public class ShowProduct extends Activity {
 		/*
 		 * Adding the parameters that will be required to do the search.
 		 */
-		parms.add(new BasicNameValuePair("queryType", setting.getString(
-				"queryType", null).toString()));
-		parms.add(new BasicNameValuePair("storeID", setting.getString(
-				"storeID", null).toString()));
-		parms.add(new BasicNameValuePair("queryValue", setting.getString(
-				"queryValue", null).toString()));
+		addParms("storeID", parms, setting);
+		addParms("queryType", parms, setting);
+		addParms("queryValue", parms, setting);
+
 		/*
 		 * Calling the JSONParser to get the JSONObject with the results from
 		 * the website.
 		 */
-		productInfo = jsonParser.getJSONInformation(parms, url);
+		productInfo = jsonParser.getJSONInformation(parms, URL);
 		/*
 		 * It is checking to see if productInfo is null at the productlist.
 		 * Without this, trying to put this object into an array will cause an
@@ -131,85 +155,56 @@ public class ShowProduct extends Activity {
 			/*
 			 * Instantiating arrayResults that will be used to populate the list
 			 */
-			ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
-
+			SearchResults pr1 = new SearchResults();
 			try {
 				listObjects = productInfo.getJSONArray("productlist");
-				final ArrayList<String> getSection = new ArrayList<String>();
-				final ArrayList<String> getAisle = new ArrayList<String>();
-				SearchResults pr1 = new SearchResults();
-				/*
-				 * Pulling information from the JSON Array, and putting them
-				 * into holders. They will then be pushed into an array that is
-				 * following the format of SearchResults of the Shopper Helper
-				 * Library. Additionally, adding the maps values to an array.
-				 */
-				for (int i = 0; i < listObjects.length(); i++) {
-
-					pr1.setName(listObjects.getJSONObject(i)
-							.getString("productName").toString());
-
-					pr1.setPrice(stringChange("Price: $", listObjects
-							.getJSONObject(i).getString("price").toString()));
-
-					pr1.setInventoryCount(stringChange(
-							"Inventory: ",
-							listObjects.getJSONObject(i)
-									.getString("inventoryCount").toString()));
-
-					pr1.setSections(listObjects.getJSONObject(i)
-							.getString("Sections").toString());
-
-					pr1.setAisle(listObjects.getJSONObject(i)
-							.getString("Aisle").toString());
-
-					listObjects.getJSONObject(i).getString("Aisle").toString();
-
-					arrayResults.add(pr1);
-					getSection.add(listObjects.getJSONObject(i).getString(
-							"sectionMap"));
-					getAisle.add(listObjects.getJSONObject(i).getString(
-							"aisleMap"));
-
-					pr1 = new SearchResults();
+			} catch (JSONException e1) {
+				Log.e("JSON:", e1.toString());
+			}
+			for (int i = 0; i < listObjects.length(); i++) {
+				arrayResults = getListProducts(listObjects, arrayResults, pr1,
+						i);
+				try {
+					getSection = getSectionFromJson(listObjects, i);
+				} catch (JSONException e) {
+					Log.e("JSON:", e.toString());
 				}
+				try {
+					getAisle = getAisleFromJson(listObjects, i);
+				} catch (JSONException e) {
+					Log.e("JSON:", e.toString());
+				}
+				pr1 = new SearchResults();
+			}
+
+		}
+		/**
+		 * Sending the results to the ListView.
+		 */
+		lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+		lv1.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg, View view,
+					int position, long id) {
+
+				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+				SharedPreferences.Editor edit = settings.edit();
 				/*
-				 * Posting the information to ListView that was obtained from
-				 * the arraylist.
+				 * Saving the Map reference as it is in Android R.Java so we can
+				 * load the images up easily. We are saving them into internal
+				 * store.
 				 */
-				final ListView lv1 = (ListView) findViewById(R.id.ListView01);
-				lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+				edit.putString("sectionMap", getSection.get(position));
 
-				lv1.setOnItemClickListener(new OnItemClickListener() {
-
-					public void onItemClick(AdapterView<?> arg, View view,
-							int position, long id) {
-
-						SharedPreferences settings = getSharedPreferences(
-								PREF_NAME, 0);
-						SharedPreferences.Editor edit = settings.edit();
-						/*
-						 * Saving the Map reference as it is in Android R.Java
-						 * so we can load the images up easily. We are saving
-						 * them into internal store.
-						 */
-						edit.putString("sectionMap", getSection.get(position));
-
-						edit.putString("aisleMap", getAisle.get(position));
-						edit.commit();
-						startActivity(intent);
-						finish();
-
-					}
-
-				});
-
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				edit.putString("aisleMap", getAisle.get(position));
+				edit.commit();
+				startActivity(intent);
+				finish();
 
 			}
-		}
+
+		});
+
 		backButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -221,31 +216,142 @@ public class ShowProduct extends Activity {
 		});
 	}
 
+	/**
+	 * Retrieving the Aisle map from the JSON Array
+	 * 
+	 * @param listObjects2
+	 *            JSON Array holding the information.
+	 * @param i
+	 *            The iteration the procedure call is on.
+	 * @return Sending array back.
+	 * @throws JSONException
+	 *             In case there is a problem. Technically, there should not be
+	 *             a problem because we catch this prior to the loop with
+	 *             if/else statement. If the productlist is null, it gives a
+	 *             dialog.
+	 */
+	private ArrayList<String> getAisleFromJson(JSONArray listObjects2, int i)
+			throws JSONException {
+		getAisle.add(getListObject("aisleMap", listObjects, i));
+		return getAisle;
+	}
+
+	/**
+	 * Getting the Section Map for the Array
+	 * 
+	 * @param listObjects2
+	 *            The JSON Array we are pulling the information from
+	 * @param i
+	 *            The iteration the procedure call is on.
+	 * @return returning the getSection arraylist.
+	 * @throws JSONException
+	 *             Not necessary, but done because Java will have a fit.
+	 */
+	private ArrayList<String> getSectionFromJson(JSONArray listObjects2, int i)
+			throws JSONException {
+		getSection.add(getListObject("sectionMap", listObjects, i));
+		return getSection;
+	}
+
+	/**
+	 * Pulling information from the JSON Array, and putting them into holders.
+	 * They will then be pushed into an array that is following the format of
+	 * SearchResults of the Shopper Helper Library. Additionally, adding the
+	 * maps values to an array.
+	 * 
+	 * @param listObjects
+	 *            The JSON Array carrying the information
+	 * @param arrayResults
+	 *            The results that will be feed to the screen.
+	 * @param pr1
+	 *            The format the screen will done in.
+	 * @param i
+	 *            The iteration the procedure call is on.
+	 * @return returning the arraylist.
+	 */
+	private ArrayList<SearchResults> getListProducts(JSONArray listObjects,
+			ArrayList<SearchResults> arrayResults, SearchResults pr1, int i) {
+
+		try {
+
+			pr1.setName(getListObject("productName", listObjects, i));
+
+			pr1.setPrice(stringChange("Price: $",
+					getListObject("price", listObjects, i)));
+
+			pr1.setInventoryCount(stringChange("Inventory: ",
+					getListObject("inventoryCount", listObjects, i)));
+
+			pr1.setSections(getListObject("Sections", listObjects, i));
+
+			pr1.setAisle(getListObject("Aisle", listObjects, i));
+
+			arrayResults.add(pr1);
+
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return arrayResults;
+	}
+
+	/**
+	 * Obtaining the item from ListObject to be placed into an ArrayList.
+	 * 
+	 * @param value
+	 *            The name of the value we are looking for (i.e. inventoryCount)
+	 * @param listObjects2
+	 *            The JSONArray that we are searching.
+	 * @param i
+	 *            The iteration that the procedure call is on.
+	 * @return Returning the value to be placed in the list.
+	 * @throws JSONException
+	 */
+	private String getListObject(String value, JSONArray listObjects, int i)
+			throws JSONException {
+
+		return listObjects.getJSONObject(i).getString(value).toString();
+
+	}
+
+	/**
+	 * Reducing the amount of times this array is typed out
+	 * 
+	 * @param value
+	 *            The type of value the item is.
+	 * @param parms
+	 *            The parms array that we are adding to.
+	 * @param setting
+	 *            The Preference setting we are using to get the value.
+	 */
+	private void addParms(String value, List<NameValuePair> parms,
+			SharedPreferences setting) {
+
+		parms.add(new BasicNameValuePair(value, setting.getString(value, null)
+				.toString()));
+	}
+
 	/*
 	 * adding field names for each bit of information. (i.e. Price: $)
 	 */
-	private String stringChange(String type, String database) {
+	/**
+	 * Creating a string for the show product screen so it can show price and
+	 * inventory on the screen.
+	 * 
+	 * @param type
+	 *            Adding the type of item that it will be shown as (i.e. Price:
+	 *            $)
+	 * @param value
+	 *            The value that will be the suffix of the type.
+	 * @return returns the combined string.
+	 */
+	private String stringChange(String type, String value) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(type);
-		sb.append(database);
+		sb.append(value);
 		return sb.toString();
 	}
 
-	
-	public String getResults() {
-		return results;
-	}
-
-	public void setResults(String results) {
-		this.results = results;
-	}
-
-	public JSONObject getJsonObject() {
-		return jsonObject;
-	}
-
-	public void setJsonObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
-	}
 }

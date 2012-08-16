@@ -20,18 +20,18 @@
         android:layout_height="wrap_content"
         android:text="@string/enter_info" />
 
-    <Spinner
-        android:id="@+id/productTypes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/productType"
-        android:visibility="gone" />
-
     <TextView
         android:id="@+id/productTypeLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/productTypeLbl"
+        android:visibility="gone" />
+
+    <Spinner
+        android:id="@+id/productTypes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/productType"
         android:visibility="gone" />
 
     <EditText

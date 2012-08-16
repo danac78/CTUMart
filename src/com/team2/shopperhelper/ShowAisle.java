@@ -23,7 +23,9 @@ import android.widget.ImageView;
  * 
  */
 public class ShowAisle extends Activity {
-
+/**
+ * Storing the preference file name.
+ */
 	private static final String PREF_NAME = "shopPref";
 
 	@Override

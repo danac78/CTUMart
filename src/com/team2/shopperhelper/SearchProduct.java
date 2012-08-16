@@ -147,9 +147,7 @@ public class SearchProduct extends Activity {
 			 * Instead of writing the code three different times, creating a
 			 * method to accomplish all of this. The fields It will write the
 			 * values passed into the preferences to open in
-			 */
-			
-			
+			 */				
 
 		});
 

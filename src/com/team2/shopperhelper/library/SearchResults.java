@@ -14,10 +14,26 @@ package com.team2.shopperhelper.library;
  * 
  */
 public class SearchResults {
+	/**
+	 * Will hold the product name
+	 */
 	private String name = "";
+	/**
+	 * Will hold the price.
+	 */
 	private String price = "";
+	/**
+	 * Will hold the inventory count
+	 */
 	private String inventoryCount = "";
+	
+	/**
+	 * Will hold the Sections
+	 */
 	private String sections = "";
+	/**
+	 * Will hold the aisles.
+	 */
 	private String aisle = "";
 
 	/**

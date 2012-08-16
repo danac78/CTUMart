@@ -43,6 +43,10 @@ public class SearchForStore extends Activity {
 	 * internal memory.
 	 */
 	public static final String PREF_NAME = "shopPref";
+	/**
+	 * Creating a key that will be checked to see if the Load button will be visable or 
+	 * not.
+	 */
 	private static final String KEY = "queryType";
 
 	/**
@@ -69,6 +73,7 @@ public class SearchForStore extends Activity {
 		 * calling the searchstore layout to have it display that screen.
 		 */
 		setContentView(R.layout.searchstore);
+		
 		final Intent loadIntent = new Intent(this, ShowProduct.class);
 		final Intent intent = new Intent(this, SearchProduct.class);
 		final ImageButton search = (ImageButton) findViewById(R.id.search);
@@ -128,7 +133,6 @@ public class SearchForStore extends Activity {
 				finish();
 
 			}
-
 		}
 
 		);
