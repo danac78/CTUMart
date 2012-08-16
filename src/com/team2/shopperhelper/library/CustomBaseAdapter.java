@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 /**
  * Creating a Custom List with multiple values.
+ * 
  * @author Dana Haywood
  * @version 0.5.2
  * @since 7/20/2012 <br>
@@ -36,10 +37,16 @@ import android.widget.TextView;
  */
 
 public class CustomBaseAdapter extends BaseAdapter {
-	
 
+	/**
+	 * Contains the array passed on from ShowProduct and uses it to format it
+	 * correctly.
+	 */
 	private static ArrayList<SearchResults> searchArrayList;
-
+	/**
+	 * Setting up the LayOutinflater in order to insert a TextView layout into a
+	 * ListView layout.
+	 */
 	private LayoutInflater mInflater;
 
 	/**

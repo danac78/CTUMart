@@ -12,6 +12,7 @@ import com.team2.shopperhelper.library.DialogBox;
 
 /**
  * Activity to check Internet and Compatibility issues prior to proceeding.
+ * 
  * @author Dana Haywood
  * @version 0.5.2
  * @since 7/10/2012<br>
@@ -38,9 +39,20 @@ import com.team2.shopperhelper.library.DialogBox;
  */
 
 public class Launch extends Activity {
-
+	/**
+	 * Holds the value if the Mobile internet is connected. Tried to use just
+	 * the boolean, but it kept letting the shopper app continue.
+	 */
 	private String mobileIsConnect;
+	/**
+	 * Holds the value if the WiFi internet is connected. Tried to use just
+	 * the boolean, but it kept letting the shopper app continue.
+	 */
 	private String wifiIsConnect;
+	
+	/**
+	 * Contains the value from SDK version.
+	 */
 	private int checkVersion;
 
 	/**
@@ -86,13 +98,14 @@ public class Launch extends Activity {
 				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		NetworkInfo mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		//mobileIsConnect = "false";
+		// mobileIsConnect = "false";
+
 		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
-		//checkVersion = 7;
+		// checkVersion = 7;
 		Intent intent = new Intent(this, SearchForStore.class);
-		
+
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 

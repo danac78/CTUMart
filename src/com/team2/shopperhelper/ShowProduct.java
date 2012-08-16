@@ -1,6 +1,5 @@
 package com.team2.shopperhelper;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,19 +47,41 @@ import com.team2.shopperhelper.library.SearchResults;
  */
 
 public class ShowProduct extends Activity {
-	/*
+	/**
 	 * Using PREF_NAME to get the values back.
 	 */
 	public static final String PREF_NAME = "shopPref";
-	static InputStream is = null;
-	private String results;
-	private JSONObject jsonObject;
+
+	/**
+	 * Creating a jsonObject to contain the items received from JSONParser.
+	 */
 	private JSONObject productInfo;
+	/**
+	 * Creating an Array from productInfo.
+	 */
 	private JSONArray listObjects;
-	private static final String url = "http://darkenvisuals.com/android/";
+	/**
+	 * A constant that will be the URL that will be used for gathering the
+	 * information.
+	 */
+	private static final String URL = "http://darkenvisuals.com/android/";
+	/**
+	 * Used to store the section map values from the JSON parse.
+	 */
 	ArrayList<String> getSection = new ArrayList<String>();
+	/**
+	 * Used to store the aisle map values from the JSON parse.
+	 */
 	ArrayList<String> getAisle = new ArrayList<String>();
+	/**
+	 * Containing the items taken from the listObjects JSONArray and turning it
+	 * into a list item.
+	 */
 	ArrayList<SearchResults> arrayResults = new ArrayList<SearchResults>();
+	/**
+	 * This will create the connection to JSONParser.
+	 */
+	private JSONParser jsonParser;
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
@@ -90,7 +111,7 @@ public class ShowProduct extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 
-		JSONParser jsonParser = new JSONParser();
+		jsonParser = new JSONParser();
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
 		final ImageButton backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
 		final Intent prevIntent = new Intent(this, SearchProduct.class);
@@ -115,7 +136,7 @@ public class ShowProduct extends Activity {
 		 * Calling the JSONParser to get the JSONObject with the results from
 		 * the website.
 		 */
-		productInfo = jsonParser.getJSONInformation(parms, url);
+		productInfo = jsonParser.getJSONInformation(parms, URL);
 		/*
 		 * It is checking to see if productInfo is null at the productlist.
 		 * Without this, trying to put this object into an array will cause an
@@ -276,11 +297,15 @@ public class ShowProduct extends Activity {
 	}
 
 	/**
+	 * Obtaining the item from ListObject to be placed into an ArrayList.
 	 * 
 	 * @param value
+	 *            The name of the value we are looking for (i.e. inventoryCount)
 	 * @param listObjects2
+	 *            The JSONArray that we are searching.
 	 * @param i
-	 * @return
+	 *            The iteration that the procedure call is on.
+	 * @return Returning the value to be placed in the list.
 	 * @throws JSONException
 	 */
 	private String getListObject(String value, JSONArray listObjects, int i)
@@ -294,8 +319,11 @@ public class ShowProduct extends Activity {
 	 * Reducing the amount of times this array is typed out
 	 * 
 	 * @param value
+	 *            The type of value the item is.
 	 * @param parms
+	 *            The parms array that we are adding to.
 	 * @param setting
+	 *            The Preference setting we are using to get the value.
 	 */
 	private void addParms(String value, List<NameValuePair> parms,
 			SharedPreferences setting) {
@@ -326,19 +354,4 @@ public class ShowProduct extends Activity {
 		return sb.toString();
 	}
 
-	public String getResults() {
-		return results;
-	}
-
-	public void setResults(String results) {
-		this.results = results;
-	}
-
-	public JSONObject getJsonObject() {
-		return jsonObject;
-	}
-
-	public void setJsonObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
-	}
 }
