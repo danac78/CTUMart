@@ -39,6 +39,10 @@ import com.team2.shopperhelper.library.DialogBox;
 
 public class Launch extends Activity {
 
+	private String mobileIsConnect;
+	private String wifiIsConnect;
+	private int checkVersion;
+
 	/**
 	 * <p>
 	 * The onCreate method is basically running to launch the application. The
@@ -82,12 +86,13 @@ public class Launch extends Activity {
 				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		NetworkInfo mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-		String mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
-		String wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
-		int checkVersion = Integer.parseInt(Build.VERSION.SDK);
+		//mobileIsConnect = "false";
+		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
+		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
+		checkVersion = Integer.parseInt(Build.VERSION.SDK);
+		//checkVersion = 7;
 		Intent intent = new Intent(this, SearchForStore.class);
-
+		
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 
