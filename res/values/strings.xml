@@ -9,7 +9,7 @@
     <string name="compatibleError">This application is meant for Android 2.2 or greater. If this is Android 2.2 
         or greater, check with your manufacture why it is not reporting this.</string>
     <string name="description">Shopper Helper is an application available for API 8+, which will assist with finding a product in the Shopper Helper Store. This is an Academic Project for IT482–1203C-01 Team 2.</string>
-    <string name="codeName">Jeff</string>
+    <string name="codeName">Kevin</string>
     <string name="start_search">Start Search</string>
     <string name="enter_info">Enter Info</string>
     <string name="locations_available">Locations Available</string>
@@ -51,8 +51,15 @@
     <string name="selectCity">Select the Store City</string>
     <string name="close">Close</string>
     <string name="no_product_found">Sorry, but no products were found with the information provided.</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_show_section">ShowSection</string>
     <string name="productTypeLbl">Select a Type</string>
+    <string name="the_logo_for_the_store_">The logo for the store.</string>
+    <string name="the_button_layout">Layout for the Buttons for Operation.</string>
+    <string name="search_button">The Search Button</string>
+    <string name="help_button">The Help Button</string>
+    <string name="load_search_button">This button will be used to load previous searches.</string>
+    <string name="back_button">This is the image for the back button used in most layouts.</string>
+    <string name="clear_button">This is the clear button for the layout.</string>
+    <string name="map_of_store">The display of a section/aisle map for the store.</string>
 
 </resources>
