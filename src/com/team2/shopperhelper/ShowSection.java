@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-/**Showing the Section Map for the Store.
+/**
  * @author Dana Haywood
  * @version 0.5.2
  * @since 8/10/2012 <br>
@@ -28,7 +28,6 @@ public class ShowSection extends Activity {
 	private static final String PREF_NAME = "shopPref";
 
 	@Override
-	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showmap);
