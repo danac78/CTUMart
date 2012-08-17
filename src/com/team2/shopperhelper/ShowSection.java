@@ -26,22 +26,38 @@ public class ShowSection extends Activity {
 	 * Constant to contain the value of the shopPref preference file name.
 	 */
 	private static final String PREF_NAME = "shopPref";
+	/**
+	 * The intent set up to go look at the Aisle.
+	 */
+	private Intent aisleIntent;
+	/**
+	 * This will be setup to take yo back to ShowProduct.class.
+	 */
+	private Intent backIntent;
+	/**
+	 * The back button will activate the intent.
+	 */
+	private ImageButton back;
+	/**
+	 * Settings to pull the Section information so we can display the picture.
+	 */
+	private SharedPreferences settings;
+	/**
+	 * the image view to display the image.
+	 */
+	private ImageView image;
 
 	@Override
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showmap);
-
-		/*
-		 * Declaring two intents: One is to return to ShowProduct and one is to
-		 * show the aisle
-		 */
-		final Intent aisleIntent = new Intent(this, ShowAisle.class);
-		final Intent backIntent = new Intent(this, ShowProduct.class);
-		ImageButton back = (ImageButton) findViewById(R.id.mapBackBtn);
-		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-		ImageView image = (ImageView) findViewById(R.id.mapView);
+		
+		aisleIntent = new Intent(this, ShowAisle.class);
+		backIntent = new Intent(this, ShowProduct.class);
+		back = (ImageButton) findViewById(R.id.mapBackBtn);
+		settings = getSharedPreferences(PREF_NAME, 0);
+		image = (ImageView) findViewById(R.id.mapView);
 
 		/**
 		 * Acquiring the sectionMap value from preference and assigning it to

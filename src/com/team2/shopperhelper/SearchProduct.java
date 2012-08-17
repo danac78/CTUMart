@@ -46,40 +46,92 @@ public class SearchProduct extends Activity {
 	 * value.
 	 */
 	public static final String PREF_NAME = "shopPref";
-
 	/**
-	 * Creating instances of Edit Text and Image Buttons to manipulate.
-	 * 
-	 * productTXT is for collecting the Product Name. UPCTXT is set to only
-	 * accept numbers, so only the UPC. productType is a spinner that will have
-	 * the different productType searchType will tell the application which one
-	 * is going to be used.
-	 * 
-	 * this activity has three buttons: search, info, and clear.
-	 * 
-	 * intent is setting up information for the next activity.
+	 * This is the default label with "Enter Info". This will be set to gone if
+	 * product type search is selected.
 	 */
-	@SuppressLint("CommitPrefEdits") @Override
+	private TextView productLbl;
+	/**
+	 * This is primary to make the label visible if a Product Type search is to
+	 * be done. This way the text is relevant to what being search. It looks a
+	 * little ridiculous to enter info when it is a drop down box.
+	 */
+	private TextView productTypeLbl;
+	/**
+	 * The Editbox for the Product Name.
+	 */
+	private EditText productTXT;
+	/**
+	 * The Editbox for the UPC
+	 */
+	private EditText UPCTXT;
+	/**
+	 * The Spinner to declare a product type.
+	 */
+	private Spinner productType;
+	/**
+	 * Allows the Activity to change between different search types.
+	 */
+	private Spinner searchType;
+	/**
+	 * The button to take the values received, save it to the preferences, and
+	 * go to ShowProduct.
+	 */
+	private ImageButton search;
+	/**
+	 * The button to activate the In-App help system.
+	 */
+	private ImageButton info;
+	/**
+	 * This will clear all the values and restore than back to the defaults.
+	 */
+	private ImageButton clear;
+	/**
+	 * This will send the activity to the previous activity.
+	 */
+	private ImageButton back;
+	/**
+	 * The intent set for ShowProduct activity.
+	 */
+	private Intent intent;
+	/**
+	 * The intent set for Search for Store activity.
+	 */
+	private Intent previous;
+	/**
+	 * The settings for the SharedPreferences, which saves the information into
+	 * Internal Storage.
+	 */
+	private SharedPreferences settings;
+	/**
+	 * The editor that will store information into internal storage. The Search
+	 * Type and Search Value.
+	 */
+	private Editor editor;
+
+	
+	@SuppressLint("CommitPrefEdits")
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
 		/*
 		 *
 		 */
-		final TextView productLbl = (TextView) findViewById(R.id.productLbl);
-		final TextView productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
-		final EditText productTXT = (EditText) findViewById(R.id.productTXT);
-		final EditText UPCTXT = (EditText) findViewById(R.id.UPCTXT);
-		final Spinner productType = (Spinner) findViewById(R.id.productTypes);
-		final Spinner searchType = (Spinner) findViewById(R.id.typeID);
-		final ImageButton search = (ImageButton) findViewById(R.id.search);
-		final ImageButton info = (ImageButton) findViewById(R.id.searchProductHelp);
-		final ImageButton clear = (ImageButton) findViewById(R.id.clear);
-		final ImageButton back = (ImageButton) findViewById(R.id.productBack);
-		final Intent intent = new Intent(this, ShowProduct.class);
-		final Intent previous = new Intent(this, SearchForStore.class);
-		final SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-		final SharedPreferences.Editor editor = settings.edit();
+		productLbl = (TextView) findViewById(R.id.productLbl);
+		productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
+		productTXT = (EditText) findViewById(R.id.productTXT);
+		UPCTXT = (EditText) findViewById(R.id.UPCTXT);
+		productType = (Spinner) findViewById(R.id.productTypes);
+		searchType = (Spinner) findViewById(R.id.typeID);
+		search = (ImageButton) findViewById(R.id.search);
+		info = (ImageButton) findViewById(R.id.searchProductHelp);
+		clear = (ImageButton) findViewById(R.id.clear);
+		back = (ImageButton) findViewById(R.id.productBack);
+		intent = new Intent(this, ShowProduct.class);
+		previous = new Intent(this, SearchForStore.class);
+		settings = getSharedPreferences(PREF_NAME, 0);
+		editor = settings.edit();
 		/*
 		 * This sequence is listening to see if the info button (?) was pressed.
 		 * If it was, it is going to trigger the dialog box, which will display
@@ -117,14 +169,14 @@ public class SearchProduct extends Activity {
 						productTXT.setError("Enter a Product Name");
 					} else {
 						querySave("productName", productTXT.getText()
-								.toString(),editor);
-						newActivity(intent,productTXT,searchType,UPCTXT);
+								.toString(), editor);
+						newActivity(intent, productTXT, searchType, UPCTXT);
 					}
 					break;
 				case 1:
 					querySave("productType", productType.getSelectedItem()
-							.toString(),editor);
-					newActivity(intent,productTXT,searchType,UPCTXT);
+							.toString(), editor);
+					newActivity(intent, productTXT, searchType, UPCTXT);
 
 					break;
 				case 2:
@@ -135,8 +187,8 @@ public class SearchProduct extends Activity {
 
 					} else {
 
-						querySave("UPC", UPCTXT.getText().toString(),editor);
-						newActivity(intent,productTXT,searchType,UPCTXT);
+						querySave("UPC", UPCTXT.getText().toString(), editor);
+						newActivity(intent, productTXT, searchType, UPCTXT);
 					}
 
 				}
@@ -147,7 +199,7 @@ public class SearchProduct extends Activity {
 			 * Instead of writing the code three different times, creating a
 			 * method to accomplish all of this. The fields It will write the
 			 * values passed into the preferences to open in
-			 */				
+			 */
 
 		});
 
@@ -220,34 +272,46 @@ public class SearchProduct extends Activity {
 		});
 
 	}
-/**
- * Resetting the display as well as starting the new activity.
- * @param intent The Intent that will start the new activity
- * @param productTXT the edit box for product name
- * @param searchType the spinner for product type
- * @param uPCTXT the edit box for UPC.
- */
-	protected void newActivity(Intent intent, EditText productTXT, Spinner searchType, EditText uPCTXT) {
+
+	/**
+	 * Resetting the display as well as starting the new activity.
+	 * 
+	 * @param intent
+	 *            The Intent that will start the new activity
+	 * @param productTXT
+	 *            the edit box for product name
+	 * @param searchType
+	 *            the spinner for product type
+	 * @param uPCTXT
+	 *            the edit box for UPC.
+	 */
+	protected void newActivity(Intent intent, EditText productTXT,
+			Spinner searchType, EditText uPCTXT) {
 		productTXT.setVisibility(View.VISIBLE);
 		searchType.setVisibility(View.GONE);
 		uPCTXT.setVisibility(View.GONE);
 		startActivity(intent);
 		finish();
-		
+
 	}
-/**
- * Saving information to preference
- * @param valueA the value for queryType
- * @param valueB the value for queryValue
- * @param editor the editor to commit this to pref.
- */
+
+	/**
+	 * Saving information to preference
+	 * 
+	 * @param valueA
+	 *            the value for queryType
+	 * @param valueB
+	 *            the value for queryValue
+	 * @param editor
+	 *            the editor to commit this to pref.
+	 */
 	protected void querySave(String valueA, String valueB, Editor editor) {
 		String fieldA = "queryType";
 		String fieldB = "queryValue";
 		editor.putString(fieldA, valueA);
 		editor.putString(fieldB, valueB);
 		editor.commit();
-		
+
 	}
 
 }

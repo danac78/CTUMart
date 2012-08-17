@@ -26,6 +26,11 @@ import com.team2.shopperhelper.R;
  * 
  */
 public class DialogBox extends Activity {
+	/**
+	 * This will be used to create a dialog box to display information for the
+	 * customer.
+	 */
+	private Dialog dialog;
 
 	/**
 	 * A constructor to instantiate it in other classes.
@@ -50,7 +55,7 @@ public class DialogBox extends Activity {
 		/**
 		 * Instantiate the dialog box with the information passed along.
 		 */
-		final Dialog dialog = new Dialog(class1);
+		dialog = new Dialog(class1);
 		dialog.setContentView(R.layout.dialog);
 		dialog.setTitle(msg);
 		dialog.setCancelable(true);

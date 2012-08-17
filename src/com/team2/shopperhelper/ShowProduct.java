@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,48 +83,64 @@ public class ShowProduct extends Activity {
 	 * This will create the connection to JSONParser.
 	 */
 	private JSONParser jsonParser;
+	/**
+	 * Creating the setting to acquire the storeID, queryType, and queryValue to
+	 * pass onto the JSONParser.
+	 */
+	private SharedPreferences setting;
+
+	private ImageButton backButton;
+
+	private Intent prevIntent;
+	/**
+	 * * intent shall be used to get us to the next activity, which will show
+	 * the section map.
+	 */
+	private Intent intent;
+	/**
+	 * ListView where the custom rows will be inserted into.
+	 */
+	private ListView lv1;
+	/**
+	 * SearchResult will create a string array to place into an arraylist.
+	 */
+	private SearchResults pr1;
+	/**
+	 * Configuring the settings in protected mode to move into the listener.
+	 * This will save the information for the Section and Aisle map.
+	 */
+	protected SharedPreferences settings;
+	/**
+	 * Saves the Information for the section and aisle map.
+	 */
+	protected Editor edit;
+	/**
+	 * parms : nameValuePairs will contain the information required to do the
+	 * search function.
+	 */
+	private ArrayList<NameValuePair> parms;
 
 	// private static final String url =
 	// "http://http://www.fuelradio.fm/ctumart/android.php";
-	/**
-	 * Parsing the web and showing the results. setting : Used to store
-	 * information internally. queryType and queryValue should be seen like:
-	 * 
-	 * WHERE queryType=queryValue;
-	 * 
-	 * ListView where the custom rows will be inserted into.
-	 * 
-	 * httppost will be connecting the android to the webpage
-	 * 
-	 * ProductResult will create a string array to place into an arraylist.
-	 * 
-	 * nameValuePairs will contain the information required to do the search
-	 * function.
-	 * 
-	 * input and sqlResults are for gaining and storing the results from the
-	 * webpage.
-	 * 
-	 * intent shall be used to get us to the next activity, which will show the
-	 * section map.
-	 */
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
 
 		jsonParser = new JSONParser();
-		SharedPreferences setting = getSharedPreferences(PREF_NAME, 0);
-		final ImageButton backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
-		final Intent prevIntent = new Intent(this, SearchProduct.class);
-		final Intent intent = new Intent(this, ShowSection.class);
-		final ListView lv1 = (ListView) findViewById(R.id.ListView01);
+		setting = getSharedPreferences(PREF_NAME, 0);
+		backButton = (ImageButton) findViewById(R.id.showProductBackBtn);
+		prevIntent = new Intent(this, SearchProduct.class);
+		intent = new Intent(this, ShowSection.class);
+		lv1 = (ListView) findViewById(R.id.ListView01);
 		/*
 		 * This is where the android php page that be responsible for populating
 		 * this page. The first thing we need to do is create name value pairs
 		 * that will hold the values we are passing to the web page.
 		 */
 
-		List<NameValuePair> parms = new ArrayList<NameValuePair>();
+		parms = new ArrayList<NameValuePair>();
 
 		/*
 		 * Adding the parameters that will be required to do the search.
@@ -155,7 +172,7 @@ public class ShowProduct extends Activity {
 			/*
 			 * Instantiating arrayResults that will be used to populate the list
 			 */
-			SearchResults pr1 = new SearchResults();
+			pr1 = new SearchResults();
 			try {
 				listObjects = productInfo.getJSONArray("productlist");
 			} catch (JSONException e1) {
@@ -187,8 +204,8 @@ public class ShowProduct extends Activity {
 			public void onItemClick(AdapterView<?> arg, View view,
 					int position, long id) {
 
-				SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-				SharedPreferences.Editor edit = settings.edit();
+				settings = getSharedPreferences(PREF_NAME, 0);
+				edit = settings.edit();
 				/*
 				 * Saving the Map reference as it is in Android R.Java so we can
 				 * load the images up easily. We are saving them into internal
@@ -332,9 +349,6 @@ public class ShowProduct extends Activity {
 				.toString()));
 	}
 
-	/*
-	 * adding field names for each bit of information. (i.e. Price: $)
-	 */
 	/**
 	 * Creating a string for the show product screen so it can show price and
 	 * inventory on the screen.

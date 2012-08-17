@@ -23,26 +23,36 @@ import android.widget.ImageView;
  * 
  */
 public class ShowAisle extends Activity {
-/**
- * Storing the preference file name.
- */
+	/**
+	 * Storing the preference file name.
+	 */
 	private static final String PREF_NAME = "shopPref";
+	/**
+	 * Setting up an intent to go back to ShowProduct
+	 */
+	private Intent intent;
+	/**
+	 * The button that will use the Intent to send back to ShowProduct
+	 */
+	private ImageButton back;
+	/**
+	 * The imageview that will display the aisle image.
+	 */
+	private ImageView image;
+	/**
+	 * The settings for SharedPreferences used to grab the value for showing the
+	 * correct Aisle Map.
+	 */
+	private SharedPreferences settings;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showmap);
-		final Intent intent = new Intent(this, ShowProduct.class);
-		ImageButton back = (ImageButton) findViewById(R.id.mapBackBtn);
-		/*
-		 * Setting up the imageview to set an image onto the screen
-		 */
-		ImageView image = (ImageView) findViewById(R.id.mapView);
-		/*
-		 * Setting up sharedpreferences to be able to read values from internal
-		 * storage.
-		 */
-		SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+		intent = new Intent(this, ShowProduct.class);
+		back = (ImageButton) findViewById(R.id.mapBackBtn);
+		image = (ImageView) findViewById(R.id.mapView);
+		settings = getSharedPreferences(PREF_NAME, 0);
 
 		/*
 		 * Grabbing aisle map and putting it on the screen.

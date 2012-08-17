@@ -23,7 +23,6 @@ import com.team2.shopperhelper.library.DialogBox;
  *        Source Cite: http://developer.android.com/guide/components/index.html<br>
  *        Commented by:<br>
  * 
- * 
  *        <p>
  *        This class is the initial activity that is launched when the icon is
  *        tapped on. It will direct itself into Search for Store, but it needs
@@ -45,47 +44,51 @@ public class Launch extends Activity {
 	 */
 	private String mobileIsConnect;
 	/**
-	 * Holds the value if the WiFi internet is connected. Tried to use just
-	 * the boolean, but it kept letting the shopper app continue.
+	 * Holds the value if the WiFi internet is connected. Tried to use just the
+	 * boolean, but it kept letting the shopper app continue.
 	 */
 	private String wifiIsConnect;
-	
+
 	/**
 	 * Contains the value from SDK version.
 	 */
 	private int checkVersion;
+	/**
+	 * This is gathering the API level the device is using. For example, Android
+	 * 2.2. would be API 8 The purpose for parsing it is that below Android 2.x,
+	 * they did not have the Integer version. Technically, they could bypass
+	 * this check if I did it that way.
+	 */
+	private ConnectivityManager connectivity;
+	/**
+	 * This is invoking the Connectivity Manager, which is part of the Android
+	 * API. it is how we are going learn if the internet is on or off.
+	 */
+	private NetworkInfo mobileInfo;
+	/**
+	 * This will hold the information pertaining to Wifi connection.
+	 */
+	private NetworkInfo wiFiInfo;
+	/**
+	 * This is declaring the next Activity that will be opened if the two checks
+	 * passes.
+	 */
+	private Intent intent;
+	
+	/**
+	 * Creating a dialog box for this activity.
+	 */
+	private DialogBox dialog;
 
 	/**
 	 * <p>
 	 * The onCreate method is basically running to launch the application. The
 	 * sole purpose is to ensure that the application is compatible and has
-	 * Internet. The following processes occur:
-	 * <ol>
-	 * <li><b>connectivity</b>: This is invoking the Connectivity Manager, which
-	 * is part of the Android API. it is how we are going learn if the internet
-	 * is on or off.</li>
-	 * <li><b>wiFiInfo</b>: This will hold the information pertaining to Wifi
-	 * connection.</li>
-	 * <li><b>mobileInfo</b>This will hold information pertaining to Mobile
-	 * connections.</li>
-	 * <li><b>mobileIsConnect</b>: Checks to see if the Mobile connection is
-	 * connected. It is saved to a string because had a tough time getting
-	 * Android to like booleans.</li>
-	 * <li><b>wifiIsConnect</b>: Similar to mobileIsConnect, but for the Wifi.</li>
-	 * <li><b>checkVersion</b>: This is gathering the API level the device is
-	 * using. For example, Android 2.2. would be API 8 The purpose for parsing
-	 * it is that below Android 2.x, they did not have the Integer version.
-	 * Technically, they could bypass this check if I did it that way.</li>
-	 * <li><b>intent:</b> This is declaring the next Activity that will be
-	 * opened if the two checks passes.</li>
+	 * Internet. *
 	 * 
-	 * </ol>
-	 * 
-	 * <p>
-	 * With these attributes created, it is going to run through an if/else
-	 * statement for validation. If either the Internet is not operating or the
-	 * API level is below 8, it will trigger a dialog box with the respective
-	 * message.
+	 * It is going to run through an if/else statement for validation. If either
+	 * the Internet is not operating or the API level is below 8, it will
+	 * trigger a dialog box with the respective message.
 	 * 
 	 */
 	@Override
@@ -93,10 +96,9 @@ public class Launch extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.launch);
 
-		ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo wiFiInfo = connectivity
-				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-		NetworkInfo mobileInfo = connectivity
+		connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		wiFiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 		// mobileIsConnect = "false";
 
@@ -104,7 +106,7 @@ public class Launch extends Activity {
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
 		// checkVersion = 7;
-		Intent intent = new Intent(this, SearchForStore.class);
+		intent = new Intent(this, SearchForStore.class);
 
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
@@ -131,7 +133,7 @@ public class Launch extends Activity {
 	 */
 	public void dialogCreate(int errorMsg) {
 
-		DialogBox dialog = new DialogBox();
+		dialog = new DialogBox();
 
 		dialog.postDialog(Launch.this, "Error", errorMsg);
 

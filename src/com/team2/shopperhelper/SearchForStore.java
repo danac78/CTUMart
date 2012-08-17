@@ -44,25 +44,51 @@ public class SearchForStore extends Activity {
 	 */
 	public static final String PREF_NAME = "shopPref";
 	/**
-	 * Creating a key that will be checked to see if the Load button will be visable or 
-	 * not.
+	 * Creating a key that will be checked to see if the Load button will be
+	 * visable or not.
 	 */
 	private static final String KEY = "queryType";
+	/**
+	 * This intent is to bypass the SearchProduct class and move into
+	 * ShowProduct with information from the previous searches.
+	 */
+	private Intent loadIntent;
+	/**
+	 * This is declaring the next activity we shall proceed to after this. In
+	 * this case, it is the SearchProduct.class.
+	 */
+	private Intent intent;
+	/**
+	 * This is associating the class with the Search Image button in the UI.
+	 */
+	private ImageButton search;
+	/**
+	 * This is associating with the question mark image button in the UI
+	 */
+	private ImageButton info;
+	/**
+	 * This is the button that will load the previous search and go to the
+	 * ShowProduct class.
+	 */
+	private ImageButton load;
+	/**
+	 * This is grabbing the settings for the Internal Storage to allow to
+	 * read/write.
+	 */
+	private SharedPreferences settings;
+	/**
+	 * This will associate the spinner (dropdown) with the java.
+	 */
+	private Spinner locationTXT;
+	/**
+	 * This will put the information into internal Store. In this case, the
+	 * store ID.
+	 */
+	private Editor editor;
 
 	/**
 	 * Creating the Java logic for Search for Store.
-	 * <ol>
-	 * <li><b>intent</b>:This is declaring the next activity we shall proceed to
-	 * after this. In this case, it is the SearchProduct.class.</li>
-	 * <li><b>search</b>:This is associating the class with the Search Image
-	 * button in the UI.</li>
-	 * <li><b>info:</b>: This is associating with the question mark image button
-	 * in the UI</li>
-	 * <li><b>locationTXT</b>: This will associate the spinner (dropdown) with
-	 * the java.</li>
-	 * <li><b>storeID:</b> Collecting the StoreID from the spinner to save it
-	 * into Internal Storage</li>
-	 * </ol>
+	 * 
 	 */
 	@SuppressLint("CommitPrefEdits")
 	@Override
@@ -73,15 +99,15 @@ public class SearchForStore extends Activity {
 		 * calling the searchstore layout to have it display that screen.
 		 */
 		setContentView(R.layout.searchstore);
-		
-		final Intent loadIntent = new Intent(this, ShowProduct.class);
-		final Intent intent = new Intent(this, SearchProduct.class);
-		final ImageButton search = (ImageButton) findViewById(R.id.search);
-		final ImageButton info = (ImageButton) findViewById(R.id.helpStoreBTN);
-		final ImageButton load = (ImageButton) findViewById(R.id.productLoadBtn);
-		final SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-		final Spinner locationTXT = (Spinner) findViewById(R.id.locationTXT);
-		final SharedPreferences.Editor editor = settings.edit();
+
+		loadIntent = new Intent(this, ShowProduct.class);
+		intent = new Intent(this, SearchProduct.class);
+		search = (ImageButton) findViewById(R.id.search);
+		info = (ImageButton) findViewById(R.id.helpStoreBTN);
+		load = (ImageButton) findViewById(R.id.productLoadBtn);
+		settings = getSharedPreferences(PREF_NAME, 0);
+		locationTXT = (Spinner) findViewById(R.id.locationTXT);
+		editor = settings.edit();
 		/**
 		 * What this feature does is checks to see if shopPref has been created
 		 * and contains a queryType. If it does, the load button will be
