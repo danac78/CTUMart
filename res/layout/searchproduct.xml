@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-This layout is for the Search Product layout. This is a little more complex than the search store because
-we are looking at multiple input. Although there is multiple input, we are only displaying one at a time.
+This layout is for the Search Product layout. This is a little more complex than the
+ search store because we are looking at multiple input. Although there is multiple
+  input, we are only displaying one at a time.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
