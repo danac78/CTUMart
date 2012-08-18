@@ -99,7 +99,6 @@ public class SearchForStore extends Activity {
 		 * calling the searchstore layout to have it display that screen.
 		 */
 		setContentView(R.layout.searchstore);
-
 		loadIntent = new Intent(this, ShowProduct.class);
 		intent = new Intent(this, SearchProduct.class);
 		search = (ImageButton) findViewById(R.id.search);
@@ -124,8 +123,9 @@ public class SearchForStore extends Activity {
 		load.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				prefWrite("storeID", Integer.toString((locationTXT
-						.getSelectedItemPosition()) + 1), editor);
+				
+				/*prefWrite("storeID", Integer.toString((locationTXT
+						.getSelectedItemPosition()) + 1), editor);*/
 				startActivity(loadIntent);
 				finish();
 

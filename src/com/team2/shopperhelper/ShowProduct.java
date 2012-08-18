@@ -213,7 +213,7 @@ public class ShowProduct extends Activity {
 				 */
 				edit.putString("sectionMap", getSection.get(position));
 
-				edit.putString("aisleMap", getAisle.get(position));
+				edit.putString("aisleMap", getAisle.get(position));			
 				edit.commit();
 				startActivity(intent);
 				finish();
@@ -306,8 +306,8 @@ public class ShowProduct extends Activity {
 			arrayResults.add(pr1);
 
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+			Log.e("JSON:", e.toString());
 
 		}
 		return arrayResults;

@@ -149,4 +149,10 @@ but it caused it to crashed so not going to bother.</p>
 showmap.xml. Additionally, added back buttons that will take the customer to a previous screen. After Issue #8, there has not been any issues that really been overlooked. Due to the simplicity of the application, there is not much that will cause it to forced close that I will not see in a test run</p>
 <p>The primary focus from this point on is bug fix and documentation. As this is an academic project, need to ensure that each activity has a source cite. Not bothering to do this with the xml files since eclipse something really messes with them. However, I will be focusing on delivering as detailed comments I can to help the group. </p>
 
+===Version 0.5.5 ===
+There was not a lot of additional things added, but rather it was a maintenance. Cleaned up up some of the code, and made the variables from Android be able to be looked at by Javadocs. Updated JavaDocs to conclude codeName Kevin. Moving onto Michael.
+
+===Version 0.9.0 ===
+Awaiting QA results. If no issues found, will release. 
+
 	

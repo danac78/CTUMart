@@ -4,7 +4,7 @@
     android:versionName="@string/codeName" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="4"
         android:targetSdkVersion="15" />
 
     <uses-feature />

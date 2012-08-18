@@ -44,8 +44,11 @@ public class Launch extends Activity {
 	 */
 	private String mobileIsConnect;
 	/**
-	 * Holds the value if the WiFi internet is connected. Tried to use just the
-	 * boolean, but it kept letting the shopper app continue.
+	 * Holds the value if the WiFi internet is connected. Although as of August 18, 
+	 * I did think of something that might work. What if I use ! to indicate not when
+	 * it is asking isConnected. Although in theory this would work, it would be 
+	 * difficult to test from what I am seeing (or from my experience level). For the
+	 * scope of this academic project, I am keeping it as is.
 	 */
 	private String wifiIsConnect;
 
@@ -55,14 +58,16 @@ public class Launch extends Activity {
 	private int checkVersion;
 	/**
 	 * This is gathering the API level the device is using. For example, Android
-	 * 2.2. would be API 8 The purpose for parsing it is that below Android 2.x,
+	 * 2.2. would be API 8. The minimum will be 4.
+	 * The purpose for parsing it is that below Android 2.x,
 	 * they did not have the Integer version. Technically, they could bypass
-	 * this check if I did it that way.
+	 * this check if I did it that way. Although the support library does add this
+	 * for 1.6, it will allow 1.5 and lesser to bypass.
 	 */
 	private ConnectivityManager connectivity;
 	/**
 	 * This is invoking the Connectivity Manager, which is part of the Android
-	 * API. it is how we are going learn if the internet is on or off.
+	 * API. it is how we are going learn if the Internet is on or off.
 	 */
 	private NetworkInfo mobileInfo;
 	/**
@@ -101,7 +106,7 @@ public class Launch extends Activity {
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 		// mobileIsConnect = "false";
-
+		
 		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
@@ -112,8 +117,9 @@ public class Launch extends Activity {
 				&& (wifiIsConnect.contentEquals("false"))) {
 
 			dialogCreate(R.string.internetError);
-
-		} else if (checkVersion < 8) {
+		
+			
+		} else if (checkVersion < 4) {
 
 			dialogCreate(R.string.compatibleError);
 		} else {
