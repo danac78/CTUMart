@@ -7,8 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.ProgressBar;
 
 import com.team2.shopperhelper.library.DialogBox;
 
@@ -87,25 +85,13 @@ public class Launch extends Activity {
 	 */
 	private DialogBox dialog;
 	/**
-	 * Creating a progress bar for the update utility to ensure the app and database
-	 * are synced. 
-	 */
-	private ProgressBar mProgress;
-	/**
-	 * Shall contain the value of the progress bar. Although the sync process should
-	 * not take an incredibly long time to do..it will
-	 */
-	protected int mProgressStatus = 0;
-	private Handler mHandler;
-
-	/**
 	 * <p>
 	 * The onCreate method is basically running to launch the application. The
 	 * sole purpose is to ensure that the application is compatible and has
 	 * Internet. *
 	 * 
 	 * It is going to run through an if/else statement for validation. If either
-	 * the Internet is not operating or the API level is below 8, it will
+	 * the Internet is not operating or the API level is below 4, it will
 	 * trigger a dialog box with the respective message.
 	 * 
 	 */
@@ -126,29 +112,7 @@ public class Launch extends Activity {
 		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
-		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
-
-		new Thread(new Runnable() {
-
-			public void run() {
-				mHandler = new Handler();
-				while (mProgressStatus < 100) {
-					mProgressStatus = dowork();
-
-					mHandler.post(new Runnable() {
-
-						public void run() {
-							mProgress.setProgress(mProgressStatus);
-
-						}
-
-					});
-				}
-
-			}
-
-		});
-
+		
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 
@@ -164,11 +128,7 @@ public class Launch extends Activity {
 
 	}
 
-	protected int dowork() {
-		
-		return 0;
-	}
-
+	
 	/**
 	 * This method is meant to create a dialog box with the respective message.
 	 * 
