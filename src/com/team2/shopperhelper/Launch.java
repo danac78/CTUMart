@@ -7,6 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ProgressBar;
 
 import com.team2.shopperhelper.library.DialogBox;
 
@@ -14,8 +16,8 @@ import com.team2.shopperhelper.library.DialogBox;
  * Activity to check Internet and Compatibility issues prior to proceeding.
  * 
  * @author Dana Haywood
- * @version 0.5.2
- * @since 7/10/2012<br>
+ * @version 0.9.0
+ * @since 8/17/2012<br>
  * 
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>
@@ -44,11 +46,11 @@ public class Launch extends Activity {
 	 */
 	private String mobileIsConnect;
 	/**
-	 * Holds the value if the WiFi internet is connected. Although as of August 18, 
-	 * I did think of something that might work. What if I use ! to indicate not when
-	 * it is asking isConnected. Although in theory this would work, it would be 
-	 * difficult to test from what I am seeing (or from my experience level). For the
-	 * scope of this academic project, I am keeping it as is.
+	 * Holds the value if the WiFi internet is connected. Although as of August
+	 * 18, I did think of something that might work. What if I use ! to indicate
+	 * not when it is asking isConnected. Although in theory this would work, it
+	 * would be difficult to test from what I am seeing (or from my experience
+	 * level). For the scope of this academic project, I am keeping it as is.
 	 */
 	private String wifiIsConnect;
 
@@ -58,11 +60,11 @@ public class Launch extends Activity {
 	private int checkVersion;
 	/**
 	 * This is gathering the API level the device is using. For example, Android
-	 * 2.2. would be API 8. The minimum will be 4.
-	 * The purpose for parsing it is that below Android 2.x,
-	 * they did not have the Integer version. Technically, they could bypass
-	 * this check if I did it that way. Although the support library does add this
-	 * for 1.6, it will allow 1.5 and lesser to bypass.
+	 * 2.2. would be API 8. The minimum will be 4. The purpose for parsing it is
+	 * that below Android 2.x, they did not have the Integer version.
+	 * Technically, they could bypass this check if I did it that way. Although
+	 * the support library does add this for 1.6, it will allow 1.5 and lesser
+	 * to bypass.
 	 */
 	private ConnectivityManager connectivity;
 	/**
@@ -79,11 +81,22 @@ public class Launch extends Activity {
 	 * passes.
 	 */
 	private Intent intent;
-	
+
 	/**
 	 * Creating a dialog box for this activity.
 	 */
 	private DialogBox dialog;
+	/**
+	 * Creating a progress bar for the update utility to ensure the app and database
+	 * are synced. 
+	 */
+	private ProgressBar mProgress;
+	/**
+	 * Shall contain the value of the progress bar. Although the sync process should
+	 * not take an incredibly long time to do..it will
+	 */
+	protected int mProgressStatus = 0;
+	private Handler mHandler;
 
 	/**
 	 * <p>
@@ -106,19 +119,41 @@ public class Launch extends Activity {
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 		// mobileIsConnect = "false";
-		
+
 		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
 		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
+		mProgress = (ProgressBar) findViewById(R.id.progressBar1);
+
+		new Thread(new Runnable() {
+
+			public void run() {
+				mHandler = new Handler();
+				while (mProgressStatus < 100) {
+					mProgressStatus = dowork();
+
+					mHandler.post(new Runnable() {
+
+						public void run() {
+							mProgress.setProgress(mProgressStatus);
+
+						}
+
+					});
+				}
+
+			}
+
+		});
+
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 
 			dialogCreate(R.string.internetError);
-		
-			
+
 		} else if (checkVersion < 4) {
 
 			dialogCreate(R.string.compatibleError);
@@ -127,6 +162,11 @@ public class Launch extends Activity {
 			finish();
 		}
 
+	}
+
+	protected int dowork() {
+		
+		return 0;
 	}
 
 	/**

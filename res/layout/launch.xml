@@ -17,5 +17,12 @@ The Dialog layout will be shown over this.
         android:layout_height="wrap_content"
         android:contentDescription="@string/the_logo_for_the_store_"
         android:src="@drawable/storelogo" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

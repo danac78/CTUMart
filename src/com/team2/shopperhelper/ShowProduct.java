@@ -181,20 +181,13 @@ public class ShowProduct extends Activity {
 			for (int i = 0; i < listObjects.length(); i++) {
 				arrayResults = getListProducts(listObjects, arrayResults, pr1,
 						i);
-				try {
-					getSection = getSectionFromJson(listObjects, i);
-				} catch (JSONException e) {
-					Log.e("JSON:", e.toString());
-				}
-				try {
-					getAisle = getAisleFromJson(listObjects, i);
-				} catch (JSONException e) {
-					Log.e("JSON:", e.toString());
-				}
 				pr1 = new SearchResults();
 			}
+				
+				
+			}
 
-		}
+		
 		/**
 		 * Sending the results to the ListView.
 		 */
@@ -211,9 +204,15 @@ public class ShowProduct extends Activity {
 				 * load the images up easily. We are saving them into internal
 				 * store.
 				 */
-				edit.putString("sectionMap", getSection.get(position));
-
-				edit.putString("aisleMap", getAisle.get(position));			
+				
+				try {
+					edit.putString("section", getListObject("Sections", listObjects, position));
+					edit.putString("aisle",getListObject("Aisle", listObjects, position));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					Log.e("JSON:", e.toString());
+				}
+					
 				edit.commit();
 				startActivity(intent);
 				finish();
@@ -231,43 +230,6 @@ public class ShowProduct extends Activity {
 
 			}
 		});
-	}
-
-	/**
-	 * Retrieving the Aisle map from the JSON Array
-	 * 
-	 * @param listObjects2
-	 *            JSON Array holding the information.
-	 * @param i
-	 *            The iteration the procedure call is on.
-	 * @return Sending array back.
-	 * @throws JSONException
-	 *             In case there is a problem. Technically, there should not be
-	 *             a problem because we catch this prior to the loop with
-	 *             if/else statement. If the productlist is null, it gives a
-	 *             dialog.
-	 */
-	private ArrayList<String> getAisleFromJson(JSONArray listObjects2, int i)
-			throws JSONException {
-		getAisle.add(getListObject("aisleMap", listObjects, i));
-		return getAisle;
-	}
-
-	/**
-	 * Getting the Section Map for the Array
-	 * 
-	 * @param listObjects2
-	 *            The JSON Array we are pulling the information from
-	 * @param i
-	 *            The iteration the procedure call is on.
-	 * @return returning the getSection arraylist.
-	 * @throws JSONException
-	 *             Not necessary, but done because Java will have a fit.
-	 */
-	private ArrayList<String> getSectionFromJson(JSONArray listObjects2, int i)
-			throws JSONException {
-		getSection.add(getListObject("sectionMap", listObjects, i));
-		return getSection;
 	}
 
 	/**

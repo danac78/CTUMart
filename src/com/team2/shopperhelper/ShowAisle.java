@@ -1,9 +1,15 @@
 package com.team2.shopperhelper;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +50,9 @@ public class ShowAisle extends Activity {
 	 * correct Aisle Map.
 	 */
 	private SharedPreferences settings;
+	private String fileName;
+	private InputStream stream;
+	private Bitmap aisleBitmap;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,8 +67,29 @@ public class ShowAisle extends Activity {
 		 * Grabbing aisle map and putting it on the screen.
 		 */
 
-		image.setImageResource(Integer.valueOf(settings.getString("aisleMap",
-				null)));
+		/**
+		 * Creating the file location based on Store ID and Section name. This
+		 * will allow for it to check the correct location. This was change from
+		 * using res because it depended on R.Java NOT changing, which is
+		 * impossible to predict.
+		 */
+		fileName = settings.getString("storeID", null) + "/aisles/"
+				+ settings.getString("aisle", null).toLowerCase() + ".png";
+		try {
+			stream = getAssets().open(fileName);
+			aisleBitmap = BitmapFactory.decodeStream(stream);
+			image.setImageBitmap(aisleBitmap);
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			Log.e("IO:", e1.toString());
+		} finally {
+			try {
+				stream.close();
+			} catch (IOException e) {
+				Log.e("IO:", e.toString());
+			}
+		}
 
 		back.setOnClickListener(new View.OnClickListener() {
 
