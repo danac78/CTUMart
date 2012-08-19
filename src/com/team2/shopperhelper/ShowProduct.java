@@ -124,8 +124,7 @@ public class ShowProduct extends Activity {
 	 */
 	private ArrayList<NameValuePair> parms;
 
-	// private static final String url =
-	// "http://http://www.fuelradio.fm/ctumart/android.php";
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

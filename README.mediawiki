@@ -153,6 +153,8 @@ showmap.xml. Additionally, added back buttons that will take the customer to a p
 There was not a lot of additional things added, but rather it was a maintenance. Cleaned up up some of the code, and made the variables from Android be able to be looked at by Javadocs. Updated JavaDocs to conclude codeName Kevin. Moving onto Michael.
 
 ===Version 0.9.0 ===
-Awaiting QA results. If no issues found, will release. 
+<p>Changed from using Resources to Assets. This is to solve the issue of R.Java creating a 
+different number than what is stored in the database. It also simplifies the Database call 
+a little.</p>
 
 	
