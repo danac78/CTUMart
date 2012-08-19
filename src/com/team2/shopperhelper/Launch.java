@@ -110,7 +110,7 @@ public class Launch extends Activity {
 		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
-		// checkVersion = 7;
+		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
 		if ((mobileIsConnect.contentEquals("false"))
