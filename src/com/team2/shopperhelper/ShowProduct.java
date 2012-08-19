@@ -30,8 +30,8 @@ import com.team2.shopperhelper.library.SearchResults;
  * Showing the Product in a List
  * 
  * @author Dana Haywood
- * @since 7/19/2012
- * @version 0.5.2 Instructor: Karl Lloyd<br>
+ * @since 8/17/2012
+ * @version 0.9.0 Instructor: Karl Lloyd<br>
  *          Class: IT482<br>
  *          University: Colorado Technical University<br>
  *          Source Cite:
@@ -88,9 +88,13 @@ public class ShowProduct extends Activity {
 	 * pass onto the JSONParser.
 	 */
 	private SharedPreferences setting;
-
+	/**
+	 * This button will be used to go to the previous screen.
+	 */
 	private ImageButton backButton;
-
+	/**
+	 * Setting up to go the SearchProduct screen.
+	 */
 	private Intent prevIntent;
 	/**
 	 * * intent shall be used to get us to the next activity, which will show
@@ -183,11 +187,9 @@ public class ShowProduct extends Activity {
 						i);
 				pr1 = new SearchResults();
 			}
-				
-				
-			}
 
-		
+		}
+
 		/**
 		 * Sending the results to the ListView.
 		 */
@@ -202,15 +204,17 @@ public class ShowProduct extends Activity {
 				/*
 				 * Gathering section and aisle name to be referenced for maps.
 				 */
-				
+
 				try {
-					edit.putString("section", getListObject("Sections", listObjects, position));
-					edit.putString("aisle",getListObject("Aisle", listObjects, position));
+					edit.putString("section",
+							getListObject("Sections", listObjects, position));
+					edit.putString("aisle",
+							getListObject("Aisle", listObjects, position));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					Log.e("JSON:", e.toString());
 				}
-					
+
 				edit.commit();
 				startActivity(intent);
 				finish();
@@ -266,7 +270,7 @@ public class ShowProduct extends Activity {
 			arrayResults.add(pr1);
 
 		} catch (JSONException e) {
-		
+
 			Log.e("JSON:", e.toString());
 
 		}
