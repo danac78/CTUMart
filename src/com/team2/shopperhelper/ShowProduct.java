@@ -200,9 +200,7 @@ public class ShowProduct extends Activity {
 				settings = getSharedPreferences(PREF_NAME, 0);
 				edit = settings.edit();
 				/*
-				 * Saving the Map reference as it is in Android R.Java so we can
-				 * load the images up easily. We are saving them into internal
-				 * store.
+				 * Gathering section and aisle name to be referenced for maps.
 				 */
 				
 				try {
