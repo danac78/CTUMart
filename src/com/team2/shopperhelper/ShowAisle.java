@@ -50,8 +50,17 @@ public class ShowAisle extends Activity {
 	 * correct Aisle Map.
 	 */
 	private SharedPreferences settings;
+	/**
+	 * Setting up the file name that will lead to the location of the image.
+	 */
 	private String fileName;
+	/**
+	 * Will load the image into a file stream.
+	 */
 	private InputStream stream;
+	/**
+	 * Converts the image into a bitmap for viewing.
+	 */
 	private Bitmap aisleBitmap;
 
 	@Override
