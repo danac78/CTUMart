@@ -125,8 +125,8 @@ public class SearchForStore extends Activity {
 
 			public void onClick(View v) {
 				
-				/*prefWrite("storeID", Integer.toString((locationTXT
-						.getSelectedItemPosition()) + 1), editor);*/
+				prefWrite("storeID", Integer.toString((locationTXT
+						.getSelectedItemPosition()) + 1), editor);
 				startActivity(loadIntent);
 				finish();
 

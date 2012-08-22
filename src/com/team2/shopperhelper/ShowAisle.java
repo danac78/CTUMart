@@ -35,6 +35,7 @@ public class ShowAisle extends Activity {
 	 * Storing the preference file name.
 	 */
 	private static final String PREF_NAME = "shopPref";
+	private static final String AISLE = "/aisles/";
 	/**
 	 * Setting up an intent to go back to ShowProduct
 	 */
@@ -100,7 +101,7 @@ public class ShowAisle extends Activity {
 		switch(Integer.parseInt(settings.getString("storeID", null)))
 		{
 		 	default:
-				fileName = "1//aisles/"
+				fileName = "1"+AISLE
 						+ settings.getString("aisle", null).toLowerCase() + ".png";
 				break;
 		}

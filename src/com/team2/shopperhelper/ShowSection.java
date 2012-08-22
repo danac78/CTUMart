@@ -37,6 +37,11 @@ public class ShowSection extends Activity {
 	 */
 	private static final String PREF_NAME = "shopPref";
 	/**
+	 * Setting it up so the sections folder is a constant to avoid hardcoded 
+	 * values in the statements below.
+	 */
+	private static final String SECTIONS = "/sections/";
+	/**
 	 * The intent set up to go look at the Aisle.
 	 */
 	private Intent aisleIntent;
@@ -102,7 +107,8 @@ public class ShowSection extends Activity {
 		switch (Integer.parseInt(settings.getString("storeID", null))) {
 
 		default:
-			fileName = "1/sections/section_"
+			fileName = "1/"+
+					SECTIONS
 					+ settings.getString("section", null).toLowerCase()
 					+ ".png";
 			break;
