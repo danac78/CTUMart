@@ -157,9 +157,7 @@ There was not a lot of additional things added, but rather it was a maintenance.
 different number than what is stored in the database. It also simplifies the Database call 
 a little.</p>
 <p>
-Added the help system to. Additionally, added an if/else to show section and show aisle as all the maps are the same. This is a temporary if/else and can be removed once more unique
-maps are added. Did this to reduce the overall size of the application as it was really
-slow in "uploading" to test changes.
+Added the help system to. Additionally, minimize the amount of maps required by using a switch with default. The default will be store 1, so if any other stores have maps different from that can be changed with Case #. This greatly reduced the amount of memory required.
 </p>
 
 	
