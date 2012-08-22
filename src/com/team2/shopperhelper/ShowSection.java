@@ -93,19 +93,19 @@ public class ShowSection extends Activity {
 		 * Creating the file location based on Store ID and Section name. This
 		 * will allow for it to check the correct location. This was change from
 		 * using res because it depended on R.Java NOT changing, which is
-		 * impossible to predict. To reduce the size of the file due to
-		 * replication, we are adding in this temporary if statement.
+		 * impossible to predict. Using a switch to minimize the amount of
+		 * repetitive maps. If there is a map different than default, it will be
+		 * listed as a case. However, it will use the default if it the same as
+		 * Denver.
 		 */
 
-		if (settings.getString("storeID", null).contentEquals("1")) {
-			fileName = settings.getString("storeID", null)
-					+ "/sections/section_"
-					+ settings.getString("section", null).toLowerCase()
-					+ ".png";
-		} else {
+		switch (Integer.parseInt(settings.getString("storeID", null))) {
+
+		default:
 			fileName = "1/sections/section_"
 					+ settings.getString("section", null).toLowerCase()
 					+ ".png";
+			break;
 		}
 
 		try {

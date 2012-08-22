@@ -91,17 +91,21 @@ public class ShowAisle extends Activity {
 		 * Creating the file location based on Store ID and Section name. This
 		 * will allow for it to check the correct location. This was change from
 		 * using res because it depended on R.Java NOT changing, which is
-		 * impossible to predict.
+		 * impossible to predict. Using a switch to minimize the amount of 
+		 * repetitive maps. If there is a map different than default, it 
+		 * will be listed as a case. However, it will use the default if it 
+		 * the same as Denver.
 		 */
-
-		if (settings.getString("storeID", null).contentEquals("1")) {
-			fileName = settings.getString("storeID", null) + "/aisles/"
-					+ settings.getString("aisle", null).toLowerCase() + ".png";
-		} else {
-			fileName = "1//aisles/"
-					+ settings.getString("aisle", null).toLowerCase() + ".png";
+		
+		switch(Integer.parseInt(settings.getString("storeID", null)))
+		{
+		 	default:
+				fileName = "1//aisles/"
+						+ settings.getString("aisle", null).toLowerCase() + ".png";
+				break;
 		}
 
+		
 		try {
 			stream = getAssets().open(fileName);
 			aisleBitmap = BitmapFactory.decodeStream(stream);
