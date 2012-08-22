@@ -29,7 +29,10 @@
         <item>Richland, WA</item>
     </string-array>
 
-    <string name="search_store_help">Help File to Be Implemented</string>
+    <string name="search_store_help">Tap  Drop Down \n\n Select a Store City 
+        \n\n When the box opens up, you will be able to tap on the store that you wish to browse. This scrollable list shall have easily accessible stores to choose from. There are two options that you can follow once you are satisfied with the store selection.
+        \n\n Tap Search: The Search button will save your choice for the store and take you to the Product Search page.
+        \n\n Tap Load: If you have already conducted a product search in the past, the Load button will be available. It performs the same functionality as Search, but it goes directly to the Show Product page with the new Store number.</string>
 
     <string-array name="type_search_product">
         <item>Product Name</item>
@@ -38,7 +41,17 @@
     </string-array>
 
     <string name="type_info">Type</string>
-    <string name="helpProduct">To be implemented from User Documentation (GP3)</string>
+    <string name="helpProduct">Selecting A Search /n/n
+/n/n Only one search option will remain on the screen at a time to simplify the search based on your preference. Changing the preference is simple:
+/n/n Tap the Drop Down Box
+/n/n Choose from the following: Product Name, Product Type, or UPC.
+/n/n Provide input based on the type:
+/n/n Product Name Search: Type in the name of the product you are checking for. The name can either be a brand name “Pepsi” or a generic “Corn Chips”. As long as the product is listed as such in the store, it will show up in the Search Results.
+/n/n product Type Search: Instead of using a text box for input, Product Type search will present a drop down box with the categories the products can be in. For example, Pepsi and Dr. Pepper would be available in the Beverage. There a numerous products that will be available in this scrollable list.
+/n/n UPC Search: With the UPC selected, you will only have the option to enter numbers. However, you will have the opportunity to type in up to 12 numbers for finding the product. Do not know the entire UPC code for the product you want? As long as you enter in the partial, it will locate it similar UPC in the store to help you out.
+
+/n/n Search:This will collect the information that you have provided and start the search process. It will then take you to the next page and will display the products if they are available in the store. 
+/n/n Clear: Unsure about what you entered? This button will clear out the input and put the screen back to default for you to start the entry process again./n/n Use the Back button to go back to Search for Store.</string>
 
     <string-array name="productType">
         <item>Beverage</item>
@@ -61,5 +74,8 @@
     <string name="back_button">This is the image for the back button used in most layouts.</string>
     <string name="clear_button">This is the clear button for the layout.</string>
     <string name="map_of_store">The display of a section/aisle map for the store.</string>
+    <string name="helpDialog">Help Dialog Image</string>
+    <string name="Show_Map_Section">The Show Section screen will display a map with the location of the product based on the layout of the store.   /n/nUse the Back button to go back to Show Products.</string>
+    <string name="aisle_map_help">On the Show Aisle page, it will have an arrow pointing to the corresponding aisle. All the imagines are configured to have the first aisle (i.e. A1) start on the left side. Additionally, it will show reference points (i.e. Hardware) to show what position they would be in the store to provide you with the best assistance./n/nUse the Back button to go back to Show Products.</string>
 
 </resources>

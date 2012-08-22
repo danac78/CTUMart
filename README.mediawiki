@@ -156,5 +156,10 @@ There was not a lot of additional things added, but rather it was a maintenance.
 <p>Changed from using Resources to Assets. This is to solve the issue of R.Java creating a 
 different number than what is stored in the database. It also simplifies the Database call 
 a little.</p>
+<p>
+Added the help system to. Additionally, added an if/else to show section and show aisle as all the maps are the same. This is a temporary if/else and can be removed once more unique
+maps are added. Did this to reduce the overall size of the application as it was really
+slow in "uploading" to test changes.
+</p>
 
 	

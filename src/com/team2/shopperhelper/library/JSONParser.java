@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -78,7 +77,7 @@ public class JSONParser {
  */
 	private StringBuilder sb;
 
-	/**
+/**
 	 * A simple JSONParser constructor.
 	 */
 	public JSONParser() {
@@ -190,5 +189,7 @@ public class JSONParser {
 		return is;
 
 	}
+
+
 
 }

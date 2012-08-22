@@ -3,6 +3,8 @@ package com.team2.shopperhelper;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.team2.shopperhelper.library.DialogBox;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -66,6 +68,14 @@ public class ShowSection extends Activity {
 	 * converting the file from a stream into a bitmap to display.
 	 */
 	private Bitmap sectionBitmap;
+	/**
+	 * The button for the help menu.
+	 */
+	private ImageButton info;
+	/**
+	 * The dialog box that will pop up when the info is pressed.
+	 */
+	protected DialogBox dialogBox;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,24 +87,33 @@ public class ShowSection extends Activity {
 		back = (ImageButton) findViewById(R.id.mapBackBtn);
 		settings = getSharedPreferences(PREF_NAME, 0);
 		image = (ImageView) findViewById(R.id.mapView);
-
-		
+		info = (ImageButton) findViewById(R.id.helpBtnMap);
 
 		/**
 		 * Creating the file location based on Store ID and Section name. This
 		 * will allow for it to check the correct location. This was change from
 		 * using res because it depended on R.Java NOT changing, which is
-		 * impossible to predict.
+		 * impossible to predict. To reduce the size of the file due to
+		 * replication, we are adding in this temporary if statement.
 		 */
-		fileName = settings.getString("storeID", null) + "/sections/section_"
-				+ settings.getString("section", null).toLowerCase() + ".png";
+
+		if (settings.getString("storeID", null).contentEquals("1")) {
+			fileName = settings.getString("storeID", null)
+					+ "/sections/section_"
+					+ settings.getString("section", null).toLowerCase()
+					+ ".png";
+		} else {
+			fileName = "1/sections/section_"
+					+ settings.getString("section", null).toLowerCase()
+					+ ".png";
+		}
+
 		try {
 			stream = getAssets().open(fileName);
 			sectionBitmap = BitmapFactory.decodeStream(stream);
 			image.setImageBitmap(sectionBitmap);
 
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			Log.e("IO:", e1.toString());
 		} finally {
 			try {
@@ -121,6 +140,16 @@ public class ShowSection extends Activity {
 			public void onClick(View v) {
 				startActivity(backIntent);
 				finish();
+
+			}
+		});
+
+		info.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				dialogBox = new DialogBox();
+				dialogBox.postDialog(ShowSection.this, "Show Section Help",
+						R.string.Show_Map_Section);
 
 			}
 		});

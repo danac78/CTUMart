@@ -3,6 +3,8 @@ package com.team2.shopperhelper;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.team2.shopperhelper.library.DialogBox;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,6 +64,14 @@ public class ShowAisle extends Activity {
 	 * Converts the image into a bitmap for viewing.
 	 */
 	private Bitmap aisleBitmap;
+	/**
+	 * The button for the help menu.
+	 */
+	private ImageView info;
+	/**
+	 * The dialog box that will pop up when the info is pressed.
+	 */
+	protected DialogBox dialogBox;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +80,7 @@ public class ShowAisle extends Activity {
 		intent = new Intent(this, ShowProduct.class);
 		back = (ImageButton) findViewById(R.id.mapBackBtn);
 		image = (ImageView) findViewById(R.id.mapView);
+		info = (ImageButton) findViewById(R.id.helpBtnMap);
 		settings = getSharedPreferences(PREF_NAME, 0);
 
 		/*
@@ -82,8 +93,15 @@ public class ShowAisle extends Activity {
 		 * using res because it depended on R.Java NOT changing, which is
 		 * impossible to predict.
 		 */
-		fileName = settings.getString("storeID", null) + "/aisles/"
-				+ settings.getString("aisle", null).toLowerCase() + ".png";
+
+		if (settings.getString("storeID", null).contentEquals("1")) {
+			fileName = settings.getString("storeID", null) + "/aisles/"
+					+ settings.getString("aisle", null).toLowerCase() + ".png";
+		} else {
+			fileName = "1//aisles/"
+					+ settings.getString("aisle", null).toLowerCase() + ".png";
+		}
+
 		try {
 			stream = getAssets().open(fileName);
 			aisleBitmap = BitmapFactory.decodeStream(stream);
@@ -106,6 +124,15 @@ public class ShowAisle extends Activity {
 				startActivity(intent);
 				finish();
 
+			}
+		});
+
+		info.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				dialogBox = new DialogBox();
+				dialogBox.postDialog(ShowAisle.this, "Aisle Help",
+						R.string.aisle_map_help);
 			}
 		});
 

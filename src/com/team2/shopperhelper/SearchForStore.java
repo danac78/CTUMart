@@ -85,6 +85,7 @@ public class SearchForStore extends Activity {
 	 * store ID.
 	 */
 	private Editor editor;
+	protected DialogBox dialogS;
 
 	/**
 	 * Creating the Java logic for Search for Store.
@@ -171,7 +172,7 @@ public class SearchForStore extends Activity {
 
 			public void onClick(View v) {
 
-				DialogBox dialogS = new DialogBox();
+				dialogS = new DialogBox();
 
 				dialogS.postDialog(SearchForStore.this, "Search Store Help",
 						R.string.search_store_help);

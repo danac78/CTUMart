@@ -103,7 +103,8 @@ public class CustomBaseAdapter extends BaseAdapter {
 	 *            the size of the searchArrayList and it is returning the value
 	 *            from a particular position. For example,
 	 *            searchArrayList.get(0) might have all the details for Pepsi.
-	 * @return This is asking for something different then getItem. This is
+	 * @return This is asking for something differ
+	 * ent then getItem. This is
 	 *         retrieving the unique identifer for that particular item. This
 	 *         can be used to in the getItem.
 	 */

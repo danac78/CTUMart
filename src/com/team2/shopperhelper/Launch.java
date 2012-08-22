@@ -99,7 +99,7 @@ public class Launch extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.launch);
-
+		dialog = new DialogBox();
 		connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		wiFiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		mobileInfo = connectivity
@@ -116,33 +116,16 @@ public class Launch extends Activity {
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 
-			dialogCreate(R.string.internetError);
+			dialog.postDialog(Launch.this, "Error", R.string.internetError);
 
 		} else if (checkVersion < 4) {
 
-			dialogCreate(R.string.compatibleError);
+			dialog.postDialog(Launch.this, "Error", R.string.compatibleError);
 		} else {
 			startActivity(intent);
 			finish();
 		}
 
-	}
-
+	}	
 	
-	/**
-	 * This method is meant to create a dialog box with the respective message.
-	 * 
-	 * @param errorMsg
-	 *            Each check has R.string assigned to it, and it is passing the
-	 *            value onto a single method. From here, it will call DialogBox
-	 *            and have the Dialog Box pop up.
-	 */
-	public void dialogCreate(int errorMsg) {
-
-		dialog = new DialogBox();
-
-		dialog.postDialog(Launch.this, "Error", errorMsg);
-
-	}
-
 }
