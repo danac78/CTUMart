@@ -107,7 +107,7 @@ public class ShowSection extends Activity {
 		switch (Integer.parseInt(settings.getString("storeID", null))) {
 
 		default:
-			fileName = "1/"+
+			fileName = "1"+
 					SECTIONS
 					+ settings.getString("section", null).toLowerCase()
 					+ ".png";
