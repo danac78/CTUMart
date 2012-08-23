@@ -1,0 +1,98 @@
+<sequence-diagram version="1.0.9" icons="true">  
+  <object id="1" language="java" name="com.team2.shopperhelper.Launch" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/Launch.java" binary="false" label="launch" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="270" y="0"/>    
+    <execution id="2">      
+      <position height="84" width="0" x="0" y="128"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="21" width="0" x="0" y="170"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="com.team2.shopperhelper.SearchForStore" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/SearchForStore.java" binary="false" label="searchForStore" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="242" y="0"/>    
+    <execution id="6">      
+      <position height="84" width="0" x="0" y="136"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="21" width="0" x="0" y="178"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="84" width="0" x="0" y="246"/>    
+    </execution>    
+    <execution id="11">      
+      <position height="21" width="0" x="0" y="288"/>    
+    </execution>  
+  </object>  
+  <object id="12" language="java" name="com.team2.shopperhelper.SearchProduct" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/SearchProduct.java" binary="false" label="searchProduct" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="393" y="0"/>    
+    <execution id="13">      
+      <position height="84" width="0" x="0" y="248"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="21" width="0" x="0" y="290"/>    
+    </execution>  
+  </object>  
+  <object id="16" language="java" name="com.team2.shopperhelper.ShowProduct" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/ShowProduct.java" binary="false" label="showProduct" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="554" y="0"/>  
+  </object>  
+  <object id="17" language="java" name="com.team2.shopperhelper.ShowSection" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/ShowSection.java" binary="false" label="showSection" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="509" y="0"/>  
+  </object>  
+  <object id="18" language="java" name="com.team2.shopperhelper.ShowAisle" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/ShowAisle.java" binary="false" label="showAisle" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="742" y="0"/>  
+  </object>  
+  <object id="19" language="java" name="com.team2.shopperhelper.library.CustomBaseAdapter" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/library/CustomBaseAdapter.java" binary="false" 
+    label="customBaseAdapter" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="944" y="0"/>  
+  </object>  
+  <object id="20" language="java" name="com.team2.shopperhelper.library.SearchResults" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/library/SearchResults.java" binary="false" label="searchResults" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="830" y="0"/>  
+  </object>  
+  <object id="21" language="java" name="com.team2.shopperhelper.library.CustomBaseAdapter.ViewHolder" 
+    project="ShopperHelper" file="/ShopperHelper/src/com/team2/shopperhelper/library/CustomBaseAdapter.java" 
+    binary="false" label="viewHolder" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="944" y="0"/>  
+  </object>  
+  <object id="22" language="java" name="com.team2.shopperhelper.library.JSONParser" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/library/JSONParser.java" binary="false" label="jsonParser" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="942" y="0"/>  
+  </object>  
+  <object id="23" language="java" name="com.team2.shopperhelper.library.DialogBox" project="ShopperHelper" 
+    file="/ShopperHelper/src/com/team2/shopperhelper/library/DialogBox.java" binary="false" label="dialogBox" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="1084" y="0"/>  
+  </object>  
+  <message id="3" operation="onCreate(android.os.Bundle):void">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="7" operation="onCreate(android.os.Bundle):void">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="10" 
+    operation="prefWrite(java.lang.String,java.lang.String,android.content.SharedPreferences.Editor):void">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="14" operation="onCreate(android.os.Bundle):void">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>
+</sequence-diagram>

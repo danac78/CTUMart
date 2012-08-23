@@ -1,0 +1,66 @@
+<!--
+This layout is to show the different maps of the store. Unlike the previous ones,
+ this is reused for two activities.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+     >
+<!--
+The store logo.
+-->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/the_logo_for_the_store_"
+        android:src="@drawable/storelogo"
+        tools:ignore="ContentDescription" />
+<!--
+This is displaying the map based on the information provided by the related activites.
+-->
+    <ImageView
+        android:id="@+id/mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/map_of_store"
+         />
+<!--
+The button layouts
+-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+<!--
+The back button to go to the previous screen.
+-->
+        <ImageButton
+            android:id="@+id/mapBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:contentDescription="@string/backButton"
+            android:src="@drawable/back" />
+<!--
+Access to the help menu
+-->
+        <ImageButton
+            android:id="@+id/helpBtnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:contentDescription="@string/help_button"
+            android:src="@drawable/questionmarkicon" />
+
+    </LinearLayout>
+
+</LinearLayout>

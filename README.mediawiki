@@ -1,0 +1,163 @@
+== Purpose ==
+<p>
+This is an academic project for IT482 at CTUOnline. The team members include Thomas Johns, 
+Dana Haywood, Charles Jarvis, Kevin Kahl, Jeff Kiesel, and Michael Lane. As part of this project, 
+we are creating a fictional store and producing an Android Application that will find a store,
+find a product, and potentially show where the product is in the store.
+</p>
+The primary Android Developer for this class project is Dana Haywood.
+The primary PHP developer is Thomas Johns.
+Jeff, Charles, and Michael serve as testers and commenters for this project itself.
+
+== Changes ==
+
+===Version 0.0.0	7/8/2012===
+
+<div>This is the beginning of the Development process.  Making the screens per the IT481GP5. Also beginning initial programming to make all of that work.</div>	
+===Version 0.1.0	7/20/2012===
+<div>Initial prototype Release: Code Name Dana.</div><div>
+This is the initial prototype that features all the screens necessary for this application to function at this time. </div>
+<div>
+The Launch Activity at the present moment will only appear if there is an issue. The two issues it is watching out for is compatibility and internet. The purpose for compatibility is in case of software corruption within the Android OS. If it does not recognize the OS or they somehow got it to work on lower than 2.2, this will attempt to stop them as some features require 2.2. Additionally, the internet connectivity is important for the database searching. If it is down, it will simply waste the customer time.	
+</div>
+<div>		 
+If the Launch activity does not find any issues, this is the first screen the customer will see. All the available locations are put into the dropdown box. 
+</div>
+<div>
+Right now, the Stores are in alphabetical order, but this might change with 0.1.5 with the database/php.  This dropdown box will pass a position value to java to indicate a store id value.
+</div>
+<div>
+This was done for a few reasons. This was to prevent the customer fussing over city, state, and zip code. Additionally, it made the validation and selection a lot simpler.  In the code, there will be an accumulated value, but this is because position starts at 0. So without it, Apache Junction would have started with storeID=0. With it being an accumulated value, it is now storeID=1.
+</div><div>
+Additionally, it is getting the names from String.xml under a String Array. This means that adding or moving values will be very simple. 
+</div><div>
+ If you press the information button (subject to change), it will create the Help File text box. This will be modified after GP3, or removed completely as this screen should be self-explanatory.
+</div><div>
+Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
+</div><div>
+It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
+</div><div>
+There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
+</div>
+There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show an error message.	
+</div>
+<div>		 
+			 
+		Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
+</div><div>
+It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
+</div><div>
+There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
+</div><div>
+There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show this error message.
+</div><div>			 
+This is the screen that will display when the search brings back results. The List has a TextView imported into it with the values. Right now, everything is hard coded in for testing purposes.	 </div>
+===Version 0.1.1	7/21/12	7/21/2012===
+<div> Fixed GitHub Issue: 5: Values are not being passed
+This was causing a NullpointException with the way I was trying to pass values through. This was fixed by storing all the values collected from Search Store and Search Product into internal storage. This allows for us to call for those values in Show Products without an issue. </div>
+	
+===Version 0.1.2	7/21/12	=== 
+
+<div>Fixed GitHub Issue 6: Despite validation fail, it still goes to next screen.
+I changed the validation scheme with the if then. The only way the next screen will appear if it comes it makes it all the way down to else.</div>
+	
+===Version 0.1.3===
+<div>		The files may list 0.1.5, but this is in anticipation of the next step and the fact that I caught this error very late. The issue was listed as Issue 7: Launch is not stopping app if there is a problem. Once again, I do not think Android likes Booleans . There two resolutions to this problem. The first one was rewriting the launch activity so that it had a condition like what was written for the validation on SearchProduct. Additionally, the Booleans responsible for checking for mobile and wifi connection convert into a string to use ContentsEquals(). Right now it is working just perfectly. There are three hard coded values in launch for testing purposes and they will be removed prior to release.</div>
+=======
+<p>This is the beginning of the Development process.  Making the screens per the IT481GP5. Also beginning initial programming to make all of that work.</P>	
+===Version 0.1.0	7/20/2012===
+<p>Initial prototype Release: Code Name Dana.</p><p>
+This is the initial prototype that features all the screens necessary for this application to function at this time. </p>
+<p>
+The Launch Activity at the present moment will only appear if there is an issue. The two issues it is watching out for is compatibility and internet. The purpose for compatibility is in case of software corruption within the Android OS. If it does not recognize the OS or they somehow got it to work on lower than 2.2, this will attempt to stop them as some features require 2.2. Additionally, the internet connectivity is important for the database searching. If it is down, it will simply waste the customer time.	
+</p>
+<p>		 
+If the Launch activity does not find any issues, this is the first screen the customer will see. All the available locations are put into the dropdown box. 
+</p>
+<p>
+Right now, the Stores are in alphabetical order, but this might change with 0.1.5 with the database/php.  This dropdown box will pass a position value to java to indicate a store id value.
+</p>
+<p>
+This was done for a few reasons. This was to prevent the customer fussing over city, state, and zip code. Additionally, it made the validation and selection a lot simpler.  In the code, there will be an accumulated value, but this is because position starts at 0. So without it, Apache Junction would have started with storeID=0. With it being an accumulated value, it is now storeID=1.
+</p><p>
+Additionally, it is getting the names from String.xml under a String Array. This means that adding or moving values will be very simple. 
+</p><p>
+ If you press the information button (subject to change), it will create the Help File text box. This will be modified after GP3, or removed completely as this screen should be self-explanatory.
+</p><p>
+Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
+</p><p>
+It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
+</p><p>
+There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
+</p>
+There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show an error message.	
+</p>
+<p>		 
+			 
+		Once they selected a store, it will go to the Search Product screen. On this screen, the customer has a few choices.  The dropdown box automatically defaults to Product Name.  With this and UPC, it will have a text box for input.
+</p><p>
+It has three options. The reason for making only one search option is due to the way the PHP/Database side may be pulling the information. I may be helping modify that part so I can at least get storeID and the values put into here done. When Tom gets back, he should be sending the source code.
+</p><p>
+There are two items sitting on top of each other, but they are set to setVisibility(View.Gone); What this means is that it will take the item out of the view all together so that either this drop down box or the text box will show in the same spot.
+</p><p>
+There is a validation scheme that is checking the values for Product Name and UPC. The Product Name is checking to ensure the user entered a value. The same thing is occurring for a UPC, but it also checks to make sure the number is equal to 12. If it does not, it will show this error message.
+</p><p>			 
+This is the screen that will display when the search brings back results. The List has a TextView imported into it with the values. Right now, everything is hard coded in for testing purposes.	 </p>
+===Version 0.1.1	7/21/12	7/21/2012===
+<p> Fixed GitHub Issue: 5: Values are not being passed
+This was causing a NullpointException with the way I was trying to pass values through. This was fixed by storing all the values collected from Search Store and Search Product into internal storage. This allows for us to call for those values in Show Products without an issue. </p>
+	
+===Version 0.1.2	7/21/12	=== 
+
+<p>Fixed GitHub Issue 6: Despite validation fail, it still goes to next screen.
+I changed the validation scheme with the if then. The only way the next screen will appear if it comes it makes it all the way down to else.</p>
+	
+===Version 0.1.3===
+<p>		The files may list 0.1.5, but this is in anticipation of the next step and the fact that I caught this error very late. The issue was listed as Issue 7: Launch is not stopping app if there is a problem. Once again, I do not think Android likes Booleans . There two resolutions to this problem. The first one was rewriting the launch activity so that it had a condition like what was written for the validation on SearchProduct. Additionally, the Booleans responsible for checking for mobile and wifi connection convert into a string to use ContentsEquals(). Right now it is working just perfectly. There are three hard coded values in launch for testing purposes and they will be removed prior to release.</p>
+
+=== Version 0.1.5 8/5/2012 ===
+<p>As stated in the version list, this was fixing any errors as well as getting the Android to talk to a webpage.  The output displayed in  this list form is from the website. The previous screen shot were hardcoded values. The back button was recently added in to allow to be able to go back. This might be the beginning to add save search (which will be stored in internal memory. It has not been added into the code yet). </p>
+<p>Also noted for 0.1.5 codename Chuck, this was also fixing any bugs. To date, there aren’t any noticeable bugs that has: 
+1.	Noticed when I do a test run on my system.
+2.	Been listed and not fixed in the Issues table of GitHub.com
+</p>
+<p>After this functionality has been put in, we are moving to 0.5.0 codename Jeff. It seems actually kind of perfect that it is at a half minor version of a major version (we won’t reach that until we release the App..which is when it is finally done at the end of class.)</p>
+
+===Version 0.5.0 Codename Jeff===
+
+<p>Primarly this was a beautification and simplification effort for the project. For Instance, the background and the buttons were change with
+web 2.0 style gradients. Additionally, a Help menu dialog box was introduced.</P
+
+<p>Primarily this was a beautification and simpification effort for the project. For Instance, the background and the buttons were change with
+web 2.0 style gradiants. Additionally, a Help menu dialog box was introduced.</P
+
+<p>Cleaned up the Launch Activity to have it use dialog.xml instead of two 
+different dialog boxes for error messages. This simplifies the design.</p>
+
+
+
+<p>Split off the Dialog box because it was being repeated with the only 
+difference between was the message. Tried to do it for shared preferences, 
+but it caused it to crashed so not going to bother.</p>
+
+
+===Version 0.5.1 ===
+<p>Fixed a bug as listed in Issue #8. Right now, it will give a dialog box if productlist is giving a null value. IF it is not null, it will proceed turning it into a JSONArray.</p>
+
+===Version 0.5.2 ===
+<p>Added the ShowSection and ShowAisle activities to be able to show the map of the store. They each reuse
+showmap.xml. Additionally, added back buttons that will take the customer to a previous screen. After Issue #8, there has not been any issues that really been overlooked. Due to the simplicity of the application, there is not much that will cause it to forced close that I will not see in a test run</p>
+<p>The primary focus from this point on is bug fix and documentation. As this is an academic project, need to ensure that each activity has a source cite. Not bothering to do this with the xml files since eclipse something really messes with them. However, I will be focusing on delivering as detailed comments I can to help the group. </p>
+
+===Version 0.5.5 ===
+There was not a lot of additional things added, but rather it was a maintenance. Cleaned up up some of the code, and made the variables from Android be able to be looked at by Javadocs. Updated JavaDocs to conclude codeName Kevin. Moving onto Michael.
+
+===Version 0.9.0 ===
+<p>Changed from using Resources to Assets. This is to solve the issue of R.Java creating a 
+different number than what is stored in the database. It also simplifies the Database call 
+a little.</p>
+<p>
+Added the help system to. Additionally, minimize the amount of maps required by using a switch with default. The default will be store 1, so if any other stores have maps different from that can be changed with Case #. This greatly reduced the amount of memory required.
+</p>
+
+	

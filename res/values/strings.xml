@@ -1,0 +1,81 @@
+<resources>
+
+    <string name="app_name">Shopper Helper</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_launch">Shopper Helper</string>
+    <string name="logo">The branded logo for the CTUMart corporation.</string>
+    <string name="error">Error</string>
+    <string name="internetError">This Device is not connected to the Internet. Please check the         device and reopen Shopper Helper</string>
+    <string name="compatibleError">This application is meant for Android 1.6 or greater. If this is Android 2.2 
+        or greater, check with your manufacture why it is not reporting this.</string>
+    <string name="description">Shopper Helper is an application available for API 8+, which will assist with finding a product in the Shopper Helper Store. This is an Academic Project for IT482–1203C-01 Team 2.</string>
+    <string name="codeName">Michael</string>
+    <string name="start_search">Start Search</string>
+    <string name="enter_info">Enter Info</string>
+    <string name="locations_available">Locations Available</string>
+    <string name="priceLbl">Price:</string>
+    <string name="itemCount">Item Count:</string>
+    <string name="sectionLbl">Section:</string>
+    <string name="aisleLbl">Aisle:</string>
+
+    <string-array name="locations_available">
+        <item>Denver, CO</item>
+        <item>Beverly Hills, CA</item>
+        <item>Boise, ID</item>
+        <item>Chicago, IL</item>
+        <item>Colorado Springs, CO</item>
+        <item>Springfield, MA</item>
+        <item>Portland, OR</item>
+        <item>Richland, WA</item>
+    </string-array>
+
+    <string name="search_store_help">Tap  Drop Down \n\n Select a Store City 
+        \n\n When the box opens up, you will be able to tap on the store that you wish to browse. This scrollable list shall have easily accessible stores to choose from. There are two options that you can follow once you are satisfied with the store selection.
+        \n\n Tap Search: The Search button will save your choice for the store and take you to the Product Search page.
+        \n\n Tap Load: If you have already conducted a product search in the past, the Load button will be available. It performs the same functionality as Search, but it goes directly to the Show Product page with the new Store number.</string>
+
+    <string-array name="type_search_product">
+        <item>Product Name</item>
+        <item>Product Type</item>
+        <item>UPC</item>
+    </string-array>
+
+    <string name="type_info">Type</string>
+    <string name="helpProduct">Selecting A Search /n/n
+/n/n Only one search option will remain on the screen at a time to simplify the search based on your preference. Changing the preference is simple:
+/n/n Tap the Drop Down Box
+/n/n Choose from the following: Product Name, Product Type, or UPC.
+/n/n Provide input based on the type:
+/n/n Product Name Search: Type in the name of the product you are checking for. The name can either be a brand name “Pepsi” or a generic “Corn Chips”. As long as the product is listed as such in the store, it will show up in the Search Results.
+/n/n product Type Search: Instead of using a text box for input, Product Type search will present a drop down box with the categories the products can be in. For example, Pepsi and Dr. Pepper would be available in the Beverage. There a numerous products that will be available in this scrollable list.
+/n/n UPC Search: With the UPC selected, you will only have the option to enter numbers. However, you will have the opportunity to type in up to 12 numbers for finding the product. Do not know the entire UPC code for the product you want? As long as you enter in the partial, it will locate it similar UPC in the store to help you out.
+
+/n/n Search:This will collect the information that you have provided and start the search process. It will then take you to the next page and will display the products if they are available in the store. 
+/n/n Clear: Unsure about what you entered? This button will clear out the input and put the screen back to default for you to start the entry process again./n/n Use the Back button to go back to Search for Store.</string>
+
+    <string-array name="productType">
+        <item>Beverage</item>
+        <item>Snacks</item>
+        <item>Bread</item>
+        <item>Electronic Entertainment</item>
+    </string-array>
+
+    <string name="backButton">Back</string>
+    <string name="selectCity">Select the Store City</string>
+    <string name="close">Close</string>
+    <string name="no_product_found">Sorry, but no products were found with the information provided.</string>
+    <string name="title_activity_show_section">ShowSection</string>
+    <string name="productTypeLbl">Select a Type</string>
+    <string name="the_logo_for_the_store_">The logo for the store.</string>
+    <string name="the_button_layout">Layout for the Buttons for Operation.</string>
+    <string name="search_button">The Search Button</string>
+    <string name="help_button">The Help Button</string>
+    <string name="load_search_button">This button will be used to load previous searches.</string>
+    <string name="back_button">This is the image for the back button used in most layouts.</string>
+    <string name="clear_button">This is the clear button for the layout.</string>
+    <string name="map_of_store">The display of a section/aisle map for the store.</string>
+    <string name="helpDialog">Help Dialog Image</string>
+    <string name="Show_Map_Section">The Show Section screen will display a map with the location of the product based on the layout of the store.   /n/nUse the Back button to go back to Show Products.</string>
+    <string name="aisle_map_help">On the Show Aisle page, it will have an arrow pointing to the corresponding aisle. All the imagines are configured to have the first aisle (i.e. A1) start on the left side. Additionally, it will show reference points (i.e. Hardware) to show what position they would be in the store to provide you with the best assistance./n/nUse the Back button to go back to Show Products.</string>
+
+</resources>
