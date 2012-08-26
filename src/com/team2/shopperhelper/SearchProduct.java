@@ -164,6 +164,12 @@ public class SearchProduct extends Activity {
 
 				switch (position) {
 				case 0:
+					/*
+					 * If the text is blank, it will gives the error message to
+					 * enter a product name Otherwise, it will send the information
+					 * for the next Intent as well as save information into internal
+					 * storage
+					 */
 
 					if (productTXT.getText().toString().length() == 0) {
 						productTXT.setError("Enter a Product Name");
@@ -174,12 +180,24 @@ public class SearchProduct extends Activity {
 					}
 					break;
 				case 1:
+					/*
+					 * As it is already filled in via drop down, there the
+					 * validation is not needed. It will simply send to
+					 * the next intent. It will also save information into
+					 * internal storage.
+					 */
 					querySave("productType", productType.getSelectedItem()
 							.toString(), editor);
 					newActivity(intent, productTXT, searchType, UPCTXT);
 
 					break;
 				case 2:
+					/*
+					 * This is going to check for two things. It will ensure the
+					 * UPC is not blank as well as it does not exceed 12 digits. 
+					 * if those two do not set this off, it will save into internal
+					 * storage and signal for the next intent.
+					 */
 					if (UPCTXT.getText().toString().length() == 0) {
 						UPCTXT.setError("Enter a UPC");
 					} else if (productTXT.getText().toString().length() > 12) {

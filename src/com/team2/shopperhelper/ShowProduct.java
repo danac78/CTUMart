@@ -124,13 +124,14 @@ public class ShowProduct extends Activity {
 	 */
 	private ArrayList<NameValuePair> parms;
 
-
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.readweb);
-
+		/*
+		 * Creating instances of JSON parser, shared pref, and the Android
+		 * widgets inside java.
+		 */
 		jsonParser = new JSONParser();
 		setting = getSharedPreferences(PREF_NAME, 0);
 		backButton = (ImageButton) findViewById(R.id.showProductBackBtn);

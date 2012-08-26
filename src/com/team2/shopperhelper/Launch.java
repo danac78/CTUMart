@@ -29,7 +29,7 @@ import com.team2.shopperhelper.library.DialogBox;
  *        to check to ensure if that the Android OS is compatible (in case of
  *        Android OS corruption) and that it is connected to the Internet. If it
  *        loads with these two conditions being false, it will display a message
- *        alerting the user. Once they click on the ok button, the application
+ *        alerting the user. Once they click on the close button, the application
  *        will close. If both items are true, the user will just see Search
  *        Store appear. In the simulations ran, this actually only takes one
  *        second and the customer will not * notice these tests being conducted
@@ -39,12 +39,12 @@ import com.team2.shopperhelper.library.DialogBox;
 
 public class Launch extends Activity {
 	/**
-	 * Holds the value if the Mobile internet is connected. Tried to use just
+	 * Holds the value if the Mobile Internet is connected. Tried to use just
 	 * the boolean, but it kept letting the shopper app continue.
 	 */
 	private String mobileIsConnect;
 	/**
-	 * Holds the value if the WiFi internet is connected. Although as of August
+	 * Holds the value if the WiFi Internet is connected. Although as of August
 	 * 18, I did think of something that might work. What if I use ! to indicate
 	 * not when it is asking isConnected. Although in theory this would work, it
 	 * would be difficult to test from what I am seeing (or from my experience

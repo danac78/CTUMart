@@ -45,7 +45,7 @@ public class SearchForStore extends Activity {
 	public static final String PREF_NAME = "shopPref";
 	/**
 	 * Creating a key that will be checked to see if the Load button will be
-	 * visable or not.
+	 * Visible or not.
 	 */
 	private static final String KEY = "queryType";
 	/**
