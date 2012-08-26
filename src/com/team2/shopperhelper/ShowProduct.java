@@ -282,7 +282,7 @@ public class ShowProduct extends Activity {
 	 * 
 	 * @param value
 	 *            The name of the value we are looking for (i.e. inventoryCount)
-	 * @param listObjects2
+	 * @param listObjects
 	 *            The JSONArray that we are searching.
 	 * @param i
 	 *            The iteration that the procedure call is on.

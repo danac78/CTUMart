@@ -27,7 +27,7 @@ import android.widget.TextView;
  *        <p>
  *        Typically the ListView for Android will only show one value at a time.
  *        For our purposes, we need it to show the productName, price,
- *        inventoryCount, section, and aisle. In order to accomodate this, we
+ *        inventoryCount, section, and aisle. In order to accommodate this, we
  *        are building a custom adapter to do so. What will happen is that the
  *        values for the POJO SearchResults will be passed into this class and
  *        it will list the items correctly.
@@ -103,9 +103,8 @@ public class CustomBaseAdapter extends BaseAdapter {
 	 *            the size of the searchArrayList and it is returning the value
 	 *            from a particular position. For example,
 	 *            searchArrayList.get(0) might have all the details for Pepsi.
-	 * @return This is asking for something differ
-	 * ent then getItem. This is
-	 *         retrieving the unique identifer for that particular item. This
+	 * @return This is asking for something different then getItem. This is
+	 *         retrieving the unique identifier for that particular item. This
 	 *         can be used to in the getItem.
 	 */
 
@@ -174,13 +173,10 @@ public class CustomBaseAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	/*
-	 * Creating the type ViewHolder.
-	 */
-
+	
 	/**
 	 * 
-	 * This class is primarly for creating types for CustomBaseAdapter. The
+	 * This class is primarily for creating types for CustomBaseAdapter. The
 	 * types included are the ones we need to be listed.
 	 * 
 	 */

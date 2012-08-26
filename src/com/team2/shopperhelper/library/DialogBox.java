@@ -21,7 +21,7 @@ import com.team2.shopperhelper.R;
  *          Source Cite: http://developer.android.com
  * 
  *          As the dialog box is repeated in numerous activities, it was
- *          separated into a library to allow re-useability amongs the different
+ *          separated into a library to allow re-useability amongst the different
  *          activities and classes.
  * 
  */
@@ -40,7 +40,10 @@ public class DialogBox extends Activity {
 	}
 
 	/**
-	 * This will create the dialog box and pass on the values from other clases.
+	 * This will create the dialog box and pass on the values from other class. It will
+	 * display a message with a button avoid to close it. If the msg passed is "Error",
+	 * the closure of the box will result in closing the application. Otherwise, it will
+	 * just close the dialog box.
 	 * 
 	 * @param class1
 	 *            This is the context for the class in question (for instance,
@@ -48,13 +51,13 @@ public class DialogBox extends Activity {
 	 * @param msg
 	 *            This message will be come the title. In the case it has error,
 	 *            it will also close the application.
-	 * @param stringXxlMsg
+	 * @param stringXmlMsg
 	 *            The reference to strings.xml messages.
+	 *            
+	 *            
 	 */
-	public void postDialog(Context class1, final String msg, int stringXxlMsg) {
-		/**
-		 * Instantiate the dialog box with the information passed along.
-		 */
+	public void postDialog(Context class1, final String msg, int stringXmlMsg) {
+		
 		dialog = new Dialog(class1);
 		dialog.setContentView(R.layout.dialog);
 		dialog.setTitle(msg);
@@ -66,7 +69,7 @@ public class DialogBox extends Activity {
 		 */
 		TextView text = (TextView) dialog.findViewById(R.id.dialogTXT);
 
-		text.setText(stringXxlMsg);
+		text.setText(stringXmlMsg);
 		Button button = (Button) dialog.findViewById(R.id.dialogCloseBTN);
 
 		button.setOnClickListener(new View.OnClickListener() {

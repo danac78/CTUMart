@@ -37,7 +37,7 @@ public class ShowSection extends Activity {
 	 */
 	private static final String PREF_NAME = "shopPref";
 	/**
-	 * Setting it up so the sections folder is a constant to avoid hardcoded 
+	 * Setting it up so the sections folder is a constant to avoid hardcoded
 	 * values in the statements below.
 	 */
 	private static final String SECTIONS = "/sections/";
@@ -46,7 +46,7 @@ public class ShowSection extends Activity {
 	 */
 	private Intent aisleIntent;
 	/**
-	 * This will be setup to take yo back to ShowProduct.class.
+	 * This will be setup to take you back to ShowProduct.class.
 	 */
 	private Intent backIntent;
 	/**
@@ -107,8 +107,7 @@ public class ShowSection extends Activity {
 		switch (Integer.parseInt(settings.getString("storeID", null))) {
 
 		default:
-			fileName = "1"+
-					SECTIONS
+			fileName = "1" + SECTIONS
 					+ settings.getString("section", null).toLowerCase()
 					+ ".png";
 			break;
@@ -140,7 +139,9 @@ public class ShowSection extends Activity {
 
 			}
 		});
-
+		/**
+		 * Being sent back to ShowProduct
+		 */
 		back.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -149,7 +150,9 @@ public class ShowSection extends Activity {
 
 			}
 		});
-
+		/**
+		 * Displaying the help section for the Show Section screen.
+		 */
 		info.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {

@@ -134,6 +134,37 @@ public class JSONParser {
 		 */
 		return jsonObject;
 	}
+	
+	/**
+	 * Sends the parameters to the Web and receives a response for us to read.
+	 * @param parms The name parameters (storeID, queryValue, queryType) used for the database to search.
+	 * @param url The URL that the HTTP post will search for.
+	 * @return the Input stream for further parsing.
+	 */
+		private InputStream getHttp(List<NameValuePair> parms, String url) {
+			try {
+
+				httpClient = new DefaultHttpClient();
+				httpPost = new HttpPost(url);
+				httpPost.setEntity(new UrlEncodedFormEntity(parms));
+
+				httpResponse = httpClient.execute(httpPost);
+				httpEntity = httpResponse.getEntity();
+				is = httpEntity.getContent();
+
+			} catch (UnsupportedEncodingException e) {
+				Log.e("UnsupportedEncoding", e.toString());
+
+			} catch (ClientProtocolException e) {
+				Log.e("CLientProtocol", e.toString());
+
+			} catch (IOException e) {
+				Log.e("IOException", e.toString());
+
+			}
+			return is;
+
+		}
 /**
  * This is taking the input from the Web and translating it into a string.
  * @param is The InputSteam containing the information.
@@ -159,36 +190,7 @@ public class JSONParser {
 		}
 		return results;
 	}
-/**
- * Sends the paramaters to the Web and receives a response for us to read.
- * @param parms The name parameters (storeID, queryValue, queryType) used for the database to search.
- * @param url The URL that the HTTP post will search for.
- * @return the Input stream for further parsing.
- */
-	private InputStream getHttp(List<NameValuePair> parms, String url) {
-		try {
 
-			httpClient = new DefaultHttpClient();
-			httpPost = new HttpPost(url);
-			httpPost.setEntity(new UrlEncodedFormEntity(parms));
-
-			httpResponse = httpClient.execute(httpPost);
-			httpEntity = httpResponse.getEntity();
-			is = httpEntity.getContent();
-
-		} catch (UnsupportedEncodingException e) {
-			Log.e("UnsupportedEncoding", e.toString());
-
-		} catch (ClientProtocolException e) {
-			Log.e("CLientProtocol", e.toString());
-
-		} catch (IOException e) {
-			Log.e("IOException", e.toString());
-
-		}
-		return is;
-
-	}
 
 
 
