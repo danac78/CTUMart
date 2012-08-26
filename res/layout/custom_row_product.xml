@@ -7,14 +7,11 @@ other layouts, this is very basic and does not have any buttons because it is
 being injected into readweb.xml.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/custom_row"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/listbackground"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-    <!--
-	The text view that will present the product name.
-	-->
+<!-- 	The text view that will present the product name. -->
 
     <TextView
         android:id="@+id/name"
@@ -23,30 +20,26 @@ being injected into readweb.xml.
         android:textColor="#000000"
         android:textSize="14sp"
         android:textStyle="bold" />
-<!--
-	The text view that will present the price.
-	-->
+<!-- 	The text view that will present the price. -->
+
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-<!--
-	The text view that will present the invetory count
-	-->
+<!-- 	The text view that will present the invetory count -->
+
     <TextView
         android:id="@+id/inventory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-<!--
-	The text view that will present the sections.
-	-->
+<!-- 	The text view that will present the sections. -->
+
     <TextView
         android:id="@+id/sections"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-<!--
-	The text view that will present the aisle.
-	-->
+<!-- 	The text view that will present the aisle. -->
+
     <TextView
         android:id="@+id/aisle"
         android:layout_width="wrap_content"

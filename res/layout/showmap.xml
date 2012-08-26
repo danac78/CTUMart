@@ -2,15 +2,13 @@
 This layout is to show the different maps of the store. Unlike the previous ones,
  this is reused for two activities.
 -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/shopperHelperBase"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-     >
+   >
+
 <!--
 The store logo.
 -->

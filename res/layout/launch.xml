@@ -3,11 +3,9 @@
 The Dialog layout will be shown over this.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/shopperHelperBase"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
     <!-- Displaying the store logo -->
 

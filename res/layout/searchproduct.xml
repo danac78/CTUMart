@@ -6,11 +6,10 @@ This layout is for the Search Product layout. This is a little more complex than
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/shopperHelperBase"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    >
 
     <!-- The logo branding a particular store -->
 

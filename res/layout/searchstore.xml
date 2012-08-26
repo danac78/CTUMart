@@ -1,12 +1,5 @@
 <!-- This layout will be for the Search for Store process. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:tools="http://schemas.android.com/tools"    style="@style/shopperHelperBase"    android:layout_width="fill_parent"    android:layout_height="fill_parent"    >
 <!-- Showing the logo of the store. -->
 
     <ImageView

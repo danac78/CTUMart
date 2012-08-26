@@ -5,10 +5,9 @@
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/shopperHelperBase"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
     <!--
 This is where each product will be listed individually, and will be divided by the divider to separate them visually. The
@@ -17,10 +16,9 @@ background is different from the one used in the linearlayout to provide a contr
 
     <ListView
         android:id="@+id/ListView01"
+        style="@style/shopperhelper_listview"
         android:layout_width="fill_parent"
-        android:layout_height="379dp"
-        android:background="@drawable/background"
-        android:divider="@drawable/divider" />
+        android:layout_height="379dp" />
     <!-- This is the back button that will be used to move to the previous screen. -->
 
     <ImageButton

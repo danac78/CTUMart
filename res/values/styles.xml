@@ -2,4 +2,21 @@
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
+    <style name="shopperHelperBase">
+        <item name="android:background">@drawable/background</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="shopperhelper_listview" parent="android:Widget.ListView.White">
+        <item name="android:background">@drawable/background</item>
+        <item name="android:divider">@drawable/divider</item>
+    </style>
+    <style name="styleName">
+        <item name="android:background">@drawable/listbackground</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="custom_row">
+        <item name="android:background">@drawable/listbackground</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 </resources>
