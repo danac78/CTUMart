@@ -153,6 +153,8 @@ public class SearchProduct extends Activity {
 		});
 		search.setOnClickListener(new View.OnClickListener() {
 
+			private String upcCheck;
+
 			public void onClick(View v) {
 				final int position = searchType.getSelectedItemPosition();
 				/*
@@ -198,9 +200,11 @@ public class SearchProduct extends Activity {
 					 * if those two do not set this off, it will save into internal
 					 * storage and signal for the next intent.
 					 */
-					if (UPCTXT.getText().toString().length() == 0) {
+					
+					upcCheck = UPCTXT.getText().toString();
+					if (upcCheck.length() == 0) {
 						UPCTXT.setError("Enter a UPC");
-					} else if (productTXT.getText().toString().length() > 12) {
+					} else if (upcCheck.length() > 12) {
 						UPCTXT.setError("UPC is 12 Digits");
 
 					} else {
