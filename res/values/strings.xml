@@ -7,8 +7,7 @@
     <string name="error">Error</string>
     <string name="internetError">This Device is not connected to the Internet. Please check the
          device and reopen Shopper Helper</string>
-    <string name="compatibleError">This application is meant for Android 1.6 or greater. If this is Android 2.2 
-        or greater, check with your manufacture why it is not reporting this.</string>
+    <string name="compatibleError">This application is meant for Android 1.6 or greater.  \n\nIf this is Android 1.6 or greater, check with your manufacture why it is not reporting this.</string>
     <string name="description">Shopper Helper is an application available for API 8+, which will assist with finding a product in the Shopper Helper Store. This is an Academic Project for IT482–1203C-01 Team 2.</string>
     <string name="codeName">Michael</string>
     <string name="start_search">Start Search</string>
@@ -42,8 +41,7 @@
     </string-array>
 
     <string name="type_info">Type</string>
-    <string name="helpProduct">Selecting A Search \n\n
-\n\n Only one search option will remain on the screen at a time to simplify the search based on your preference. Changing the preference is simple:
+    <string name="helpProduct">Selecting A Search \n\n Only one search option will remain on the screen at a time to simplify the search based on your preference. Changing the preference is simple:
 \n\n Tap the Drop Down Box
 \n\n Choose from the following: Product Name, Product Type, or UPC.
 \n\n Provide input based on the type:

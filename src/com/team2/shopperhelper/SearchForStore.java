@@ -108,11 +108,8 @@ public class SearchForStore extends Activity {
 		settings = getSharedPreferences(PREF_NAME, 0);
 		locationTXT = (Spinner) findViewById(R.id.locationTXT);
 		editor = settings.edit();
-		/**
-		 * What this feature does is checks to see if shopPref has been created
-		 * and contains a queryType. If it does, the load button will be
-		 * available.
-		 */
+		
+		
 		if (settings.contains(KEY)) {
 			load.setVisibility(View.VISIBLE);
 		}

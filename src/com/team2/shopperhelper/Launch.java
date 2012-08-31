@@ -3,6 +3,8 @@ package com.team2.shopperhelper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -29,15 +31,16 @@ import com.team2.shopperhelper.library.DialogBox;
  *        to check to ensure if that the Android OS is compatible (in case of
  *        Android OS corruption) and that it is connected to the Internet. If it
  *        loads with these two conditions being false, it will display a message
- *        alerting the user. Once they click on the close button, the application
- *        will close. If both items are true, the user will just see Search
- *        Store appear. In the simulations ran, this actually only takes one
- *        second and the customer will not * notice these tests being conducted
- *        at all.
+ *        alerting the user. Once they click on the close button, the
+ *        application will close. If both items are true, the user will just see
+ *        Search Store appear. In the simulations ran, this actually only takes
+ *        one second and the customer will not * notice these tests being
+ *        conducted at all.
  *        </p>
  */
 
 public class Launch extends Activity {
+
 	/**
 	 * Holds the value if the Mobile Internet is connected. Tried to use just
 	 * the boolean, but it kept letting the shopper app continue.
@@ -85,6 +88,19 @@ public class Launch extends Activity {
 	 */
 	private DialogBox dialog;
 	/**
+	 * The shared preference is merely for testing purposes.
+	 */
+	@SuppressWarnings("unused")
+	private SharedPreferences settings;
+	/**
+	 * Editor will only be used to clear the preferences out for testing
+	 * purposes. At this time, CTUMart has no intent on clearing previous
+	 * searches out as it would save time for the customer.
+	 */
+	@SuppressWarnings("unused")
+	private Editor editor;
+
+	/**
 	 * <p>
 	 * The onCreate method is basically running to launch the application. The
 	 * sole purpose is to ensure that the application is compatible and has
@@ -105,14 +121,23 @@ public class Launch extends Activity {
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 		// mobileIsConnect = "false";
-
+		// wifiIsConnect = "false";
 		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
 		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
 		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
-		
+		/**
+		 * The editor.clear() is merely for testing purposes. At this point, we
+		 * intend to keep previous searches stored in memory.
+		 */
+
+		// settings = getSharedPreferences("shopPref", 0);
+		// editor = settings.edit();
+		// editor.clear();
+		// editor.commit();
+
 		if ((mobileIsConnect.contentEquals("false"))
 				&& (wifiIsConnect.contentEquals("false"))) {
 
@@ -126,6 +151,6 @@ public class Launch extends Activity {
 			finish();
 		}
 
-	}	
-	
+	}
+
 }
