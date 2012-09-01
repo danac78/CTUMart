@@ -13,8 +13,8 @@ import com.team2.shopperhelper.R;
  * Making the Dialog Box option reusuable without repeating code.
  * 
  * @author Dana Haywood
- * @since 8/8/2012
- * @version 0.5.0 <br>
+ * @since 9/1/2012
+ * @version 0.9.5 <br>
  *          Instructor: Karl Lloyd<br>
  *          Class: IT482<br>
  *          University: Colorado Technical University<br>

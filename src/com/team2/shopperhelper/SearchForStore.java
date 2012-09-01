@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -62,11 +61,7 @@ public class SearchForStore extends Activity {
 	 * This will associate the spinner (dropdown) with the java.
 	 */
 	private Spinner locationTXT;
-	/**
-	 * This will put the information into internal Store. In this case, the
-	 * store ID.
-	 */
-	private Editor editor;
+	
 	protected DialogBox dialogS;
 
 	/**
@@ -88,7 +83,7 @@ public class SearchForStore extends Activity {
 		info = (ImageButton) findViewById(R.id.helpStoreBTN);
 		settings = getSharedPreferences(PREF_NAME, 0);
 		locationTXT = (Spinner) findViewById(R.id.locationTXT);
-		editor = settings.edit();
+		
 
 
 		/*
@@ -110,7 +105,7 @@ public class SearchForStore extends Activity {
 				 * plus 1 since position starts at zero
 				 */
 				prefWrite("storeID", Integer.toString((locationTXT
-						.getSelectedItemPosition()) + 1), editor);
+						.getSelectedItemPosition()) + 1));
 
 				/*
 				 * starting the Search Product activity
@@ -144,9 +139,9 @@ public class SearchForStore extends Activity {
 	/**
 	 * Saving the preferences.
 	 */
-	protected void prefWrite(String field, String value, Editor editor) {
-		editor.putString("storeID", value);
-		editor.commit();
+	protected void prefWrite(String field, String value) {
+		settings.edit().putString("storeID", value);
+		settings.edit().commit();
 
 	}
 }

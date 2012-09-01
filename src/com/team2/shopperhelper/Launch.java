@@ -14,8 +14,8 @@ import com.team2.shopperhelper.library.DialogBox;
  * Activity to check Internet and Compatibility issues prior to proceeding.
  * 
  * @author Dana Haywood
- * @version 0.9.0
- * @since 8/17/2012<br>
+ * @version 0.9.5
+ * @since 9/1/2012<br>
  * 
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>

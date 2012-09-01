@@ -2,8 +2,8 @@ package com.team2.shopperhelper.library;
 
 /**
  * @author Dana Haywood
- * @since 8/4/2012
- * @version 0.5.0
+ * @since 9/1/2012
+ * @version 0.9.5
  * <br> Instructor: Karl Lloyd<br>
  *       Class: IT482<br>
  *       University: Colorado Technical University<br>

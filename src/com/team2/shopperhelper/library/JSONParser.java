@@ -22,7 +22,7 @@ import android.util.Log;
  * Gathering the information from the web..
  * 
  * @author Dana Haywood
- * @version 0.5.2
+ * @version 0.9.5
  * @since 8/4/2012 <br>
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>

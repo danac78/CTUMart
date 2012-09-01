@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -110,11 +109,8 @@ public class SearchProduct extends Activity {
 	 * Internal Storage.
 	 */
 	private SharedPreferences settings;
-	/**
-	 * The editor that will store information into internal storage. The Search
-	 * Type and Search Value.
-	 */
-	private Editor editor;
+	
+		
 	private ImageButton load;
 
 	@SuppressLint("CommitPrefEdits")
@@ -140,8 +136,7 @@ public class SearchProduct extends Activity {
 		previous = new Intent(this, SearchForStore.class);
 
 		settings = getSharedPreferences(PREF_NAME, 0);
-		editor = settings.edit();
-
+		
 		if (settings.contains(KEY)) {
 			loadVisible();
 		}
@@ -191,7 +186,7 @@ public class SearchProduct extends Activity {
 						productTXT.setError("Enter a Product Name");
 					} else {
 						querySave("productName", productTXT.getText()
-								.toString(), editor);
+								.toString());
 						newActivity(intent, productTXT, searchType, UPCTXT);
 					}
 					break;
@@ -203,7 +198,7 @@ public class SearchProduct extends Activity {
 					 * storage.
 					 */
 					querySave("productType", productType.getSelectedItem()
-							.toString(), editor);
+							.toString());
 					newActivity(intent, productTXT, searchType, UPCTXT);
 
 					break;
@@ -223,7 +218,7 @@ public class SearchProduct extends Activity {
 
 					} else {
 
-						querySave("UPC", UPCTXT.getText().toString(), editor);
+						querySave("UPC", UPCTXT.getText().toString());
 						newActivity(intent, productTXT, searchType, UPCTXT);
 					}
 
@@ -397,12 +392,12 @@ public class SearchProduct extends Activity {
 	 * @param editor
 	 *            the editor to commit this to pref.
 	 */
-	protected void querySave(String valueA, String valueB, Editor editor) {
+	protected void querySave(String valueA, String valueB) {
 		String fieldA = "queryType";
 		String fieldB = "queryValue";
-		editor.putString(fieldA, valueA);
-		editor.putString(fieldB, valueB);
-		editor.commit();
+		settings.edit().putString(fieldA, valueA);
+		settings.edit().putString(fieldB, valueB);
+		settings.edit().commit();
 
 	}
 
