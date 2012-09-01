@@ -1,7 +1,7 @@
 == Purpose ==
 <p>
 This is an academic project for IT482 at CTUOnline. The team members include Thomas Johns, 
-Dana Haywood, Charles Jarvis, Kevin Kahl, Jeff Kiesel, and Michael Lane. As part of this project, 
+Dana Haywood, Charles Jarvis, Jeff Kiesel, and Michael Lane. As part of this project, 
 we are creating a fictional store and producing an Android Application that will find a store,
 find a product, and potentially show where the product is in the store.
 </p>
