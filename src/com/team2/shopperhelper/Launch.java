@@ -40,10 +40,6 @@ import com.team2.shopperhelper.library.DialogBox;
 public class Launch extends Activity {
 
 	/**
-	 * Contains the value from SDK version.
-	 */
-	private int checkVersion;
-	/**
 	 * This is gathering the API level the device is using. For example, Android
 	 * 2.2. would be API 8. The minimum will be 4. The purpose for parsing it is
 	 * that below Android 2.x, they did not have the Integer version.
@@ -93,8 +89,6 @@ public class Launch extends Activity {
 		wiFiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		checkVersion = Integer.parseInt(Build.VERSION.SDK);
-		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
 		/**
@@ -109,7 +103,7 @@ public class Launch extends Activity {
 
 			dialog.postDialog(Launch.this, "Error", R.string.internetError);
 
-		} else if (checkVersion < 4) {
+		} else if (Integer.parseInt(Build.VERSION.SDK) < 4) {
 
 			dialog.postDialog(Launch.this, "Error", R.string.compatibleError);
 		} else {
