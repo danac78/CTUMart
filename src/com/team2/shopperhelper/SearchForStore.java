@@ -27,14 +27,7 @@ import com.team2.shopperhelper.library.DialogBox;
  *          This activity will take the spinner information containing the store
  *          and store it in storeID to be placed in Internal Store. It shall use
  *          a +1 since position starts at 0. This value will then be used in
- *          ShowProducts to filter and items not in that store. Each button has
- *          a listener that will do the following:
- *          </p>
- *          <ol>
- *          <li>Search: Brings us to the next screen as well as save the values.
- *          </li>
- *          <li>Info: Brings up the help dialog.</li>
- *          </ol>
+ *          ShowProducts to filter and items not in that store. 
  */
 
 public class SearchForStore extends Activity {
@@ -44,33 +37,22 @@ public class SearchForStore extends Activity {
 	 */
 	public static final String PREF_NAME = "shopPref";
 	/**
-	 * Creating a key that will be checked to see if the Load button will be
-	 * Visible or not.
-	 */
-	private static final String KEY = "queryType";
-	/**
-	 * This intent is to bypass the SearchProduct class and move into
-	 * ShowProduct with information from the previous searches.
-	 */
-	private Intent loadIntent;
-	/**
 	 * This is declaring the next activity we shall proceed to after this. In
 	 * this case, it is the SearchProduct.class.
 	 */
 	private Intent intent;
 	/**
 	 * This is associating the class with the Search Image button in the UI.
+	 * This will save the information into internal memory and continue 
+	 * with the search.
 	 */
 	private ImageButton search;
 	/**
-	 * This is associating with the question mark image button in the UI
+	 * This is associating with the question mark image button in the UI. This
+	 * will call for the help information.
 	 */
 	private ImageButton info;
-	/**
-	 * This is the button that will load the previous search and go to the
-	 * ShowProduct class.
-	 */
-	private ImageButton load;
+
 	/**
 	 * This is grabbing the settings for the Internal Storage to allow to
 	 * read/write.
@@ -100,35 +82,15 @@ public class SearchForStore extends Activity {
 		 * calling the searchstore layout to have it display that screen.
 		 */
 		setContentView(R.layout.searchstore);
-		loadIntent = new Intent(this, ShowProduct.class);
+		new Intent(this, ShowProduct.class);
 		intent = new Intent(this, SearchProduct.class);
 		search = (ImageButton) findViewById(R.id.search);
 		info = (ImageButton) findViewById(R.id.helpStoreBTN);
-		load = (ImageButton) findViewById(R.id.productLoadBtn);
 		settings = getSharedPreferences(PREF_NAME, 0);
 		locationTXT = (Spinner) findViewById(R.id.locationTXT);
 		editor = settings.edit();
-		
-		
-		if (settings.contains(KEY)) {
-			load.setVisibility(View.VISIBLE);
-		}
 
-		/**
-		 * When the Load button is clicked, it will send the new storeID to the
-		 * pref and send the user straight to ShowProduct.
-		 */
-		load.setOnClickListener(new View.OnClickListener() {
 
-			public void onClick(View v) {
-				
-				prefWrite("storeID", Integer.toString((locationTXT
-						.getSelectedItemPosition()) + 1), editor);
-				startActivity(loadIntent);
-				finish();
-
-			}
-		});
 		/*
 		 * Upon the Search Button being pressed, this will collect the
 		 * information from the spinner and obtain the id.
@@ -179,7 +141,7 @@ public class SearchForStore extends Activity {
 
 	}
 
-	/*
+	/**
 	 * Saving the preferences.
 	 */
 	protected void prefWrite(String field, String value, Editor editor) {

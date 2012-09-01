@@ -30,8 +30,8 @@ import com.team2.shopperhelper.library.SearchResults;
  * Showing the Product in a List
  * 
  * @author Dana Haywood
- * @since 8/17/2012
- * @version 0.9.0 Instructor: Karl Lloyd<br>
+ * @since 9/1/2012
+ * @version 0.9.5 Instructor: Karl Lloyd<br>
  *          Class: IT482<br>
  *          University: Colorado Technical University<br>
  *          Source Cite:
@@ -109,6 +109,7 @@ public class ShowProduct extends Activity {
 	 * SearchResult will create a string array to place into an arraylist.
 	 */
 	private SearchResults pr1;
+
 	/**
 	 * Configuring the settings in protected mode to move into the listener.
 	 * This will save the information for the Section and Aisle map.
@@ -122,6 +123,7 @@ public class ShowProduct extends Activity {
 	 * parms : nameValuePairs will contain the information required to do the
 	 * search function.
 	 */
+
 	private ArrayList<NameValuePair> parms;
 
 	@Override
@@ -138,62 +140,69 @@ public class ShowProduct extends Activity {
 		prevIntent = new Intent(this, SearchProduct.class);
 		intent = new Intent(this, ShowSection.class);
 		lv1 = (ListView) findViewById(R.id.ListView01);
+		
 		/*
 		 * This is where the android php page that be responsible for populating
 		 * this page. The first thing we need to do is create name value pairs
 		 * that will hold the values we are passing to the web page.
 		 */
-
-		parms = new ArrayList<NameValuePair>();
-
-		/*
-		 * Adding the parameters that will be required to do the search.
-		 */
-		addParms("storeID", parms, setting);
-		addParms("queryType", parms, setting);
-		addParms("queryValue", parms, setting);
-
-		/*
-		 * Calling the JSONParser to get the JSONObject with the results from
-		 * the website.
-		 */
-		productInfo = jsonParser.getJSONInformation(parms, URL);
-		/*
-		 * It is checking to see if productInfo is null at the productlist.
-		 * Without this, trying to put this object into an array will cause an
-		 * exception. Instead, we will put this object through a test. If it is
-		 * null, it will produce a dialog box saying no products found. If not,
-		 * it will produce the list.
-		 */
-		if (productInfo.isNull("productlist")) {
-
-			DialogBox dialog = new DialogBox();
-			dialog.postDialog(ShowProduct.this, "No Product Found",
-					R.string.no_product_found);
-
-		} else {
+		
+		
+			parms = new ArrayList<NameValuePair>();
 
 			/*
-			 * Instantiating arrayResults that will be used to populate the list
+			 * Adding the parameters that will be required to do the search.
 			 */
-			pr1 = new SearchResults();
-			try {
-				listObjects = productInfo.getJSONArray("productlist");
-			} catch (JSONException e1) {
-				Log.e("JSON:", e1.toString());
-			}
-			for (int i = 0; i < listObjects.length(); i++) {
-				arrayResults = getListProducts(listObjects, arrayResults, pr1,
-						i);
+			addParms("storeID", parms, setting);
+			addParms("queryType", parms, setting);
+			addParms("queryValue", parms, setting);
+
+			/*
+			 * Calling the JSONParser to get the JSONObject with the results
+			 * from the website.
+			 */
+			productInfo = jsonParser.getJSONInformation(parms, URL);
+			/*
+			 * It is checking to see if productInfo is null at the productlist.
+			 * Without this, trying to put this object into an array will cause
+			 * an exception. Instead, we will put this object through a test. If
+			 * it is null, it will produce a dialog box saying no products
+			 * found. If not, it will produce the list.
+			 */
+			if (productInfo.isNull("productlist")) {
+
+				DialogBox dialog = new DialogBox();
+				dialog.postDialog(ShowProduct.this, "Product was not Found",
+						R.string.no_product_found);
+
+			} else {
+
+				/*
+				 * Instantiating arrayResults that will be used to populate the
+				 * list
+				 */
 				pr1 = new SearchResults();
+				try {
+					listObjects = productInfo.getJSONArray("productlist");
+				} catch (JSONException e1) {
+					Log.e("JSON:", e1.toString());
+				}
+				for (int i = 0; i < listObjects.length(); i++) {
+					arrayResults = getListProducts(listObjects, arrayResults,
+							pr1, i);
+					pr1 = new SearchResults();
+				}
+
 			}
 
-		}
+			/**
+			 * Sending the results to the ListView.
+			 */
+			
+		
 
-		/**
-		 * Sending the results to the ListView.
-		 */
 		lv1.setAdapter(new CustomBaseAdapter(this, arrayResults));
+	
 		lv1.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> arg, View view,
@@ -234,6 +243,10 @@ public class ShowProduct extends Activity {
 		});
 	}
 
+	
+
+	
+	
 	/**
 	 * Pulling information from the JSON Array, and putting them into holders.
 	 * They will then be pushed into an array that is following the format of

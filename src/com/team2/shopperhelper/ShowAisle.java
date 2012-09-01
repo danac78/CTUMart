@@ -122,10 +122,15 @@ public class ShowAisle extends Activity {
 				Log.e("IO:", e.toString());
 			}
 		}
-
+		/** Returning to Show Product as well as assigning
+		 * the true flag stating to ShowProduct it is from the map,
+		 * therefore will attempt to load the results again rather 
+		 * than call the database.
+		 */
 		back.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
+				
 				startActivity(intent);
 				finish();
 

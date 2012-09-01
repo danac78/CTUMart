@@ -60,15 +60,6 @@ What gone does is that it acts as if the button is not even part of the layout. 
 invisible because invisable would just make the item disappear, but the layout would act as if something
 is there. Gone will act like nothing is there, which will prove useful in later layouts.
         -->
-
-        <ImageButton
-            android:id="@+id/productLoadBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:contentDescription="@string/load_search_button"
-            android:src="@drawable/load"
-            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

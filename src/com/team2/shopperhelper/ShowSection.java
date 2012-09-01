@@ -20,8 +20,8 @@ import android.widget.ImageView;
  * Showing the Section Map for the Store.
  * 
  * @author Dana Haywood
- * @version 0.9.0
- * @since 8/17/2012 <br>
+ * @version 0.9.5
+ * @since 9/1/2012 <br>
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>
  *        University: Colorado Technical University<br>
@@ -140,11 +140,16 @@ public class ShowSection extends Activity {
 			}
 		});
 		/**
-		 * Being sent back to ShowProduct
+		 * Being sent back to ShowProduct as well as assigning
+		 * the true flag stating to ShowProduct it is from the map,
+		 * therefore will attempt to load the results again rather 
+		 * than call the database.
 		 */
 		back.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
+				settings.edit().putBoolean("mapReturnFrom", true);
+				settings.edit().commit();
 				startActivity(backIntent);
 				finish();
 

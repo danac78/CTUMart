@@ -3,8 +3,6 @@ package com.team2.shopperhelper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -42,20 +40,6 @@ import com.team2.shopperhelper.library.DialogBox;
 public class Launch extends Activity {
 
 	/**
-	 * Holds the value if the Mobile Internet is connected. Tried to use just
-	 * the boolean, but it kept letting the shopper app continue.
-	 */
-	private String mobileIsConnect;
-	/**
-	 * Holds the value if the WiFi Internet is connected. Although as of August
-	 * 18, I did think of something that might work. What if I use ! to indicate
-	 * not when it is asking isConnected. Although in theory this would work, it
-	 * would be difficult to test from what I am seeing (or from my experience
-	 * level). For the scope of this academic project, I am keeping it as is.
-	 */
-	private String wifiIsConnect;
-
-	/**
 	 * Contains the value from SDK version.
 	 */
 	private int checkVersion;
@@ -70,16 +54,18 @@ public class Launch extends Activity {
 	private ConnectivityManager connectivity;
 	/**
 	 * This is invoking the Connectivity Manager, which is part of the Android
-	 * API. it is how we are going learn if the Internet is on or off.
+	 * API. it is how we are going learn if the Internet is on or off. It will use
+	 * the boolean to determine if connection is available.
 	 */
 	private NetworkInfo mobileInfo;
 	/**
-	 * This will hold the information pertaining to Wifi connection.
+	 * This will hold the information pertaining to Wifi connection. It will use
+	 * the boolean to determine if connection is available.
 	 */
 	private NetworkInfo wiFiInfo;
 	/**
 	 * This is declaring the next Activity that will be opened if the two checks
-	 * passes.
+	 * passes. 
 	 */
 	private Intent intent;
 
@@ -87,19 +73,6 @@ public class Launch extends Activity {
 	 * Creating a dialog box for this activity.
 	 */
 	private DialogBox dialog;
-	/**
-	 * The shared preference is merely for testing purposes.
-	 */
-	@SuppressWarnings("unused")
-	private SharedPreferences settings;
-	/**
-	 * Editor will only be used to clear the preferences out for testing
-	 * purposes. At this time, CTUMart has no intent on clearing previous
-	 * searches out as it would save time for the customer.
-	 */
-	@SuppressWarnings("unused")
-	private Editor editor;
-
 	/**
 	 * <p>
 	 * The onCreate method is basically running to launch the application. The
@@ -120,26 +93,19 @@ public class Launch extends Activity {
 		wiFiInfo = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		mobileInfo = connectivity
 				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		// mobileIsConnect = "false";
-		// wifiIsConnect = "false";
-		mobileIsConnect = Boolean.toString(mobileInfo.isConnected());
-		wifiIsConnect = Boolean.toString(wiFiInfo.isConnected());
 		checkVersion = Integer.parseInt(Build.VERSION.SDK);
 		// checkVersion = 3;
 		intent = new Intent(this, SearchForStore.class);
 
 		/**
 		 * The editor.clear() is merely for testing purposes. At this point, we
-		 * intend to keep previous searches stored in memory.
+		 * intend to keep previous searches stored in memory. Adding mapReturn
+		 * from for Show Product. It will keep the setting stored for future
+		 * use, but this is to prevent a crash as a result of this setting not
+		 * being there.
 		 */
 
-		// settings = getSharedPreferences("shopPref", 0);
-		// editor = settings.edit();
-		// editor.clear();
-		// editor.commit();
-
-		if ((mobileIsConnect.contentEquals("false"))
-				&& (wifiIsConnect.contentEquals("false"))) {
+		if ((!mobileInfo.isConnected()) && (!wiFiInfo.isConnected())) {
 
 			dialog.postDialog(Launch.this, "Error", R.string.internetError);
 

@@ -129,8 +129,19 @@ only three types: UPC, Product Name, and Product Type.
         android:layout_height="wrap_content"
         android:background="@null"
         android:contentDescription="@string/clear_button"
-        android:src="@drawable/clear" />
+        android:src="@drawable/clear"
+        android:visibility="gone" />
+
     <!-- Image Button for the Help functionality. -->
+
+    <ImageButton
+        android:id="@+id/loadBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:contentDescription="@string/load_search_button"
+        android:src="@drawable/load"
+        android:visibility="gone" />
 
     <ImageButton
         android:id="@+id/searchProductHelp"

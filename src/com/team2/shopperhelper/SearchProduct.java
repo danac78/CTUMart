@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -20,8 +22,8 @@ import com.team2.shopperhelper.library.DialogBox;
  * Searching for a Product.
  * 
  * @author Dana Haywood
- * @version 0.5.2
- * @since 7/12/2012
+ * @version 0.9.5
+ * @since 9/1/2012
  * 
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>
@@ -46,6 +48,11 @@ public class SearchProduct extends Activity {
 	 * value.
 	 */
 	public static final String PREF_NAME = "shopPref";
+	/**
+	 * Creating a key that will be checked to see if the Load button will be
+	 * Visible or not.
+	 */
+	private static final String KEY = "queryType";
 	/**
 	 * This is the default label with "Enter Info". This will be set to gone if
 	 * product type search is selected.
@@ -108,15 +115,15 @@ public class SearchProduct extends Activity {
 	 * Type and Search Value.
 	 */
 	private Editor editor;
+	private ImageButton load;
 
-	
 	@SuppressLint("CommitPrefEdits")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.searchproduct);
 		/*
-		 *
+		 * Loading an instance of Android items into Java.
 		 */
 		productLbl = (TextView) findViewById(R.id.productLbl);
 		productTypeLbl = (TextView) findViewById(R.id.productTypeLbl);
@@ -128,10 +135,17 @@ public class SearchProduct extends Activity {
 		info = (ImageButton) findViewById(R.id.searchProductHelp);
 		clear = (ImageButton) findViewById(R.id.clear);
 		back = (ImageButton) findViewById(R.id.productBack);
+		load = (ImageButton) findViewById(R.id.loadBtn);
 		intent = new Intent(this, ShowProduct.class);
 		previous = new Intent(this, SearchForStore.class);
+
 		settings = getSharedPreferences(PREF_NAME, 0);
 		editor = settings.edit();
+
+		if (settings.contains(KEY)) {
+			loadVisible();
+		}
+
 		/*
 		 * This sequence is listening to see if the info button (?) was pressed.
 		 * If it was, it is going to trigger the dialog box, which will display
@@ -168,9 +182,9 @@ public class SearchProduct extends Activity {
 				case 0:
 					/*
 					 * If the text is blank, it will gives the error message to
-					 * enter a product name Otherwise, it will send the information
-					 * for the next Intent as well as save information into internal
-					 * storage
+					 * enter a product name Otherwise, it will send the
+					 * information for the next Intent as well as save
+					 * information into internal storage
 					 */
 
 					if (productTXT.getText().toString().length() == 0) {
@@ -184,9 +198,9 @@ public class SearchProduct extends Activity {
 				case 1:
 					/*
 					 * As it is already filled in via drop down, there the
-					 * validation is not needed. It will simply send to
-					 * the next intent. It will also save information into
-					 * internal storage.
+					 * validation is not needed. It will simply send to the next
+					 * intent. It will also save information into internal
+					 * storage.
 					 */
 					querySave("productType", productType.getSelectedItem()
 							.toString(), editor);
@@ -196,11 +210,11 @@ public class SearchProduct extends Activity {
 				case 2:
 					/*
 					 * This is going to check for two things. It will ensure the
-					 * UPC is not blank as well as it does not exceed 12 digits. 
-					 * if those two do not set this off, it will save into internal
-					 * storage and signal for the next intent.
+					 * UPC is not blank as well as it does not exceed 12 digits.
+					 * if those two do not set this off, it will save into
+					 * internal storage and signal for the next intent.
 					 */
-					
+
 					upcCheck = UPCTXT.getText().toString();
 					if (upcCheck.length() == 0) {
 						UPCTXT.setError("Enter a UPC");
@@ -235,15 +249,18 @@ public class SearchProduct extends Activity {
 				productTXT.setText(null);
 				UPCTXT.setText(null);
 				searchType.setSelection(0);
+				clear.setVisibility(View.GONE);
+				if (settings.contains(KEY)) {
+					loadVisible();
+				}
 
 			}
 		});
 
-		//
-		// /*
-		// * This will change the view between productTXT,productType, and
-		// UPCTXT.
-		// */
+		/**
+		 * This will change the view between productTXT,productType, and UPCTXT.
+		 */
+
 		searchType.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			public void onItemSelected(AdapterView<?> parentView,
@@ -275,7 +292,6 @@ public class SearchProduct extends Activity {
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -292,6 +308,60 @@ public class SearchProduct extends Activity {
 
 			}
 		});
+		/**
+		 * This is checking the UPCTXT edit box for text change to change to
+		 * ensure that load is gone and clear is visible.
+		 */
+		UPCTXT.addTextChangedListener(new TextWatcher() {
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				clear.setVisibility(View.VISIBLE);
+				load.setVisibility(View.GONE);
+			}
+
+			public void afterTextChanged(Editable s) {
+
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+		});
+		/**
+		 * This is checking the productTXT edit box for text change to change to
+		 * ensure that load is gone and clear is visible. The other methods are
+		 * not required for this function, but must be there for the TextWatcher
+		 * interface.
+		 */
+		productTXT.addTextChangedListener(new TextWatcher() {
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				clear.setVisibility(View.VISIBLE);
+				load.setVisibility(View.GONE);
+
+			}
+
+			public void afterTextChanged(Editable s) {
+
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+		});
+	}
+
+	/**
+	 * Making the Load Button Visible
+	 */
+	private void loadVisible() {
+		load.setVisibility(View.VISIBLE);
 
 	}
 

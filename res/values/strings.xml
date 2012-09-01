@@ -63,7 +63,7 @@
     <string name="backButton">Back</string>
     <string name="selectCity">Select the Store City</string>
     <string name="close">Close</string>
-    <string name="no_product_found">Sorry, but no products were found with the information provided.</string>
+    <string name="no_product_found">This product(s) were not found in this store. Please check the availability in another store.</string>
     <string name="title_activity_show_section">ShowSection</string>
     <string name="productTypeLbl">Select a Type</string>
     <string name="the_logo_for_the_store_">The logo for the store.</string>
