@@ -291,6 +291,14 @@ public class SearchProduct extends Activity {
 			}
 
 		});
+		load.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				newActivity(intent,productTXT,
+						 searchType, UPCTXT);
+				
+			}
+		});
 
 		/*
 		 * Returning to Search For Store.
@@ -373,7 +381,7 @@ public class SearchProduct extends Activity {
 	 *            the edit box for UPC.
 	 */
 	protected void newActivity(Intent intent, EditText productTXT,
-			Spinner searchType, EditText uPCTXT) {
+		Spinner searchType, EditText uPCTXT) {
 		productTXT.setVisibility(View.VISIBLE);
 		searchType.setVisibility(View.GONE);
 		uPCTXT.setVisibility(View.GONE);
