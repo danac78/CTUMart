@@ -160,7 +160,7 @@ a little.</p>
 Added the help system to. Additionally, minimize the amount of maps required by using a switch with default. The default will be store 1, so if any other stores have maps different from that can be changed with Case #. This greatly reduced the amount of memory required.
 </p>
 
-==Version 0.9.5 ===
++==Version 0.9.5 ===
 <p>Corrected some formatting of the help system per Issue #13 as well as change the location of the load button (now on Search Product). Additionally, changed it so that it will switch to clear if any textbox start being typed into. Also corrected Issue #12 where it would fall to recognize the UPC is more than 12 numbers. </p>
 
 <p>Corrected the Clear button so it looks consistent with the rest of the screen. Also the Listview on ShowStore as well as the ShowSection has text indicating to tap on it.
