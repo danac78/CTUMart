@@ -161,5 +161,7 @@ Added the help system to. Additionally, minimize the amount of maps required by 
 </p>
 
 ==Version 0.9.5 ===
-Corrected some formatting of the help system per Issue #13 as well as change the location of the load button (now on Search Product). Additionally, changed it so that it will switch to clear if any textbox start being typed into. Also corrected Issue #12 where it would fall to recognize the UPC is more than 12 numbners. 
-button. 	
+<p>Corrected some formatting of the help system per Issue #13 as well as change the location of the load button (now on Search Product). Additionally, changed it so that it will switch to clear if any textbox start being typed into. Also corrected Issue #12 where it would fall to recognize the UPC is more than 12 numbers. </p>
+
+<p>Corrected the Clear button so it looks consistent with the rest of the screen. Also the Listview on ShowStore as well as the ShowSection has text indicating to tap on it.
+</p>

@@ -32,6 +32,13 @@ This is displaying the map based on the information provided by the related acti
 <!--
 The button layouts
 -->
+
+    <TextView
+        android:id="@+id/tapAisle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tapForAisle" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -77,5 +77,7 @@
     <string name="helpDialog">Help Dialog Image</string>
     <string name="Show_Map_Section">The Show Section screen will display a map with the location of the product based on the layout of the store.   \n\nUse the Back button to go back to Show Products.</string>
     <string name="aisle_map_help">On the Show Aisle page, it will have an arrow pointing to the corresponding aisle. All the imagines are configured to have the first aisle (i.e. A1) start on the left side. Additionally, it will show reference points (i.e. Hardware) to show what position they would be in the store to provide you with the best assistance.\n\n Use the Back button to go back to Show Products.</string>
+    <string name="tapForSectionMap">Tap to Get the Section Map for this product</string>
+    <string name="tapForAisle">Tap Image for Aisle</string>
 
 </resources>

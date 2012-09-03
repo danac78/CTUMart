@@ -44,5 +44,11 @@ being injected into readweb.xml.
         android:id="@+id/aisle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tapMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tapForSectionMap" />
 
 </LinearLayout>

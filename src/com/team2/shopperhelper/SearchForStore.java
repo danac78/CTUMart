@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,8 +16,8 @@ import com.team2.shopperhelper.library.DialogBox;
  * From a drop down box, the user will be able to select the store.
  * 
  * @author Dana Haywood
- * @since 7/10/2012
- * @version 0.5.2<br>
+ * @since 9/1/2012
+ * @version 0.9.5<br>
  *          Instructor: Karl Lloyd<br>
  *          Class: IT482<br>
  *          University: Colorado Technical University<br>
@@ -26,7 +27,7 @@ import com.team2.shopperhelper.library.DialogBox;
  *          This activity will take the spinner information containing the store
  *          and store it in storeID to be placed in Internal Store. It shall use
  *          a +1 since position starts at 0. This value will then be used in
- *          ShowProducts to filter and items not in that store. 
+ *          ShowProducts to filter and items not in that store.
  */
 
 public class SearchForStore extends Activity {
@@ -42,8 +43,8 @@ public class SearchForStore extends Activity {
 	private Intent intent;
 	/**
 	 * This is associating the class with the Search Image button in the UI.
-	 * This will save the information into internal memory and continue 
-	 * with the search.
+	 * This will save the information into internal memory and continue with the
+	 * search.
 	 */
 	private ImageButton search;
 	/**
@@ -61,8 +62,14 @@ public class SearchForStore extends Activity {
 	 * This will associate the spinner (dropdown) with the java.
 	 */
 	private Spinner locationTXT;
-	
+	/**
+	 * Creating an instance of the DialogBox class.
+	 */
 	protected DialogBox dialogS;
+	/**
+	 * Editing the internal memory with values from this store.
+	 */
+	private Editor edit;
 
 	/**
 	 * Creating the Java logic for Search for Store.
@@ -83,8 +90,7 @@ public class SearchForStore extends Activity {
 		info = (ImageButton) findViewById(R.id.helpStoreBTN);
 		settings = getSharedPreferences(PREF_NAME, 0);
 		locationTXT = (Spinner) findViewById(R.id.locationTXT);
-		
-
+		edit = settings.edit();
 
 		/*
 		 * Upon the Search Button being pressed, this will collect the
@@ -140,8 +146,8 @@ public class SearchForStore extends Activity {
 	 * Saving the preferences.
 	 */
 	protected void prefWrite(String field, String value) {
-		settings.edit().putString("storeID", value);
-		settings.edit().commit();
+		edit.putString("storeID", value);
+		edit.commit();
 
 	}
 }

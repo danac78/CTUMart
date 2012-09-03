@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -110,8 +111,15 @@ public class SearchProduct extends Activity {
 	 */
 	private SharedPreferences settings;
 	
-		
+	/**
+	 * The Load button that will load the previous search into the show product
+	 * screen.	
+	 */
 	private ImageButton load;
+	/**
+	 * Saving information into internal memory.
+	 */
+	private Editor edit;
 
 	@SuppressLint("CommitPrefEdits")
 	@Override
@@ -134,9 +142,9 @@ public class SearchProduct extends Activity {
 		load = (ImageButton) findViewById(R.id.loadBtn);
 		intent = new Intent(this, ShowProduct.class);
 		previous = new Intent(this, SearchForStore.class);
-
-		settings = getSharedPreferences(PREF_NAME, 0);
 		
+		settings = getSharedPreferences(PREF_NAME, 0);
+		edit = settings.edit();
 		if (settings.contains(KEY)) {
 			loadVisible();
 		}
@@ -397,15 +405,15 @@ public class SearchProduct extends Activity {
 	 *            the value for queryType
 	 * @param valueB
 	 *            the value for queryValue
-	 * @param editor
+	 * @param edit
 	 *            the editor to commit this to pref.
 	 */
 	protected void querySave(String valueA, String valueB) {
 		String fieldA = "queryType";
 		String fieldB = "queryValue";
-		settings.edit().putString(fieldA, valueA);
-		settings.edit().putString(fieldB, valueB);
-		settings.edit().commit();
+		edit.putString(fieldA, valueA);
+		edit.putString(fieldB, valueB);
+		edit.commit();
 
 	}
 
