@@ -102,13 +102,33 @@ public class Launch extends Activity {
 		if ((!mobileInfo.isConnected()) && (!wiFiInfo.isConnected())) {
 
 			dialog.postDialog(Launch.this, "Error", R.string.internetError);
+			
+		/*
+		 * This statement is used to verify that an Internet connection is available 
+		 * by invoking the connectivity manager that is part of the API. This will be 
+		 * a boolean value, either a connection is available or it isn't. If a connection
+		 * is not available an dialogue box will be displayed that states "Error". @CSJ
+		 */
 
 		} else if (Integer.parseInt(Build.VERSION.SDK) < 4) {
 
 			dialog.postDialog(Launch.this, "Error", R.string.compatibleError);
+			
+		/*
+		 * If an Internet connection is available then this else if statement confirms that
+		 * the build version is less than 4. If this is not a true statement then once again the 
+		 * dialogue box will be displayed that states "Error". @CSJ
+		 */
+			
 		} else {
 			startActivity(intent);
 			finish();
+			
+		/*
+		 * If both of the preceding test are true, the Internet connection is available and
+		 * the build version is less than 4 then the SearchForStore.class will be initiated @CSJ
+		 */
+					
 		}
 
 	}
