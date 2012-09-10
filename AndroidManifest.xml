@@ -27,13 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchForStore" />
-        <activity android:name=".SearchProduct" />
-        <activity android:name=".ShowProduct" />
+        <activity android:name=".SearchForStore"
+            android:label="@string/searchstore_activity_lable"/>
+        <activity android:name=".SearchProduct"
+            android:label="@string/searchproduct_activity_lable"/>
+        <activity android:name=".ShowProduct"
+            android:label="@string/showproduct_activity_lable"/>
         <activity android:name=".ShowSection"
             android:label="@string/title_activity_show_section" >            
         </activity>
-        <activity android:name=".ShowAisle"/>
+        <activity android:name=".ShowAisle"
+            android:label="@string/aisle_activity_lable"/>
     </application>
 
 </manifest>
