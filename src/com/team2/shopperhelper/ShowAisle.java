@@ -20,8 +20,8 @@ import android.widget.ImageView;
  * Showing the Aisle Map
  * 
  * @author Dana Haywood
- * @version 0.9.5
- * @since 9/1/2012 Instructor: Karl Lloyd<br>
+ * @version 1.0.0
+ * @since 9/10/2012 Instructor: Karl Lloyd<br>
  *        Class: IT482<br>
  *        University: Colorado Technical University<br>
  *        Source Cite: http://developer.android.com/index.html</b>
