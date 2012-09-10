@@ -17,7 +17,10 @@
     <string name="itemCount">Item Count:</string>
     <string name="sectionLbl">Section:</string>
     <string name="aisleLbl">Aisle:</string>
-
+    <string name="aisle_activity_lable">Show Aisle</string>
+    <string name="showproduct_activity_lable">Show Product</string>
+    <string name="searchproduct_activity_lable">Search Product</string>
+    <string name="searchstore_activity_lable">Search for Store</string>
     <string-array name="locations_available">
         <item>Denver, CO</item>
         <item>Beverly Hills, CA</item>
