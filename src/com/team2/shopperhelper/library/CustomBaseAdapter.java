@@ -159,6 +159,12 @@ public class CustomBaseAdapter extends BaseAdapter {
 			holder.txtAisle = (TextView) convertView.findViewById(R.id.aisle);
 
 			convertView.setTag(holder);
+			
+			/*
+			 * This is utilized to associate the name in the user interface (UI) with the 
+			 * name in the array list.@CSJ
+			 */
+			
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
@@ -169,6 +175,12 @@ public class CustomBaseAdapter extends BaseAdapter {
 				.getInventoryCount());
 		holder.txtSection.setText(searchArrayList.get(position).getSections());
 		holder.txtAisle.setText(searchArrayList.get(position).getAisle());
+		
+		/*
+		 * This is utilized to get and return the values stored in the array list for the 
+		 * Name, Price, InventoryCount, Section,and the Aisle so that the user 
+		 * can see it in the GUI. @CSJ 
+		 */
 
 		return convertView;
 	}

@@ -106,7 +106,11 @@ public class ShowAisle extends Activity {
 				break;
 		}
 
-		
+		/**
+		 * When an item is selected the filename is referenced which is mapped to its 
+		 * location which is in the database. That location is mapped to an image 
+		 * which is displayed. @CSJ
+		 */
 		try {
 			stream = getAssets().open(fileName);
 			aisleBitmap = BitmapFactory.decodeStream(stream);
@@ -131,9 +135,13 @@ public class ShowAisle extends Activity {
 
 			public void onClick(View v) {
 				
+		/**
+		 * When back is selected startActivity(intent) will return the user to the 
+		 * ShowProduct.class @CSJ
+		 */				
 				startActivity(intent);
 				finish();
-
+				
 			}
 		});
 
