@@ -30,8 +30,8 @@ import com.team2.shopperhelper.library.SearchResults;
  * Showing the Product in a List
  * 
  * @author Dana Haywood
- * @since 9/1/2012
- * @version 0.9.5 Instructor: Karl Lloyd<br>
+ * @since 9/10/2012
+ * @version 1.0.0 Instructor: Karl Lloyd<br>
  *          Class: IT482<br>
  *          University: Colorado Technical University<br>
  *          Source Cite:
