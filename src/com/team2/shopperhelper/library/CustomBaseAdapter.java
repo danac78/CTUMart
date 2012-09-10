@@ -15,8 +15,8 @@ import android.widget.TextView;
  * Creating a Custom List with multiple values.
  * 
  * @author Dana Haywood
- * @version 0.9.5
- * @since 9/1/2012 <br>
+ * @version 1.0.0
+ * @since 9/10/2012 <br>
  *        Instructor: Karl Lloyd<br>
  *        Class: IT482<br>
  *        University: Colorado Technical University<br>
