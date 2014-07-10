@@ -127,7 +127,7 @@ public class Launch extends Activity {
 		/*
 		 * If both of the preceding test are true, the Internet connection is available and
 		 * the build version is less than 4 then the SearchForStore.class will be initiated @CSJ
-		 */
+		 * the user will them be able to navigate the app/
 					
 		}
 
